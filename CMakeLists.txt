@@ -7,7 +7,7 @@ add_executable (
         AED_project2
         main.cpp
         
-        #src/Menu.cpp src/Menu.h
+        src/Menu.cpp src/Menu.h
         #src/Graph.cpp src/Graph.h
         #src/STCP.cpp src/STCP.h
 )
