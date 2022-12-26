@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.20)
-project(Projet_AED_pt2)
+project(AED_project2)
 set(CMAKE_CXX_STANDARD 14)
 
 # To run code, available in "src"
 add_executable (
-        Projet_AED_pt2
+        AED_project2
         main.cpp
         
         #src/Menu.cpp src/Menu.h
@@ -20,7 +20,7 @@ if(DOXYGEN_FOUND)
         file(MAKE_DIRECTORY "${BUILD_DOC_DIR}")
     endif()
 
-    set(DOXYGEN_IN "../Project_AED_pt2/documentation/Doxyfile")
+    set(DOXYGEN_IN "../AED_project2/documentation/Doxyfile")
     set(DOXYGEN_OUT "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile")
     configure_file("${DOXYGEN_IN}" "${DOXYGEN_OUT}" @ONLY)
 
