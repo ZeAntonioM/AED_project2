@@ -13,11 +13,11 @@ void Menu::getMenu() {
     if(!menuState.empty()){
         switch(menuState.top()) {
             case 0: mainMenu(); break;
-            /*case 1: routeTypeMenu(); break;
+            case 1: routeTypeMenu(); break;
             case 2: coordTypeMenu(); break;
             case 3: coordInputMenu(); break;
             case 4: stopInputMenu(); break;
-            case 5: searchDefinitionsMenu(); break;*/
+            case 5: searchDefinitionsMenu(); break;
         }
     }
     else{
@@ -38,6 +38,7 @@ void Menu::mainMenu() {
     cout << "Choose an option: ";
     cin >> option;
     cout << "────────────────────────────────────" << endl;
+
 
     if(option < 1 || option > 3){
         cout << "Invalid option!" << endl;

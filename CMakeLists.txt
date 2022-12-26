@@ -8,7 +8,7 @@ add_executable (
         main.cpp
         
         src/Menu.cpp src/Menu.h
-        #src/Graph.cpp src/Graph.h
+        src/Graph.cpp src/Graph.h
         #src/STCP.cpp src/STCP.h
 )
 
