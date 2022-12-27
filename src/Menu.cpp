@@ -33,7 +33,7 @@ void Menu::mainMenu() {
     cout << "──────────────SkyLines──────────────" << endl;
     cout << "────────────────────────────────────" << endl;
     cout << "1 - Find Route" << endl;
-    cout << "3 - Search Settings" << endl;
+    cout << "2 - Search Settings" << endl;
     cout << "3 - Exit" << endl;
     cout << "Choose an option: ";
     cin >> option;
@@ -52,8 +52,7 @@ void Menu::mainMenu() {
     switch(option){
         case 1: menuState.push(ROUTE_TYPE_MENU); break;
         case 2: menuState.push(SEARCH_DEFINITIONS_MENU); break;
-        case 3:
-        default: menuState.pop(); break;
+        case 3: default: menuState.pop(); break;
     }
 
     getMenu();
