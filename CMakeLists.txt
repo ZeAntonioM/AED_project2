@@ -9,7 +9,7 @@ add_executable (
         
         src/Menu.cpp src/Menu.h
         src/Graph.cpp src/Graph.h
-        #src/STCP.cpp src/STCP.h
+        src/SkyLines.cpp src/SkyLines.h
 )
 
 # To run Doxygen, available in "documentation"

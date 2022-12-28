@@ -57,10 +57,12 @@ struct Edge{
      */
     double weight;
 
+
     /**
      * @var name - name of the edge
      */
-    string name;
+    //string name;
+    //TODO name may not be necessary
 };
 
 /**
@@ -93,7 +95,7 @@ struct Node{
     Coordinate coordinate;
 
     /**
-     * @var edges - a vector of Edge structs representing the edges of the airport
+     * @var adjacentEdges - a list of Edges representing the adjacent nodes of the current node
      */
     list<Edge> adjacentEdges;
 
@@ -122,7 +124,6 @@ struct Node{
 
 class Graph {
 private:
-
     /**
      * @var nodes - a vector of Node structs representing the airports in the graph
      */
@@ -135,17 +136,47 @@ private:
      * @param lon1 - a double value represents the longitude of first point
      * @param lat2 - a double value represents the latitude of second point
      * @param lon2 - a double value represents the longitude of second point
-     * @return a double value containing the distance between two points
+     * @return - a double value containing the distance between two points
      */
-    double computeDistance(double lat1, double lon1, double lat2, double lon2);
+    static double calculateDistance(double lat1, double lon1, double lat2, double lon2);
 
 public:
-
     /**
      * Graph constructor
      * @param nodes integer number that represents the number of nodes the graph must have
      */
     Graph(int nodes);
+
+    /**
+     * Function that adds a node to the graph
+     * Time Complexity: O(1)
+     * @param node - a Node struct representing the Airport to be added
+     * @param index - a int representing the index of the Airport to be added
+     */
+    void addNode(const Node &node, int index);
+
+    /**
+     * Function that returns an Airport given a coordinate
+     * Time Complexity: O(V), where V is the number of nodes in the graph
+     * @param coordinate - a Coordinate struct representing the coordinate of the Airport to be found
+     * @return - a Node struct representing the closest Airport to the given coordinate
+     */
+    Node getNode(const Coordinate &coordinate);
+
+    /**
+     * Function that adds an edge to the graph
+     * Time Complexity: O(1)
+     * @param origin - a int representing the index of the origin node
+     * @param destination - a int representing the index of the destination node
+     */
+    void addEdge(int origin, int destination);
+    //TODO tirei o name porque pode nao ser necessario
+
+    /**
+     * Function to clear all nodes from the graph
+     * Time Complexity: O(V), where V is the number of nodes in the graph
+     */
+    void clear();
 };
 
 
