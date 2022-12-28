@@ -37,3 +37,7 @@ build
 *.exe
 *.out
 *.app
+
+# Doxygen Generated files
+html/
+latex/
