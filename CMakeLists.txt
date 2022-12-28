@@ -15,12 +15,12 @@ add_executable (
 # To run Doxygen, available in "documentation"
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
-    set(BUILD_DOC_DIR "${CMAKE_SOURCE_DIR}/documentation")
+    set(BUILD_DOC_DIR "${CMAKE_SOURCE_DIR}")
     if(NOT EXISTS "${BUILD_DOC_DIR}")
         file(MAKE_DIRECTORY "${BUILD_DOC_DIR}")
     endif()
 
-    set(DOXYGEN_IN "../AED_project2/documentation/Doxyfile")
+    set(DOXYGEN_IN "../AED_project2/Doxyfile")
     set(DOXYGEN_OUT "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile")
     configure_file("${DOXYGEN_IN}" "${DOXYGEN_OUT}" @ONLY)
 
