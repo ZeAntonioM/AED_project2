@@ -9,17 +9,17 @@
 #include "Graph.h"
 
 
-/**
- * Definition of number of airports and some file paths and useful for the class
- */
-#define numberAirports 3019
-#define AIRLINES "../data/airlines.csv"
-#define AIRPORTS "../data/airports.csv"
-#define FLIGHTS "../data/flights.csv"
-
-
 class SkyLines {
 private:
+
+    /**
+     * Definition of number of airports and some file paths and useful for the class
+     */
+    static const int NUMBER_AIRPORTS;
+    static const string AIRLINES;
+    static const string AIRPORTS;
+    static const string FLIGHTS;
+
 
     /**
      * @var graph - graph that contains all the airports and flights

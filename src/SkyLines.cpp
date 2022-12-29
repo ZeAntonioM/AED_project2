@@ -4,7 +4,12 @@
 
 #include "SkyLines.h"
 
-SkyLines::SkyLines() : graph(numberAirports) {
+const int SkyLines::NUMBER_AIRPORTS = 3019;
+const string SkyLines::AIRLINES = "../data/airlines.csv";
+const string SkyLines::AIRPORTS = "../data/airports.csv";
+const string SkyLines::FLIGHTS = "../data/flights.csv";
+
+SkyLines::SkyLines() : graph(NUMBER_AIRPORTS) {
     createAirports();
     //TODO
 }

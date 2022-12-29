@@ -8,22 +8,25 @@
 #include <iostream>
 #include <stack>
 
-/**
- * Menu's numbers
- */
-#define MAIN_MENU 0
-#define FLIGHT_TYPE_MENU 1
-#define COORD_TYPE_MENU 2
-#define AIRPORT_MENU 3
-#define COORDINATE_MENU 4
-#define CITY_MENU 5
-#define SEARCH_DEFINITIONS_MENU 6
-#define AIRPORT_INFO_MENU 7
+
+
 
 using namespace std;
 
 class Menu {
     private:
+        /**
+         * Menu numbers
+         */
+        static const int MAIN_MENU = 0;
+        static const int FLIGHT_TYPE_MENU = 1;
+        static const int COORD_TYPE_MENU = 2;
+        static const int AIRPORT_MENU = 3;
+        static const int COORDINATE_MENU = 4;
+        static const int CITY_MENU = 5;
+        static const int SEARCH_DEFINITIONS_MENU = 6;
+        static const int AIRPORT_INFO_MENU = 7;
+
         /**
          * @var option - user main menu option
          */
@@ -32,7 +35,7 @@ class Menu {
         /**
          * @var menuState - stack used to navigate through the menu
          */
-        stack<short int> menuState;
+        stack<int> menuState;
 
         /**
          * Function that calls the top of the menuState stack

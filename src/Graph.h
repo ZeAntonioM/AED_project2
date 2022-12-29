@@ -27,20 +27,7 @@ struct Coordinate {
     double longitude;
 };
 
-/**
- * Struct representing the three customizable weights for Dijsktra's algorithm
- */
-struct DijkstraWeight {
-    /**
-     * @var distance - distance from the current node and the origin node
-     */
-    double distance;
 
-    //TODO choose what will be the last two weights
-    int something;
-    int somethingElse;
-
-};
 
 /**
  * Struct representing a flight between two airports
@@ -111,11 +98,6 @@ struct Node{
      * @var parent - a int representing the parent node of the current node
      */
     int parent;
-
-    /**
-     * @var weight - a DijkstraWeight struct representing the weight of the node
-     */
-    DijkstraWeight weight;
 
     //TODO add more if needed
 };
