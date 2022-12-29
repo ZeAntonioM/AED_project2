@@ -40,11 +40,10 @@ struct DijkstraWeight {
     int something;
     int somethingElse;
 
-
 };
 
 /**
- * Struct representing an edge between two nodes
+ * Struct representing a flight between two airports
  */
 struct Edge{
     /**
@@ -56,7 +55,6 @@ struct Edge{
      * @var weight - weight of the edge (representing length in km)
      */
     double weight;
-
 
     /**
      * @var name - name of the edge
@@ -80,7 +78,7 @@ struct Node{
     string name;
 
     /**
-     * @var country - a string representing the country of the airport
+     * @var city - a string representing the city of the airport
      */
     string city;
 
@@ -107,7 +105,7 @@ struct Node{
     /**
      * @var distance - a double representing the distance (number of nodes, not in km) from the origin node
      */
-    int distance;
+    int distance; //!IMPORTANT: this is the number of nodes, not in km
 
     /**
      * @var parent - a int representing the parent node of the current node

@@ -40,7 +40,8 @@ Node Graph::getNode(const Coordinate &coordinate) {
 }
 
 void Graph::addEdge(int origin, int destination) {
-    //TODO ver o que é o if no outro projecto aqui
+    //check if node can be added to graph
+    if (origin < 1 || destination > nodes.size() || origin > nodes.size() || destination < 1) return;
     this->nodes[origin].adjacentEdges.push_back({destination, calculateDistance(this->nodes[origin].coordinate.latitude,
                                                                                 this->nodes[origin].coordinate.longitude,
                                                                                 this->nodes[destination].coordinate.latitude,
@@ -51,5 +52,4 @@ void Graph::clear() {
     for(auto &node : this->nodes){
         node.adjacentEdges.clear();
     }
-
 }

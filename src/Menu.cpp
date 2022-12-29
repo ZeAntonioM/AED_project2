@@ -63,15 +63,15 @@ void Menu::mainMenu() {
 
 void Menu::coordTypeMenu() {
     do{
-        cout << "──────────────Find Flight──────────────" << endl;
-        cout << "───────────────────────────────────────" << endl;
-        cout << "1 - Airport" << endl;
-        cout << "2 - City" << endl;
-        cout << "3 - Coordinate" << endl;
+        cout << "─────────────Find Flight────────────" << endl;
+        cout << "────────────────────────────────────" << endl;
+        cout << "1 - By Airport" << endl;
+        cout << "2 - By City" << endl;
+        cout << "3 - By Coordinates" << endl;
         cout << "4 - Go Back" << endl;
         cout << "Choose an option: ";
         cin >> option;
-        cout << "───────────────────────────────────────" << endl;
+        cout << "────────────────────────────────────" << endl;
 
         if(option < 1 || option > 4){
             cout << "Invalid option!" << endl;
@@ -85,5 +85,25 @@ void Menu::coordTypeMenu() {
         case 3: menuState.push(COORDINATE_MENU); break;
         case 4: default: menuState.pop(); break;
     }
+
+    getMenu();
 }
+
+void Menu::airportInputMenu() {
+    string departureAirport, arrivalAirport;
+    cout << "─────────────Find Flight────────────" << endl;
+    cout << "────────────────────────────────────" << endl;
+    cout << "Departure Airport Code: ";
+    cin >> departureAirport;
+    cout << "Arrival Airport Code: ";
+    cin >> arrivalAirport;
+    cout << "────────────────────────────────────" << endl;
+
+    //TODO
+    //call the find route function
+
+    getMenu();
+}
+
+
 
