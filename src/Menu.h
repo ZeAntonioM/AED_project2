@@ -1,7 +1,3 @@
-//
-// Created by sergiopeixoto on 26-12-2022.
-//
-
 #ifndef AED_PROJECT2_MENU_H
 #define AED_PROJECT2_MENU_H
 
