@@ -3,8 +3,7 @@
 
 #include <iostream>
 #include <stack>
-
-
+#include "SkyLines.h"
 
 
 using namespace std;
@@ -22,6 +21,11 @@ class Menu {
         static const int CITY_MENU = 5;
         static const int SEARCH_DEFINITIONS_MENU = 6;
         static const int AIRPORT_INFO_MENU = 7;
+
+        /**
+         * @var SkyLines - SkyLines object containing the graph
+         */
+        SkyLines skyLines;
 
         /**
          * @var option - user main menu option

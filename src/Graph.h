@@ -35,7 +35,7 @@ struct Edge{
     int destination;
 
     /**
-     * @var company - airline company that operates the flight
+     * @var company - Airline company that operates the flight
      */
     vector<string> company;
 };
@@ -126,7 +126,7 @@ public:
     void addNode(const Node &node, int index);
 
     /**
-     * Function that returns an Airport given a coordinate
+     * Function that returns the closest Airport given a coordinate
      * Time Complexity: O(V), where V is the number of nodes in the graph
      * @param coordinate - a Coordinate struct representing the coordinate of the Airport to be found
      * @return - a Node struct representing the closest Airport to the given coordinate

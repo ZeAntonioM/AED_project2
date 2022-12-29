@@ -35,3 +35,16 @@ void SkyLines::createAirports() {
 void SkyLines::createGraph() {
     //TODO read the flights file and add the flights to the graph
 }
+
+void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination) {
+    findRoute(graph.getNode(origin).code, graph.getNode(destination).code);
+}
+
+void SkyLines::findRoute(const string &originAirport, const string &destinationAirport) {
+    auto origin = airports.find(originAirport);
+    auto destination = airports.find(destinationAirport);
+
+    //TODO
+}
+
+

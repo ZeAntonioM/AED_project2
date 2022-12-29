@@ -5,10 +5,11 @@
 #include "Graph.h"
 
 
-struct airline {
+struct Airline {
     string name;
     string callsign;
     string country;
+
 };
 
 
@@ -30,17 +31,17 @@ private:
     Graph graph;
 
     /**
-     * @var airports - unordered map that stores the airports and their respective city
+     * @var airports - unordered map that stores the airport's code and their respective city
      */
     unordered_map<string, string> airports;
 
     /**
-     * @var airlines - unordered map that stores the airlines and their respective information
+     * @var airlines - unordered map that stores the airline's code and their respective information
      */
-    unordered_map<string, airline> airlines;
+    unordered_map<string, Airline> airlines;
 
     /**
-     * @var airlines - unordered map that stores the airlines and their respective information
+     * @var countries - unordered map that stores the airline's code and their country
      */
     unordered_map<string, string> countries;
 
@@ -87,6 +88,8 @@ private:
      */
     void createGraph();
 
+
+
 public:
     /**
      * Default constructor
@@ -99,6 +102,10 @@ public:
     ~SkyLines();
 
     //TODO define the functions that will be used in the menu
+
+    void findRoute(const string &originAirport, const string &destinationAirport);
+
+    void findRoute(const Coordinate &origin, const Coordinate &destination);
 
 };
 
