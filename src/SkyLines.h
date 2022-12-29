@@ -1,22 +1,14 @@
-//
-// Created by sergiopeixoto on 28-12-2022.
-//
-
 #ifndef AED_PROJECT2_SKYLINES_H
 #define AED_PROJECT2_SKYLINES_H
 
 #include <unordered_map>
 #include "Graph.h"
 
-
-/**
- * Definition of number of airports and some file paths and useful for the class
- */
-#define numberAirports 3019
-#define AIRLINES "../data/airlines.csv"
-#define AIRPORTS "../data/airports.csv"
-#define FLIGHTS "../data/flights.csv"
-
+struct airline {
+    string name;
+    string callsign;
+    string country;
+};
 
 class SkyLines {
 private:
@@ -31,6 +23,16 @@ private:
      * @var airports - unordered map that stores the airports and their respective city
      */
     unordered_map<string, string> airports;
+
+    /**
+     * @var airlines - unordered map that stores the airlines and their respective information
+     */
+    unordered_map<string, airline> airlines;
+
+    /**
+     * @var airlines - unordered map that stores the airlines and their respective information
+     */
+    unordered_map<string, string> countries;
 
     //TODO define another unordered map or unordered set to store something useful as per the project's requirements
     //unordered_map<string, string> flights;
@@ -52,10 +54,28 @@ private:
     void addFlight(int origin, int destination);
 
     /**
-     * Function that creates the airports and adds them to the graph and the unordered map
+     * Function that creates the airports and adds them to an unordered map and the graph.
      * Time complexity: //TODO
      */
     void createAirports();
+
+    /**
+     * Function that link the cities and the airports in an unordered map.
+     * Time complexity: //TODO
+     */
+    void createCountries();
+
+    /**
+     * Function that creates the airlines ant puts them on an unordered map.
+     * Time complexity: //TODO
+     */
+    void createAirlines();
+
+    /**
+     * Function that creates the graph and reads the flights file.
+     * Time complexity: //TODO
+     */
+    void createGraph();
 
 public:
     /**

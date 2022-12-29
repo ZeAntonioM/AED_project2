@@ -1,7 +1,3 @@
-//
-// Created by sergiopeixoto on 28-12-2022.
-//
-
 #include "SkyLines.h"
 
 SkyLines::SkyLines() : graph(numberAirports) {
@@ -21,6 +17,16 @@ void SkyLines::addFlight(int origin, int destination) {
     this->graph.addEdge(origin, destination);
 }
 
+void SkyLines::createCountries() {
+    //TODO - read the cities file and store the information in the unordered map
+}
+
+void
+
 void SkyLines::createAirports() {
-    //TODO read the airports file and add the airports to the graph and the unordered map
+    //TODO read the airports file and add the airports to the unordered map
+}
+
+void SkyLines::createGraph() {
+    //TODO read the flights file and add the flights to the graph
 }

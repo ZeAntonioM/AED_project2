@@ -1,7 +1,3 @@
-//
-// Created by sergiopeixoto on 26-12-2022.
-//
-
 #ifndef AED_PROJECT2_GRAPH_H
 #define AED_PROJECT2_GRAPH_H
 
@@ -52,15 +48,9 @@ struct Edge{
     int destination;
 
     /**
-     * @var weight - weight of the edge (representing length in km)
+     * @var company - airline company that operates the flight
      */
-    double weight;
-
-    /**
-     * @var name - name of the edge
-     */
-    //string name;
-    //TODO name may not be necessary
+    vector<string> company;
 };
 
 /**
