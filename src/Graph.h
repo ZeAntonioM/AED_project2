@@ -149,7 +149,7 @@ public:
      * Function that adds a node to the graph
      * Time Complexity: O(1)
      * @param node - a Node struct representing the Airport to be added
-     * @param index - a int representing the index of the Airport to be added
+     * @param index - an int representing the index of the Airport to be added
      */
     void addNode(const Node &node, int index);
 
@@ -164,11 +164,20 @@ public:
     /**
      * Function that adds an edge to the graph
      * Time Complexity: O(1)
-     * @param origin - a int representing the index of the origin node
-     * @param destination - a int representing the index of the destination node
+     * @param origin - an int representing the index of the origin node
+     * @param destination - an int representing the index of the destination node
      */
     void addEdge(int origin, int destination);
     //TODO tirei o name porque pode nao ser necessario
+
+    /**
+     * Function that applies breadth-first search on the graph, changing the distance of each node based on the origin node
+     * Time Complexity: O(n+e), n being the total number of nodes, e being the total number of edges
+     * @param origin - an int representing the index of the origin node
+     */
+    void BFS(int origin);
+
+    int shortestPath(int origin, int destination);
 
     /**
      * Function to clear all nodes from the graph
