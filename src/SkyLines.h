@@ -1,8 +1,16 @@
 #ifndef AED_PROJECT2_SKYLINES_H
 #define AED_PROJECT2_SKYLINES_H
 
-#include <unordered_map>
+#include "bits/stdc++.h"
 #include "Graph.h"
+
+struct airport{
+    string code;
+    string name;
+    string city;
+    string country;
+    Coordinate coordinate;
+};
 
 struct airline {
     string name;
@@ -22,7 +30,7 @@ private:
     /**
      * @var airports - unordered map that stores the airports and their respective city
      */
-    unordered_map<string, string> airports;
+    unordered_map<int, airport> airports;
 
     /**
      * @var airlines - unordered map that stores the airlines and their respective information
@@ -30,14 +38,10 @@ private:
     unordered_map<string, airline> airlines;
 
     /**
-     * @var airlines - unordered map that stores the airlines and their respective information
+     * @var flights - unordered map that stores the flights and their respective information
      */
-    unordered_map<string, string> countries;
+    unordered_map<string, string> flights;
 
-    //TODO define another unordered map or unordered set to store something useful as per the project's requirements
-    //unordered_map<string, string> flights;
-
-    //TODO functions to read the files and store the information in the unordered maps and graph
 
     /**
      * Function that adds a node to the graph
@@ -50,8 +54,9 @@ private:
      * Function that adds an edge to the graph
      * @param origin - origin node of the edge
      * @param destination - destination node of the edge
+     * @param companies - vector of strings with the companies that operate the flight
      */
-    void addFlight(int origin, int destination);
+    void addFlight(int origin, int destination, vector<string> companies);
 
     /**
      * Function that creates the airports and adds them to an unordered map and the graph.
@@ -60,22 +65,16 @@ private:
     void createAirports();
 
     /**
-     * Function that link the cities and the airports in an unordered map.
-     * Time complexity: //TODO
-     */
-    void createCountries();
-
-    /**
      * Function that creates the airlines ant puts them on an unordered map.
      * Time complexity: //TODO
      */
     void createAirlines();
 
     /**
-     * Function that creates the graph and reads the flights file.
+     * Function that creates the countries and puts them on an unordered map and creates the edges referring to a flight.
      * Time complexity: //TODO
      */
-    void createGraph();
+    void createFlights();
 
 public:
     /**

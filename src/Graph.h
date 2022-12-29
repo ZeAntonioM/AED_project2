@@ -157,7 +157,7 @@ public:
      * @param origin - an int representing the index of the origin node
      * @param destination - an int representing the index of the destination node
      */
-    void addEdge(int origin, int destination);
+    void addEdge(int origin, int destination, vector<string> company);
     //TODO tirei o name porque pode nao ser necessario
 
     /**

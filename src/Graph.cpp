@@ -1,5 +1,6 @@
 #include <cfloat>
 #include <queue>
+#include <utility>
 #include "Graph.h"
 
 Graph::Graph(int nodes) : nodes(nodes+1){}
@@ -36,13 +37,10 @@ Node Graph::getNode(const Coordinate &coordinate) {
     return closestNode;
 }
 
-void Graph::addEdge(int origin, int destination) {
+void Graph::addEdge(int origin, int destination, vector<string> companies) {
     //check if node can be added to graph
     if (origin < 1 || destination > nodes.size() || origin > nodes.size() || destination < 1) return;
-    this->nodes[origin].adjacentEdges.push_back({destination, calculateDistance(this->nodes[origin].coordinate.latitude,
-                                                                                this->nodes[origin].coordinate.longitude,
-                                                                                this->nodes[destination].coordinate.latitude,
-                                                                                this->nodes[destination].coordinate.longitude)});
+    this->nodes[origin].adjacentEdges.push_back((Edge){destination, std::move(companies)});
 }
 
 void Graph::BFS(int origin) {
