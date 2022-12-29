@@ -1,4 +1,5 @@
 #include <cfloat>
+#include <queue>
 #include "Graph.h"
 
 Graph::Graph(int nodes) : nodes(nodes+1){}
@@ -42,6 +43,38 @@ void Graph::addEdge(int origin, int destination) {
                                                                                 this->nodes[origin].coordinate.longitude,
                                                                                 this->nodes[destination].coordinate.latitude,
                                                                                 this->nodes[destination].coordinate.longitude)});
+}
+
+void Graph::BFS(int origin) {
+    for (int i = 1; i < nodes.size(); i++){
+        nodes[i].visited = false;
+        nodes[i].distance = 0;
+        nodes[i].parent = i;
+    }
+
+    queue<int> q;
+    q.push(origin);
+    nodes[origin].visited = true;
+    nodes[origin].distance = 0;
+
+    while(!q.empty()){
+        int current = q.front();
+        q.pop();
+        for (auto e: nodes[current].adjacentEdges){
+            if (!nodes[e.destination].visited){
+                q.push(e.destination);
+                nodes[e.destination].visited = true;
+                nodes[e.destination].distance = nodes[current].distance + 1;
+                nodes[e.destination].parent = current;
+            }
+        }
+    }
+}
+
+int Graph::shortestPath(int origin, int destination) {
+    BFS(origin);
+
+    return (nodes[destination].distance);
 }
 
 void Graph::clear() {
