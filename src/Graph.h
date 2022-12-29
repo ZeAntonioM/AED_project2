@@ -23,20 +23,7 @@ struct Coordinate {
     double longitude;
 };
 
-/**
- * Struct representing the three customizable weights for Dijsktra's algorithm
- */
-struct DijkstraWeight {
-    /**
-     * @var distance - distance from the current node and the origin node
-     */
-    double distance;
 
-    //TODO choose what will be the last two weights
-    int something;
-    int somethingElse;
-
-};
 
 /**
  * Struct representing a flight between two airports
@@ -48,7 +35,7 @@ struct Edge{
     int destination;
 
     /**
-     * @var company - airline company that operates the flight
+     * @var company - Airline company that operates the flight
      */
     vector<string> company;
 };
@@ -102,11 +89,6 @@ struct Node{
      */
     int parent;
 
-    /**
-     * @var weight - a DijkstraWeight struct representing the weight of the node
-     */
-    DijkstraWeight weight;
-
     //TODO add more if needed
 };
 
@@ -144,18 +126,21 @@ public:
     void addNode(const Node &node, int index);
 
     /**
-     * Function that returns an Airport given a coordinate
+     * Function that returns the closest Airport given a coordinate
      * Time Complexity: O(V), where V is the number of nodes in the graph
      * @param coordinate - a Coordinate struct representing the coordinate of the Airport to be found
      * @return - a Node struct representing the closest Airport to the given coordinate
      */
     Node getNode(const Coordinate &coordinate);
 
+    vector<Node> getNodes() const;
+
     /**
      * Function that adds an edge to the graph
      * Time Complexity: O(1)
      * @param origin - an int representing the index of the origin node
      * @param destination - an int representing the index of the destination node
+     * @param company - a vector of strings representing the airline companies that operates the flights
      */
     void addEdge(int origin, int destination, vector<string> company);
     //TODO tirei o name porque pode nao ser necessario
@@ -166,6 +151,7 @@ public:
      * @param origin - an int representing the index of the origin node
      */
     void BFS(int origin);
+
 
     int shortestPath(int origin, int destination);
 

@@ -1,7 +1,9 @@
 #include "Menu.h"
+#include "Graph.h"
 
 Menu::Menu() {
     this->menuState.push(MAIN_MENU);
+    skyLines = SkyLines();
     getMenu();
 }
 
@@ -97,7 +99,10 @@ void Menu::airportInputMenu() {
 
     //TODO
     //call the find route function
-
+    skyLines.findRoute(departureAirport, arrivalAirport);
+    //return to the main menu
+    menuState.pop();
+    menuState.pop();
     getMenu();
 }
 
@@ -111,6 +116,7 @@ void Menu::cityInputMenu() {
     cin >> arrivalCity;
     cout << "────────────────────────────────────" << endl;
 
+    countryInputMenu();
     //TODO
     //call the find route function
 
@@ -131,11 +137,36 @@ void Menu::coordInputMenu() {
     cin >> arrivalLongitude;
     cout << "────────────────────────────────────" << endl;
 
+    Coordinate departureCoord = {departureLatitude, departureLongitude};
+    Coordinate arrivalCoord = {arrivalLatitude, arrivalLongitude};
+
     //TODO
     //call the find route function
+    //por coordenadas encontrar o airporto mais proximo
+    skyLines.findRoute(departureCoord, arrivalCoord);
+
+    //return to the main menu
+    menuState.pop();
+    menuState.pop();
+    getMenu();
+}
+
+void Menu::airportInfoMenu() {
+    string airportCode;
+    cout << "──────────Airport Information───────" << endl;
+    cout << "────────────────────────────────────" << endl;
+    cout << "Airport Code: ";
+    cin >> airportCode;
+    cout << "────────────────────────────────────" << endl;
+
+    //TODO
+    //call the airport info function
 
     getMenu();
 }
+
+
+
 
 void Menu::searchDefinitionsMenu() {
     do{
@@ -156,24 +187,9 @@ void Menu::searchDefinitionsMenu() {
 
     } while(option < 1 || option > 5);
 
-
-
     getMenu();
 }
 
-void Menu::airportInfoMenu() {
-    string airportCode;
-    cout << "──────────Airport Information────────" << endl;
-    cout << "────────────────────────────────────" << endl;
-    cout << "Airport Code: ";
-    cin >> airportCode;
-    cout << "────────────────────────────────────" << endl;
-
-    //TODO
-    //call the airport info function
-
-    getMenu();
-}
 
 void Menu::flightTypeMenu() {
     do{
@@ -198,4 +214,5 @@ void Menu::flightTypeMenu() {
 
     getMenu();
 }
+
 

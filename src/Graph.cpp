@@ -40,7 +40,7 @@ Node Graph::getNode(const Coordinate &coordinate) {
 void Graph::addEdge(int origin, int destination, vector<string> companies) {
     //check if node can be added to graph
     if (origin < 1 || destination > nodes.size() || origin > nodes.size() || destination < 1) return;
-    this->nodes[origin].adjacentEdges.push_back((Edge){destination, std::move(companies)});
+    this->nodes[origin].adjacentEdges.push_back((Edge) {destination, std::move(companies)});
 }
 
 void Graph::BFS(int origin) {
@@ -58,7 +58,7 @@ void Graph::BFS(int origin) {
     while(!q.empty()){
         int current = q.front();
         q.pop();
-        for (auto e: nodes[current].adjacentEdges){
+        for (const auto& e: nodes[current].adjacentEdges){
             if (!nodes[e.destination].visited){
                 q.push(e.destination);
                 nodes[e.destination].visited = true;

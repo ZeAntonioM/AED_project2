@@ -4,43 +4,52 @@
 #include "bits/stdc++.h"
 #include "Graph.h"
 
-struct airport{
-    string code;
+
+struct Airline {
+
+    /**
+     * @var name - name of the airline
+     */
     string name;
-    string city;
+
+    /**
+     * @var callsign - callsign of the airline
+     */
+    string callsign;
+
+    /**
+     * @var country - country of the airline
+     */
     string country;
-    Coordinate coordinate;
 };
 
-struct airline {
-    string name;
-    string callsign;
-    string country;
-};
 
 class SkyLines {
 private:
+
+    /**
+     * Definition of number of airports and some file paths and useful for the class
+     */
+    static const int NUMBER_AIRPORTS = 3019;
+    static const string AIRLINES;
+    static const string AIRPORTS;
+    static const string FLIGHTS;
+
 
     /**
      * @var graph - graph that contains all the airports and flights
      */
     Graph graph;
 
+    /**
+     * @var airports - unordered map that stores the airport's code and the index of the airport in the graph
+     */
+    unordered_map<string, int> airports;
 
     /**
-     * @var airports - unordered map that stores the airports and their respective city
+     * @var airlines - unordered map that stores the airline's code and their respective information
      */
-    unordered_map<int, airport> airports;
-
-    /**
-     * @var airlines - unordered map that stores the airlines and their respective information
-     */
-    unordered_map<string, airline> airlines;
-
-    /**
-     * @var flights - unordered map that stores the flights and their respective information
-     */
-    unordered_map<string, string> flights;
+    unordered_map<string, Airline> airlines;
 
 
     /**
@@ -76,6 +85,8 @@ private:
      */
     void createFlights();
 
+
+
 public:
     /**
      * Default constructor
@@ -88,6 +99,10 @@ public:
     ~SkyLines();
 
     //TODO define the functions that will be used in the menu
+
+    void findRoute(const string &originAirport, const string &destinationAirport);
+
+    void findRoute(const Coordinate &origin, const Coordinate &destination);
 
 };
 

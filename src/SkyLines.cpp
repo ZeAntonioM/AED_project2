@@ -2,9 +2,12 @@
 
 #include <utility>
 
-static int numberAirports = 3019;
+const string SkyLines::AIRLINES = "../data/airlines.csv";
+const string SkyLines::AIRPORTS = "../data/airports.csv";
+const string SkyLines::FLIGHTS = "../data/flights.csv";
 
-SkyLines::SkyLines() : graph(numberAirports) {
+SkyLines::SkyLines() : graph(NUMBER_AIRPORTS) {
+
     createAirports();
     createAirlines();
     createFlights();
@@ -25,32 +28,87 @@ void SkyLines::addFlight(int origin, int destination, vector<string> companies) 
 
 void SkyLines::createAirports() {
 
-    string filename = "airports,csv";
     ifstream file;
-    file.open(filename);
+    file.open(AIRPORTS);
     int index = 0;
 
     string line;
     getline(file,line);
+    istringstream ss(line);
 
     while (getline(file,line)){
-        /*
-        Coordinate coordinate = {(double)line[4], (double)line[5]};
-        airport airport = {line[0], line[1], line[2], line[3], line[4]};
-        airports.insert({index, airport});
-         */
-        cout<< line[0] << endl;
+
+        string Code, Name, City, Country, Lat, Long;
+        getline(ss, Code, ',');
+        getline(ss, Name, ',');
+        getline(ss, City, ',');
+        getline(ss, Country, ',');
+        getline(ss, Lat, ',');
+        getline(ss, Long, ',');
+
+        Coordinate coordinate = {stod(Lat), stod(Long)};
+        Node node = {Code, Name, City, Country, coordinate, {}, false, 0, 0};
+        addAirport(node, index);
+        airports.insert({Code, index});
+
         index++;
     }
 
-
-
-}
-
-void SkyLines::createFlights() {
-    //TODO read the flights file and add the flights to the unordered map
 }
 
 void SkyLines::createAirlines() {
-    //TODO read the airlines file and add the airlines to the unordered map
+    ifstream file;
+    file.open(AIRLINES);
+
+    string line;
+    getline(file,line);
+    istringstream ss(line);
+
+    while (getline(file,line)){
+
+        string Code, Name, CallSign, Country;
+        getline(ss, Code, ',');
+        getline(ss, Name, ',');
+        getline(ss, CallSign, ',');
+        getline(ss, Country, ',');
+
+        Airline airline = {Name, CallSign, Country};
+        airlines.insert({Code, airline});
+    }
+}
+
+void SkyLines::createFlights() {
+
+    ifstream file;
+    file.open(FLIGHTS);
+    int index = 0;
+
+    string line;
+    getline(file,line);
+    istringstream ss(line);
+
+    while (getline(file,line)){
+
+        string Source, Target, Airline;
+        getline(ss, Source, ',');
+        getline(ss, Target, ',');
+        getline(ss, Airline, ',');
+
+        Node airport = graph.getNode[airports.find(Source)->second];
+
+        vector<string> companies = {Airline};
+        graph.addEdge(airports.at(Source), airports.at(Target), companies);
+
+    }
+}
+
+void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination) {
+    findRoute(graph.getNode(origin).code, graph.getNode(destination).code);
+}
+
+void SkyLines::findRoute(const string &originAirport, const string &destinationAirport) {
+    auto origin = airports.find(originAirport);
+    auto destination = airports.find(destinationAirport);
+
+    //TODO
 }
