@@ -128,3 +128,7 @@ void SkyLines::findRoute(const string &originAirport, const string &destinationA
 
     //TODO
 }
+
+unordered_map<string, Airline> SkyLines::getCompanies(){
+    return this->companies;
+}
