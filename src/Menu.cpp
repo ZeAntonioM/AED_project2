@@ -1,5 +1,4 @@
 #include "Menu.h"
-#include "Graph.h"
 
 Menu::Menu() {
     this->menuState.push(MAIN_MENU);

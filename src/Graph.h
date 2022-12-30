@@ -1,10 +1,7 @@
 #ifndef AED_PROJECT2_GRAPH_H
 #define AED_PROJECT2_GRAPH_H
 
-#include <cmath>
-#include <string>
-#include <vector>
-#include <list>
+#include "bits/stdc++.h"
 
 using namespace std;
 
@@ -37,7 +34,7 @@ struct Edge{
     /**
      * @var company - Airline company that operates the flight
      */
-    vector<string> company;
+    unordered_set<string> airlines;
 };
 
 /**
@@ -140,9 +137,9 @@ public:
      * Time Complexity: O(1)
      * @param origin - an int representing the index of the origin node
      * @param destination - an int representing the index of the destination node
-     * @param company - a vector of strings representing the airline companies that operates the flights
+     * @param airlines - an unordered set of strings representing the airlines that operates the flights
      */
-    void addEdge(int origin, int destination, vector<string> company);
+    void addEdge(int origin, int destination, unordered_set<string> airlines);
     //TODO tirei o name porque pode nao ser necessario
 
     /**

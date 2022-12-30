@@ -9,7 +9,7 @@ const string SkyLines::FLIGHTS = "../data/flights.csv";
 SkyLines::SkyLines() : graph(NUMBER_AIRPORTS) {
 
     createAirports();
-    createAirlines();
+    createCompanies();
     createFlights();
     //TODO
 }
@@ -22,8 +22,8 @@ void SkyLines::addAirport(const Node &node, int index) {
     this->graph.addNode(node, index);
 }
 
-void SkyLines::addFlight(int origin, int destination, vector<string> companies) {
-    this->graph.addEdge(origin, destination, std::move(companies));
+void SkyLines::addFlight(int origin, int destination, unordered_set<string> airlines) {
+    this->graph.addEdge(origin, destination, std::move(airlines));
 }
 
 void SkyLines::createAirports() {
@@ -56,7 +56,7 @@ void SkyLines::createAirports() {
 
 }
 
-void SkyLines::createAirlines() {
+void SkyLines::createCompanies() {
     ifstream file;
     file.open(AIRLINES);
 
@@ -73,7 +73,8 @@ void SkyLines::createAirlines() {
         getline(ss, Country, ',');
 
         Airline airline = {Name, CallSign, Country};
-        airlines.insert({Code, airline});
+        companies.insert({Code, airline});
+
     }
 }
 
@@ -81,7 +82,6 @@ void SkyLines::createFlights() {
 
     ifstream file;
     file.open(FLIGHTS);
-    int index = 0;
 
     string line;
     getline(file,line);
@@ -94,12 +94,28 @@ void SkyLines::createFlights() {
         getline(ss, Target, ',');
         getline(ss, Airline, ',');
 
-        Node airport = graph.getNode[airports.find(Source)->second];
+        Node airport = graph.getNodes()[airports.find(Source)->second];
 
-        vector<string> companies = {Airline};
-        graph.addEdge(airports.at(Source), airports.at(Target), companies);
+        list<Edge> edges = airport.adjacentEdges;
+
+        bool found = false;
+
+        for (auto &edge : edges){
+
+            if (edge.destination == airports.find(Target)->second){
+                edge.airlines.insert(Airline);
+                found = true;
+                break;
+            }
+        }
+
+        if (!found){
+            unordered_set<string> airlines = {Airline};
+            addFlight(airports.find(Source)->second, airports.find(Target)->second, airlines);
+        }
 
     }
+
 }
 
 void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination) {

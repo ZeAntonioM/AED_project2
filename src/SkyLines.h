@@ -1,7 +1,6 @@
 #ifndef AED_PROJECT2_SKYLINES_H
 #define AED_PROJECT2_SKYLINES_H
 
-#include "bits/stdc++.h"
 #include "Graph.h"
 
 
@@ -49,7 +48,7 @@ private:
     /**
      * @var airlines - unordered map that stores the airline's code and their respective information
      */
-    unordered_map<string, Airline> airlines;
+    unordered_map<string, Airline> companies;
 
 
     /**
@@ -63,9 +62,9 @@ private:
      * Function that adds an edge to the graph
      * @param origin - origin node of the edge
      * @param destination - destination node of the edge
-     * @param companies - vector of strings with the companies that operate the flight
+     * @param airlines - vector of strings with the airlines that operate the flight
      */
-    void addFlight(int origin, int destination, vector<string> companies);
+    void addFlight(int origin, int destination, unordered_set<string> airlines);
 
     /**
      * Function that creates the airports and adds them to an unordered map and the graph.
@@ -77,7 +76,7 @@ private:
      * Function that creates the airlines ant puts them on an unordered map.
      * Time complexity: //TODO
      */
-    void createAirlines();
+    void createCompanies();
 
     /**
      * Function that creates the countries and puts them on an unordered map and creates the edges referring to a flight.

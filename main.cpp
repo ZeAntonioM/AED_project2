@@ -4,7 +4,6 @@
 
 int main()
 {
-    SkyLines skylines;
 
     Menu menu;
     menu = Menu();
