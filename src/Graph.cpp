@@ -39,7 +39,7 @@ Node Graph::getNode(const Coordinate &coordinate) {
 
 void Graph::addEdge(int origin, int destination, unordered_set<string> &airlines) {
     //check if node can be added to graph
-    if (origin < 1 || destination > (int) nodes.size() || origin > (int) nodes.size() || destination < 1) return;
+    if (origin < 0 || destination > (int) nodes.size() || origin > (int) nodes.size() || destination < 0) return;
     //this->nodes[origin].adjacentEdges.push_back({destination, airlines});
     this->nodes[origin].hashMapEdges[destination] = {destination, airlines};
 }

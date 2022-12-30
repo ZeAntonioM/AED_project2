@@ -1,5 +1,4 @@
 #include "SkyLines.h"
-#include <utility>
 
 const int SkyLines::NUMBER_AIRPORTS = 3019;
 const string SkyLines::AIRLINES = "../data/airlines.csv";
@@ -91,11 +90,9 @@ void SkyLines::createFlights() {
     vector<Node> nodes = graph.getNodes();
     unordered_map<int, Edge> edges;
 
-    int index = 0;
     while (getline(file,line)){
         istringstream ss(line);
 
-        cout << index << endl;
         string Source, Target, Airline;
         getline(ss, Source, ',');
         getline(ss, Target, ',');
@@ -105,21 +102,20 @@ void SkyLines::createFlights() {
 
         edges = airport.hashMapEdges;
 
-        bool found = false;
 
         if (edges.find(airports[Target]) != edges.end()){
             edges[airports[Target]].airlines.insert(Airline);
-            found = true;
+
         }
 
-        if(!found){
+        else{
             unordered_set<string> airlines = {Airline};
             addFlight(airports[Source], airports[Target], airlines);
 
         }
-        index++;
+
     }
-    graph.setNodes(nodes);
+
 }
 
 void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination) {

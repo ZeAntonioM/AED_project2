@@ -52,10 +52,6 @@ void Menu::mainMenu() {
     cin >> option;
     cout << "────────────────────────────────────" << endl;
 
-    /*if(option < 1 || option > 3){
-        cout << "Invalid option!" << endl;
-    }*/
-
     cin.clear();
     cin.ignore(1000, '\n');
 
