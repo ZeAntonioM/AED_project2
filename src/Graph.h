@@ -20,8 +20,6 @@ struct Coordinate {
     double longitude;
 };
 
-
-
 /**
  * Struct representing a flight between two airports
  */
@@ -32,7 +30,7 @@ struct Edge{
     int destination;
 
     /**
-     * @var company - Airline company that operates the flight
+     * @var airlines - Airlines that operates the flight
      */
     unordered_set<string> airlines;
 };
@@ -66,10 +64,7 @@ struct Node{
      */
     Coordinate coordinate;
 
-    /**
-     * @var adjacentEdges - a list of Edges representing the adjacent nodes of the current node
-     */
-    list<Edge> adjacentEdges;
+    unordered_map<int, Edge> hashMapEdges;
 
     /**
      * @var visited - a boolean representing if the node has been visited
@@ -86,10 +81,12 @@ struct Node{
      */
     int parent;
 
+    /**
+     * @var disabled - a boolean representing if the node is disabled
+     */
+    bool disabled;
 
-    unordered_map<int, Edge> hashMapEdges;
 
-    //TODO add more if needed
 };
 
 class Graph {
@@ -135,7 +132,7 @@ public:
 
     vector<Node> getNodes();
 
-    void setNodes(vector<Node> nodes);
+
 
     /**
      * Function that adds an edge to the graph
@@ -145,7 +142,6 @@ public:
      * @param airlines - an unordered set of strings representing the airlines that operates the flights
      */
     void addEdge(int origin, int destination, unordered_set<string> &airlines);
-    //TODO tirei o name porque pode nao ser necessario
 
     /**
      * Function that applies breadth-first search on the graph, changing the distance of each node based on the origin node
@@ -162,6 +158,22 @@ public:
      * Time Complexity: O(V), where V is the number of nodes in the graph
      */
     void clear();
+
+    /**
+     * Function that disables an airport given an index
+     * Time Complexity: O(1)
+     * @param index - an int representing the index of the airport to be disabled
+     */
+    void disableAirport(int index);
+
+    /**
+     * Function that creates the shortest path between two available airports
+     * @param origin - an int representing the index of the origin airport
+     * @param destination - an int representing the index of the destination airport
+     * @return - a vector of Nodes representing the airports in the path
+     */
+    vector<Node> generateFlightPath(int origin, int destination);
+
 };
 
 

@@ -45,10 +45,9 @@ private:
     unordered_map<string, int> airports;
 
     /**
-     * @var airlines - unordered map that stores the airline's code and their respective information
+     * @var companies - unordered map that stores the airline's code and their respective information
      */
     unordered_map<string, Airline> companies;
-
 
     /**
      * Function that adds a node to the graph
@@ -101,6 +100,13 @@ public:
     void findRoute(const string &originAirport, const string &destinationAirport);
 
     void findRoute(const Coordinate &origin, const Coordinate &destination);
+
+    /**
+     * Function that disables an airport requested by the user
+     * @param code - code of the airport to be disabled
+     */
+    void disableAirport(const string &code);
+
 
 };
 

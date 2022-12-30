@@ -29,7 +29,7 @@ Node Graph::getNode(const Coordinate &coordinate) {
     for (auto &node : this->nodes) {
         double distance = calculateDistance(node.coordinate.latitude, node.coordinate.longitude, coordinate.latitude,
                                           coordinate.longitude);
-        if (distance < minDistance) {
+        if (distance < minDistance and !node.disabled) {
             minDistance = distance;
             closestNode = node;
         }
@@ -39,8 +39,8 @@ Node Graph::getNode(const Coordinate &coordinate) {
 
 void Graph::addEdge(int origin, int destination, unordered_set<string> &airlines) {
     //check if node can be added to graph
-    if (origin < 1 || destination > (int) nodes.size() || origin > (int) nodes.size() || destination < 1) return;
-    //this->nodes[origin].adjacentEdges.push_back({destination, airlines});
+    if (origin < 0 || destination > (int) nodes.size() || origin > (int) nodes.size() || destination < 0) return;
+
     this->nodes[origin].hashMapEdges[destination] = {destination, airlines};
 }
 
@@ -51,6 +51,12 @@ void Graph::BFS(int origin) {
         nodes[i].parent = i;
     }
 
+    //check if airport is disabled or not
+    if(nodes[origin].disabled){
+        cout << "Airport is disabled" << endl;
+        return;
+    }
+
     queue<int> q;
     q.push(origin);
     nodes[origin].visited = true;
@@ -59,18 +65,32 @@ void Graph::BFS(int origin) {
     while(!q.empty()){
         int current = q.front();
         q.pop();
-        for (const auto& e: nodes[current].adjacentEdges){
-            if (!nodes[e.destination].visited){
-                q.push(e.destination);
-                nodes[e.destination].visited = true;
-                nodes[e.destination].distance = nodes[current].distance + 1;
-                nodes[e.destination].parent = current;
+
+        //ignore the node if it is disabled
+        if(nodes[current].disabled) continue;
+
+        int size = nodes[current].hashMapEdges.size();
+
+        // "iterating" through the hashMapEdges
+        for (int i = 0 ; i < size; i++)
+        {
+            Edge e = nodes[current].hashMapEdges[i];
+
+            int n = e.destination;
+
+            if (!nodes[n].visited)
+            {
+                q.push(n);
+                nodes[n].visited = true;
+                nodes[n].distance = nodes[current].distance + 1;
+                nodes[n].parent = current;
             }
         }
     }
 }
 
 int Graph::shortestPath(int origin, int destination) {
+
     BFS(origin);
 
     return (nodes[destination].distance);
@@ -78,7 +98,7 @@ int Graph::shortestPath(int origin, int destination) {
 
 void Graph::clear() {
     for(auto &node : this->nodes){
-        node.adjacentEdges.clear();
+        node.hashMapEdges.clear();
     }
 }
 
@@ -86,7 +106,31 @@ vector<Node> Graph::getNodes() {
     return nodes;
 }
 
-void Graph::setNodes(vector<Node> nodes){
-    this->nodes = nodes;
+void Graph::disableAirport(int index) {
+    this->nodes[index].disabled = true;
 }
+
+vector<Node> Graph::generateFlightPath(int origin, int destination) {
+    vector<Node> path = {};
+
+    if(nodes[origin].disabled || nodes[destination].disabled){
+        cout << "Origin/Destinatio airport is disabled" << endl;
+        return path;
+    }
+
+    if(nodes[destination].parent == destination){
+        cout << "No path found" << endl;
+        return path;
+    }
+
+    //building the path
+    path.push_back(nodes[destination]);
+    while(nodes[destination].parent != origin){
+        destination = nodes[destination].parent;
+        path.push_back(nodes[destination]);
+    }
+    return path;
+
+}
+
 

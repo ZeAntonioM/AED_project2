@@ -47,7 +47,7 @@ void SkyLines::createAirports() {
         getline(ss, Long);
 
         Coordinate coordinate = {stod(Lat), stod(Long)};
-        Node node = {Code, Name, City, Country, coordinate, {}, false, 0, 0};
+        Node node = {Code, Name, City, Country, coordinate, {}, false, 0, 0, false};
         addAirport(node, index);
         airports.insert({Code, index});
 
@@ -88,14 +88,14 @@ void SkyLines::createFlights() {
     getline(file,line);
 
     Node airport;
-    vector<Node> nodes = graph.getNodes();
+    vector<Node> nodes = graph.getNodes(); //graph's node vector
     unordered_map<int, Edge> edges;
 
-    int index = 0;
+
+
     while (getline(file,line)){
         istringstream ss(line);
 
-        cout << index << endl;
         string Source, Target, Airline;
         getline(ss, Source, ',');
         getline(ss, Target, ',');
@@ -105,21 +105,15 @@ void SkyLines::createFlights() {
 
         edges = airport.hashMapEdges;
 
-        bool found = false;
-
         if (edges.find(airports[Target]) != edges.end()){
             edges[airports[Target]].airlines.insert(Airline);
-            found = true;
-        }
 
-        if(!found){
-            unordered_set<string> airlines = {Airline};
+        } else {
+            unordered_set<string> airlines;
+            airlines.insert(Airline);
             addFlight(airports[Source], airports[Target], airlines);
-
         }
-        index++;
     }
-    graph.setNodes(nodes);
 }
 
 void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination) {
@@ -127,8 +121,22 @@ void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination
 }
 
 void SkyLines::findRoute(const string &originAirport, const string &destinationAirport) {
-    //auto origin = airports.find(originAirport);
-    //auto destination = airports.find(destinationAirport);
 
-    //TODO
+    if(airports.find(originAirport) == airports.end() || airports.find(destinationAirport) == airports.end()){
+        cout << "Invalid airport code!" << endl;
+        return;
+    }
+
+    vector<Node> path = graph.generateFlightPath(airports[originAirport], airports[destinationAirport]);
+
+
+}
+
+void SkyLines::disableAirport(const string &code) {
+    if(airports.find(code) != airports.end()){
+        graph.disableAirport(airports[code]);
+    } else {
+        cout << "Airport not found" << endl;
+    }
+
 }

@@ -16,7 +16,7 @@ const int Menu::AIRPORT_INFO_MENU = 7;
 Menu::Menu() {
     this->menuState.push(MAIN_MENU);
     getMenu();
-    cout << "Hello World! 2 " << endl;
+
 }
 
 void Menu::getMenu() {
@@ -52,12 +52,15 @@ void Menu::mainMenu() {
     cin >> option;
     cout << "────────────────────────────────────" << endl;
 
-    /*if(option < 1 || option > 3){
+    if(option < 1 || option > 4){
         cout << "Invalid option!" << endl;
-    }*/
+    }
 
     cin.clear();
-    cin.ignore(1000, '\n');
+    cin.ignore(INT16_MAX, '\n');
+
+    //clear the console
+    system("clear");
 
     } while(option < 1 || option > 4);
 
@@ -69,6 +72,8 @@ void Menu::mainMenu() {
     }
 
     getMenu();
+
+
 }
 
 void Menu::coordTypeMenu() {
@@ -86,6 +91,13 @@ void Menu::coordTypeMenu() {
         if(option < 1 || option > 4){
             cout << "Invalid option!" << endl;
         }
+
+        cin.clear();
+        cin.ignore(INT16_MAX, '\n');
+
+        //clear the console
+        system("clear");
+
 
     } while(option < 1 || option > 4);
 
@@ -112,6 +124,7 @@ void Menu::airportInputMenu() {
     //TODO
     //call the find route function
     skyLines.findRoute(departureAirport, arrivalAirport);
+
     //return to the main menu
     menuState.pop();
     menuState.pop();
@@ -197,7 +210,14 @@ void Menu::searchDefinitionsMenu() {
             cout << "Invalid option!" << endl;
         }
 
+        cin.clear();
+        cin.ignore(1000, '\n');
+
+        //clear the console
+        system("clear");
+
     } while(option < 1 || option > 5);
+
 
     getMenu();
 }
@@ -217,6 +237,12 @@ void Menu::flightTypeMenu() {
         if(option < 1 || option > 3){
             cout << "Invalid option!" << endl;
         }
+
+        cin.clear();
+        cin.ignore(INT16_MAX, '\n');
+
+        //clear the console
+        system("clear");
 
     } while(option < 1 || option > 3);
 
