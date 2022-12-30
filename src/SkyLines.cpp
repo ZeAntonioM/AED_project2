@@ -21,7 +21,8 @@ void SkyLines::addAirport(const Node &node, int index) {
     this->graph.addNode(node, index);
 }
 
-void SkyLines::addFlight(int origin, int destination, unordered_set<string> airlines) {
+
+void SkyLines::addFlight(int origin, int destination, const unordered_set<string> &airlines) {
     this->graph.addEdge(origin, destination, airlines);
 }
 
