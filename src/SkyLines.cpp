@@ -1,17 +1,16 @@
 #include "SkyLines.h"
-
 #include <utility>
 
+const int SkyLines::NUMBER_AIRPORTS = 3019;
 const string SkyLines::AIRLINES = "../data/airlines.csv";
 const string SkyLines::AIRPORTS = "../data/airports.csv";
 const string SkyLines::FLIGHTS = "../data/flights.csv";
 
-SkyLines::SkyLines() : graph(NUMBER_AIRPORTS) {
-
+SkyLines::SkyLines() {
+    graph = Graph(SkyLines::NUMBER_AIRPORTS);
     createAirports();
     createCompanies();
     createFlights();
-    //TODO
 }
 
 SkyLines::~SkyLines() {
@@ -33,10 +32,11 @@ void SkyLines::createAirports() {
     int index = 0;
 
     string line;
+
     getline(file,line);
-    istringstream ss(line);
 
     while (getline(file,line)){
+        istringstream ss(line);
 
         string Code, Name, City, Country, Lat, Long;
         getline(ss, Code, ',');
@@ -44,7 +44,7 @@ void SkyLines::createAirports() {
         getline(ss, City, ',');
         getline(ss, Country, ',');
         getline(ss, Lat, ',');
-        getline(ss, Long, ',');
+        getline(ss, Long);
 
         Coordinate coordinate = {stod(Lat), stod(Long)};
         Node node = {Code, Name, City, Country, coordinate, {}, false, 0, 0};
@@ -62,9 +62,10 @@ void SkyLines::createCompanies() {
 
     string line;
     getline(file,line);
-    istringstream ss(line);
+
 
     while (getline(file,line)){
+        istringstream ss(line);
 
         string Code, Name, CallSign, Country;
         getline(ss, Code, ',');
@@ -85,24 +86,29 @@ void SkyLines::createFlights() {
 
     string line;
     getline(file,line);
-    istringstream ss(line);
 
+    Node airport;
+    list<Edge> edges;
+
+    int index = 0;
     while (getline(file,line)){
+        istringstream ss(line);
 
+        cout << index << endl;
         string Source, Target, Airline;
         getline(ss, Source, ',');
         getline(ss, Target, ',');
-        getline(ss, Airline, ',');
+        getline(ss, Airline);
 
-        Node airport = graph.getNodes()[airports.find(Source)->second];
+        airport = graph.getNodes()[airports[Source]];
 
-        list<Edge> edges = airport.adjacentEdges;
+        edges = airport.adjacentEdges;
 
         bool found = false;
 
         for (auto &edge : edges){
 
-            if (edge.destination == airports.find(Target)->second){
+            if (edge.destination == airports[Target]){
                 edge.airlines.insert(Airline);
                 found = true;
                 break;
@@ -111,9 +117,9 @@ void SkyLines::createFlights() {
 
         if (!found){
             unordered_set<string> airlines = {Airline};
-            addFlight(airports.find(Source)->second, airports.find(Target)->second, airlines);
+            addFlight(airports[Source], airports[Target], airlines);
         }
-
+        index++;
     }
 
 }
@@ -123,8 +129,8 @@ void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination
 }
 
 void SkyLines::findRoute(const string &originAirport, const string &destinationAirport) {
-    auto origin = airports.find(originAirport);
-    auto destination = airports.find(destinationAirport);
+    //auto origin = airports.find(originAirport);
+    //auto destination = airports.find(destinationAirport);
 
     //TODO
 }

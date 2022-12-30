@@ -39,12 +39,12 @@ Node Graph::getNode(const Coordinate &coordinate) {
 
 void Graph::addEdge(int origin, int destination, unordered_set<string> airlines) {
     //check if node can be added to graph
-    if (origin < 1 || destination > nodes.size() || origin > nodes.size() || destination < 1) return;
-    this->nodes[origin].adjacentEdges.push_back((Edge) {destination, std::move(airlines)});
+    if (origin < 1 || destination > (int) nodes.size() || origin > (int) nodes.size() || destination < 1) return;
+    this->nodes[origin].adjacentEdges.push_back({destination, std::move(airlines)});
 }
 
 void Graph::BFS(int origin) {
-    for (int i = 1; i < nodes.size(); i++){
+    for (int i = 1; i < (int) nodes.size(); i++){
         nodes[i].visited = false;
         nodes[i].distance = 0;
         nodes[i].parent = i;
@@ -83,4 +83,7 @@ void Graph::clear() {
 
 vector<Node> Graph::getNodes() const {
     return nodes;
+}
+
+Graph::Graph() {
 }

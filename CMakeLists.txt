@@ -1,15 +1,14 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.10)
 project(AED_project2)
 set(CMAKE_CXX_STANDARD 14)
 
-# To run code, available in "src"
 add_executable (
-        AED_project2
+        AED_project2_executable
         main.cpp
         
-        src/Menu.cpp src/Menu.h
-        src/Graph.cpp src/Graph.h
-        src/SkyLines.cpp src/SkyLines.h
+        src/Menu.cpp 
+        src/Graph.cpp 
+        src/SkyLines.cpp
 )
 
 # To run Doxygen, available in "documentation"

@@ -1,11 +1,9 @@
-#include "src/Menu.cpp"
-#include "src/SkyLines.cpp"
-#include "src/Graph.cpp"
+#include "src/Menu.h"
 
 int main()
 {
-
+    cout << "Hello World!" << endl;
     Menu menu;
-    menu = Menu();
+    menu.run();
     return 0;
 }

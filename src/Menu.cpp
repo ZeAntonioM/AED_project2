@@ -1,9 +1,29 @@
 #include "Menu.h"
 
+/**
+ * Menu numbers
+ */
+const int Menu::MAIN_MENU = 0;
+const int Menu::FLIGHT_TYPE_MENU = 1;
+const int Menu::COORD_TYPE_MENU = 2;
+const int Menu::AIRPORT_MENU = 3;
+const int Menu::COORDINATE_MENU = 4;
+const int Menu::CITY_MENU = 5;
+const int Menu::SEARCH_DEFINITIONS_MENU = 6;
+const int Menu::AIRPORT_INFO_MENU = 7;
+
+
 Menu::Menu() {
-    this->menuState.push(MAIN_MENU);
     skyLines = SkyLines();
+    cout << "Hello World! 2 " << endl;
+}
+
+void Menu::run() {
+    cout << "Hello World! 3 " << endl;
+    this->menuState.push(MAIN_MENU);
+    cout << "Hello World! 4 " << endl;
     getMenu();
+    cout << "Hello World! 5 " << endl;
 }
 
 void Menu::getMenu() {
@@ -212,6 +232,10 @@ void Menu::flightTypeMenu() {
     }
 
     getMenu();
+}
+
+void Menu::countryInputMenu() {
+
 }
 
 

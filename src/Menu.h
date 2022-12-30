@@ -3,7 +3,6 @@
 
 #include "SkyLines.h"
 
-
 using namespace std;
 
 class Menu {
@@ -11,14 +10,14 @@ class Menu {
         /**
          * Menu numbers
          */
-        static const int MAIN_MENU = 0;
-        static const int FLIGHT_TYPE_MENU = 1;
-        static const int COORD_TYPE_MENU = 2;
-        static const int AIRPORT_MENU = 3;
-        static const int COORDINATE_MENU = 4;
-        static const int CITY_MENU = 5;
-        static const int SEARCH_DEFINITIONS_MENU = 6;
-        static const int AIRPORT_INFO_MENU = 7;
+        static const int MAIN_MENU;
+        static const int FLIGHT_TYPE_MENU;
+        static const int COORD_TYPE_MENU;
+        static const int AIRPORT_MENU;
+        static const int COORDINATE_MENU;
+        static const int CITY_MENU;
+        static const int SEARCH_DEFINITIONS_MENU;
+        static const int AIRPORT_INFO_MENU;
 
         /**
          * @var SkyLines - SkyLines object containing the graph
@@ -28,7 +27,7 @@ class Menu {
         /**
          * @var option - user main menu option
          */
-        int option;
+        int option =0;
 
         /**
          * @var menuState - stack used to navigate through the menu
@@ -77,6 +76,8 @@ public:
      * Menu constructor
      */
     Menu();
+
+    void run();
 };
 
 

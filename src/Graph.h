@@ -108,6 +108,7 @@ private:
     static double calculateDistance(double lat1, double lon1, double lat2, double lon2);
 
 public:
+    Graph();
     /**
      * Graph constructor
      * @param nodes integer number that represents the number of nodes the graph must have

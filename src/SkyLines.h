@@ -3,7 +3,6 @@
 
 #include "Graph.h"
 
-
 struct Airline {
 
     /**
@@ -29,7 +28,7 @@ private:
     /**
      * Definition of number of airports and some file paths and useful for the class
      */
-    static const int NUMBER_AIRPORTS = 3019;
+    static const int NUMBER_AIRPORTS;
     static const string AIRLINES;
     static const string AIRPORTS;
     static const string FLIGHTS;
