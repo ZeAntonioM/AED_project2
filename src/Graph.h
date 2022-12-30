@@ -111,7 +111,6 @@ private:
     static double calculateDistance(double lat1, double lon1, double lat2, double lon2);
 
 public:
-    Graph();
     /**
      * Graph constructor
      * @param nodes integer number that represents the number of nodes the graph must have
@@ -134,7 +133,9 @@ public:
      */
     Node getNode(const Coordinate &coordinate);
 
-    vector<Node> getNodes() const;
+    vector<Node> getNodes();
+
+    void setNodes(vector<Node> nodes);
 
     /**
      * Function that adds an edge to the graph
@@ -143,7 +144,7 @@ public:
      * @param destination - an int representing the index of the destination node
      * @param airlines - an unordered set of strings representing the airlines that operates the flights
      */
-    void addEdge(int origin, int destination, unordered_set<string> airlines);
+    void addEdge(int origin, int destination, unordered_set<string> &airlines);
     //TODO tirei o name porque pode nao ser necessario
 
     /**

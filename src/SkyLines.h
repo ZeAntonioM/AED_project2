@@ -63,7 +63,7 @@ private:
      * @param destination - destination node of the edge
      * @param airlines - vector of strings with the airlines that operate the flight
      */
-    void addFlight(int origin, int destination, const unordered_set<string> &airlines);
+    void addFlight(int origin, int destination, unordered_set<string> &airlines);
 
     /**
      * Function that creates the airports and adds them to an unordered map and the graph.

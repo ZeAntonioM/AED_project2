@@ -37,7 +37,7 @@ Node Graph::getNode(const Coordinate &coordinate) {
     return closestNode;
 }
 
-void Graph::addEdge(int origin, int destination, unordered_set<string> airlines) {
+void Graph::addEdge(int origin, int destination, unordered_set<string> &airlines) {
     //check if node can be added to graph
     if (origin < 1 || destination > (int) nodes.size() || origin > (int) nodes.size() || destination < 1) return;
     //this->nodes[origin].adjacentEdges.push_back({destination, airlines});
@@ -82,9 +82,11 @@ void Graph::clear() {
     }
 }
 
-vector<Node> Graph::getNodes() const {
+vector<Node> Graph::getNodes() {
     return nodes;
 }
 
-Graph::Graph() {
+void Graph::setNodes(vector<Node> nodes){
+    this->nodes = nodes;
 }
+

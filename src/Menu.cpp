@@ -14,16 +14,9 @@ const int Menu::AIRPORT_INFO_MENU = 7;
 
 
 Menu::Menu() {
-    skyLines = SkyLines();
-    cout << "Hello World! 2 " << endl;
-}
-
-void Menu::run() {
-    cout << "Hello World! 3 " << endl;
     this->menuState.push(MAIN_MENU);
-    cout << "Hello World! 4 " << endl;
     getMenu();
-    cout << "Hello World! 5 " << endl;
+    cout << "Hello World! 2 " << endl;
 }
 
 void Menu::getMenu() {

@@ -6,8 +6,7 @@ const string SkyLines::AIRLINES = "../data/airlines.csv";
 const string SkyLines::AIRPORTS = "../data/airports.csv";
 const string SkyLines::FLIGHTS = "../data/flights.csv";
 
-SkyLines::SkyLines() {
-    graph = Graph(SkyLines::NUMBER_AIRPORTS);
+SkyLines::SkyLines() : graph(NUMBER_AIRPORTS) {
     createAirports();
     createCompanies();
     createFlights();
@@ -22,7 +21,7 @@ void SkyLines::addAirport(const Node &node, int index) {
 }
 
 
-void SkyLines::addFlight(int origin, int destination, const unordered_set<string> &airlines) {
+void SkyLines::addFlight(int origin, int destination, unordered_set<string> &airlines) {
     this->graph.addEdge(origin, destination, airlines);
 }
 
@@ -89,6 +88,7 @@ void SkyLines::createFlights() {
     getline(file,line);
 
     Node airport;
+    vector<Node> nodes = graph.getNodes();
     unordered_map<int, Edge> edges;
 
     int index = 0;
@@ -100,6 +100,8 @@ void SkyLines::createFlights() {
         getline(ss, Source, ',');
         getline(ss, Target, ',');
         getline(ss, Airline);
+
+        airport = nodes[airports[Source]];
 
         edges = airport.hashMapEdges;
 
@@ -117,6 +119,7 @@ void SkyLines::createFlights() {
         }
         index++;
     }
+    graph.setNodes(nodes);
 }
 
 void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination) {
