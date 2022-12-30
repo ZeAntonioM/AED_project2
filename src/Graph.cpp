@@ -80,3 +80,7 @@ void Graph::clear() {
         node.adjacentEdges.clear();
     }
 }
+
+vector<Node> Graph::getNodes() const {
+    return nodes;
+}
