@@ -102,6 +102,8 @@ public:
 
     void findRoute(const Coordinate &origin, const Coordinate &destination);
 
+    unordered_map<string, Airline> getCompanies();
+
 };
 
 
