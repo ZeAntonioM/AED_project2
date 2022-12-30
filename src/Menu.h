@@ -1,8 +1,6 @@
 #ifndef AED_PROJECT2_MENU_H
 #define AED_PROJECT2_MENU_H
 
-#include <iostream>
-#include <stack>
 #include "SkyLines.h"
 
 
@@ -69,6 +67,9 @@ class Menu {
         void coordInputMenu();
 
         void searchDefinitionsMenu();
+
+        void countryInputMenu();
+        
 
 
 public:
