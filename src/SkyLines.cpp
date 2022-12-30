@@ -22,7 +22,7 @@ void SkyLines::addAirport(const Node &node, int index) {
 }
 
 void SkyLines::addFlight(int origin, int destination, unordered_set<string> airlines) {
-    this->graph.addEdge(origin, destination, std::move(airlines));
+    this->graph.addEdge(origin, destination, airlines);
 }
 
 void SkyLines::createAirports() {
@@ -88,7 +88,7 @@ void SkyLines::createFlights() {
     getline(file,line);
 
     Node airport;
-    list<Edge> edges;
+    unordered_map<int, Edge> edges;
 
     int index = 0;
     while (getline(file,line)){
@@ -100,28 +100,22 @@ void SkyLines::createFlights() {
         getline(ss, Target, ',');
         getline(ss, Airline);
 
-        airport = graph.getNodes()[airports[Source]];
-
-        edges = airport.adjacentEdges;
+        edges = airport.hashMapEdges;
 
         bool found = false;
 
-        for (auto &edge : edges){
-
-            if (edge.destination == airports[Target]){
-                edge.airlines.insert(Airline);
-                found = true;
-                break;
-            }
+        if (edges.find(airports[Target]) != edges.end()){
+            edges[airports[Target]].airlines.insert(Airline);
+            found = true;
         }
 
-        if (!found){
+        if(!found){
             unordered_set<string> airlines = {Airline};
             addFlight(airports[Source], airports[Target], airlines);
+
         }
         index++;
     }
-
 }
 
 void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination) {

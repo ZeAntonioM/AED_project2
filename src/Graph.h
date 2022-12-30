@@ -86,6 +86,9 @@ struct Node{
      */
     int parent;
 
+
+    unordered_map<int, Edge> hashMapEdges;
+
     //TODO add more if needed
 };
 
