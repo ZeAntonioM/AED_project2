@@ -11,6 +11,7 @@ const int Menu::COORDINATE_MENU = 4;
 const int Menu::CITY_MENU = 5;
 const int Menu::SEARCH_DEFINITIONS_MENU = 6;
 const int Menu::AIRPORT_INFO_MENU = 7;
+const int Menu::AIRLINE_SELECTOR_MENU = 8;
 
 
 Menu::Menu() {
@@ -30,6 +31,7 @@ void Menu::getMenu() {
             case 5: coordInputMenu(); break;
             case 6: searchDefinitionsMenu(); break;
             case 7: airportInfoMenu(); break;
+            case 8: airlineSelectorMenu(); break;
         }
     }
     else{
@@ -201,12 +203,13 @@ void Menu::searchDefinitionsMenu() {
         cout << "2 - Change Max Price" << endl;
         cout << "3 - Change Max Stops" << endl;
         cout << "4 - Change Max Time" << endl;
-        cout << "5 - Go Back" << endl;
+        cout << "5 - Change Allowed Airlines" << endl;
+        cout << "6 - Go Back" << endl;
         cout << "Choose an option: ";
         cin >> option;
         cout << "────────────────────────────────────" << endl;
 
-        if(option < 1 || option > 5){
+        if(option < 1 || option > 6){
             cout << "Invalid option!" << endl;
         }
 
@@ -216,8 +219,13 @@ void Menu::searchDefinitionsMenu() {
         //clear the console
         system("clear");
 
-    } while(option < 1 || option > 5);
+    } while(option < 1 || option > 6);
 
+    switch(option){
+        case 5:
+            menuState.push(AIRLINE_SELECTOR_MENU);
+            break;
+    }
 
     getMenu();
 }
@@ -257,4 +265,48 @@ void Menu::countryInputMenu() {
 
 }
 
+void Menu::airlineSelectorMenu(){
+    struct al_select{
+        string name;
+        bool selected;
+    };
 
+    vector<al_select> selections;
+    auto comp = skyLines.getCompanies();
+
+    for (auto it = comp.begin(); it != comp.end(); it++){
+        selections.push_back({(*it).second.name, true});
+    }
+
+    int count;
+
+    do{
+        cout << "──────────Airline Selector──────────" << endl;
+        count = 1;
+        for (auto& e :selections){
+            cout << count++ << ": [";
+            if (e.selected) cout << "X";
+            else cout << " ";
+            cout << "] - " << e.name << endl;
+        }
+        cout << count << ": Go Back" << endl;
+        cout << "Choose an option" << endl;
+        cin >> option;
+        cout << "────────────────────────────────────" << endl;
+
+        if (option < 1 || option > count){
+            cout << "Invalid Option" << endl;
+        }
+
+        else if (option != count){
+            selections[option -1].selected = !selections[option-1].selected;
+        }
+
+    } while((option < 1 || option > count) || option != count);
+
+    if (option == count) {
+        menuState.pop();
+        getMenu();
+    }
+
+}

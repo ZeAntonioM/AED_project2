@@ -140,3 +140,10 @@ void SkyLines::disableAirport(const string &code) {
     }
 
 }
+
+
+
+unordered_map<string, Airline> SkyLines::getCompanies(){
+    return this->companies;
+}
+

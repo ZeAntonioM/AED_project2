@@ -101,12 +101,14 @@ public:
 
     void findRoute(const Coordinate &origin, const Coordinate &destination);
 
+
     /**
      * Function that disables an airport requested by the user
      * @param code - code of the airport to be disabled
      */
     void disableAirport(const string &code);
 
+    unordered_map<string, Airline> getCompanies();
 
 };
 
