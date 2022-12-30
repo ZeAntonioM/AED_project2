@@ -75,7 +75,6 @@ void Menu::mainMenu() {
 
     getMenu();
 
-
 }
 
 void Menu::coordTypeMenu() {
