@@ -21,8 +21,8 @@ void SkyLines::addAirport(const Node &node, int index) {
     this->graph.addNode(node, index);
 }
 
-void SkyLines::addFlight(int origin, int destination, unordered_set<string> airlines) {
-    this->graph.addEdge(origin, destination, std::move(airlines));
+void SkyLines::addFlight(int origin, int destination, const unordered_set<string> &airlines) {
+    this->graph.addEdge(origin, destination, airlines);
 }
 
 void SkyLines::createAirports() {
@@ -107,7 +107,6 @@ void SkyLines::createFlights() {
         bool found = false;
 
         for (auto &edge : edges){
-
             if (edge.destination == airports[Target]){
                 edge.airlines.insert(Airline);
                 found = true;
