@@ -147,7 +147,14 @@ void SkyLines::disableAirport(const string &code) {
 
 }
 
-unordered_map<string, Airline> SkyLines::getCompanies(){
+unordered_map<string, Airline> SkyLines::getCompanies() const{
     return this->companies;
 }
 
+Node SkyLines::getAirport(const string &code) {
+    return airports.find(code) != airports.end() ? graph.getNodes()[airports[code]] : Node();
+}
+
+vector<Node> SkyLines::getAirports(){
+    return graph.getNodes();
+}
