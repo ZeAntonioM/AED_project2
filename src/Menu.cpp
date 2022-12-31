@@ -16,6 +16,7 @@ const int Menu::AIRLINE_SELECTOR_MENU = 8;
 
 Menu::Menu() {
     this->menuState.push(MAIN_MENU);
+    system("clear");
     getMenu();
 
 }
@@ -61,13 +62,15 @@ void Menu::mainMenu() {
     cin.clear();
     cin.ignore(INT16_MAX, '\n');
 
-    //clear the console
-    system("clear");
+
 
     } while(option < 1 || option > 4);
 
+    //clear the console
+    system("clear");
+
     switch(option){
-        case 1: menuState.push(FLIGHT_TYPE_MENU); break;
+        case 1: menuState.push(COORD_TYPE_MENU); break;
         case 2: menuState.push(SEARCH_DEFINITIONS_MENU); break;
         case 3: menuState.push(AIRPORT_INFO_MENU); break;
         case 4: default: menuState.pop(); break;
@@ -96,11 +99,10 @@ void Menu::coordTypeMenu() {
         cin.clear();
         cin.ignore(INT16_MAX, '\n');
 
-        //clear the console
-        system("clear");
-
-
     } while(option < 1 || option > 4);
+
+    //clear the console
+    system("clear");
 
     switch(option){
         case 1: menuState.push(AIRPORT_MENU); break;
@@ -122,8 +124,9 @@ void Menu::airportInputMenu() {
     cin >> arrivalAirport;
     cout << "────────────────────────────────────" << endl;
 
-    //TODO
-    //call the find route function
+    transform(departureAirport.begin(), departureAirport.end(), departureAirport.begin(), ::toupper);
+    transform(arrivalAirport.begin(), arrivalAirport.end(), arrivalAirport.begin(), ::toupper);
+
     skyLines.findRoute(departureAirport, arrivalAirport);
 
     //return to the main menu
@@ -197,7 +200,7 @@ void Menu::airportInfoMenu() {
 void Menu::searchDefinitionsMenu() {
     do{
         cout << "────────────Search Settings──────────" << endl;
-        cout << "────────────────────────────────────" << endl;
+        cout << "─────────────────────────────────────" << endl;
         cout << "1 - Change Max Distance" << endl;
         cout << "2 - Change Max Price" << endl;
         cout << "3 - Change Max Stops" << endl;
@@ -215,15 +218,16 @@ void Menu::searchDefinitionsMenu() {
         cin.clear();
         cin.ignore(1000, '\n');
 
-        //clear the console
-        system("clear");
+
 
     } while(option < 1 || option > 6);
 
+    //clear the console
+    system("clear");
+
     switch(option){
-        case 5:
-            menuState.push(AIRLINE_SELECTOR_MENU);
-            break;
+        case 5: menuState.push(AIRLINE_SELECTOR_MENU); break;
+        case 6: default: menuState.pop(); break;
     }
 
     getMenu();
@@ -248,10 +252,12 @@ void Menu::flightTypeMenu() {
         cin.clear();
         cin.ignore(INT16_MAX, '\n');
 
-        //clear the console
-        system("clear");
+
 
     } while(option < 1 || option > 3);
+
+    //clear the console
+    system("clear");
 
     switch(option){
         case 3: default: menuState.pop(); break;

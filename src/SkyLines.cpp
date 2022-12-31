@@ -129,6 +129,12 @@ void SkyLines::findRoute(const string &originAirport, const string &destinationA
 
     vector<Node> path = graph.generateFlightPath(airports[originAirport], airports[destinationAirport]);
 
+    for(int i = 0; i < path.size()-1; i++){
+        cout << path[i].code << " -> ";
+    }
+    cout << path[path.size()-1].code << endl;
+
+
 
 }
 

@@ -42,7 +42,7 @@ void Graph::addEdge(int origin, int destination, unordered_set<string> &airlines
 }
 
 void Graph::BFS(int origin) {
-    for (int i = 1; i < (int) nodes.size(); i++){
+    for (int i = 0; i < (int) nodes.size(); i++){
         nodes[i].visited = false;
         nodes[i].distance = 0;
         nodes[i].parent = i;
@@ -66,7 +66,21 @@ void Graph::BFS(int origin) {
         //ignore the node if it is disabled
         if(nodes[current].disabled) continue;
 
+        for (auto it = nodes[current].hashMapEdges.begin(); it != nodes[current].hashMapEdges.end(); ++it) {
+
+            int n = it->second.destination;
+
+            if (!nodes[n].visited) {
+                q.push(n);
+                nodes[n].visited = true;
+                nodes[n].distance = nodes[current].distance + 1;
+                nodes[n].parent = current;
+            }
+        }
+
+/*
         int size = nodes[current].hashMapEdges.size();
+
 
         // "iterating" through the hashMapEdges
         for (int i = 0 ; i < size; i++)
@@ -82,7 +96,11 @@ void Graph::BFS(int origin) {
                 nodes[n].distance = nodes[current].distance + 1;
                 nodes[n].parent = current;
             }
-        }
+            cout << "i " << i << endl;
+            cout << "current " << current << endl;
+
+        }*/
+
     }
 }
 
@@ -115,19 +133,17 @@ vector<Node> Graph::generateFlightPath(int origin, int destination) {
         return path;
     }
 
-    if(nodes[destination].parent == destination){
-        cout << "No path found" << endl;
-        return path;
-    }
+    BFS(origin);
 
     //building the path
     path.push_back(nodes[destination]);
-    while(nodes[destination].parent != origin){
+    while(destination != origin){
         destination = nodes[destination].parent;
         path.push_back(nodes[destination]);
     }
-    return path;
 
+    std::reverse(path.begin(), path.end());
+    return path;
 }
 
 
