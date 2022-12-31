@@ -42,49 +42,52 @@ struct Node{
     /**
      * @var code - a string representing the code of the airport
      */
-    string code;
+    string code = "";
 
     /**
      * @var name - a string representing the name of the airport
      */
-    string name;
+    string name = "";
 
     /**
      * @var city - a string representing the city of the airport
      */
-    string city;
+    string city = "";
 
     /**
      * @var country - a string representing the country of the airport
      */
-    string country;
+    string country = "";
 
     /**
      * @var coordinate - a Coordinate struct representing the coordinate of the airport
      */
     Coordinate coordinate;
 
+    /**
+     * @var hashMapEdges - a hashMap that stores the destination node and the edge between the current node and the destination node
+     */
     unordered_map<int, Edge> hashMapEdges;
 
     /**
      * @var visited - a boolean representing if the node has been visited
      */
-    bool visited;
+    bool visited = false;
 
     /**
      * @var distance - a double representing the distance (number of nodes, not in km) from the origin node
      */
-    int distance; //!IMPORTANT: this is the number of nodes, not in km
+    int distance = 0; //!IMPORTANT: this is the number of nodes, not in km
 
     /**
      * @var parent - a int representing the parent node of the current node
      */
-    int parent;
+    int parent = 0;
 
     /**
      * @var disabled - a boolean representing if the node is disabled
      */
-    bool disabled;
+    bool disabled = false;
 
 
 };

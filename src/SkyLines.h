@@ -108,7 +108,11 @@ public:
      */
     void disableAirport(const string &code);
 
-    unordered_map<string, Airline> getCompanies();
+    unordered_map<string, Airline> getCompanies() const;
+
+    Node getAirport(const string &code);
+
+    vector<Node> getAirports();
 
 };
 

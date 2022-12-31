@@ -19,6 +19,10 @@ class Menu {
         static const int SEARCH_DEFINITIONS_MENU;
         static const int AIRPORT_INFO_MENU;
         static const int AIRLINE_SELECTOR_MENU;
+        static const int AIRPORT_CODE_SEARCH;
+        static const int AIRPORT_CITY_SEARCH;
+        static const int AIRPORT_COUNTRY_SEARCH;
+        static const int LIST_AIRPORTS;
 
         /**
          * @var SkyLines - SkyLines object containing the graph
@@ -71,7 +75,14 @@ class Menu {
         void countryInputMenu();
 
         void airlineSelectorMenu();
-        
+
+        void airportCodeSearch();
+
+        void airportCitySearch();
+
+        void airportCountrySearch();
+
+        void listAirports();
 
 
 public:
