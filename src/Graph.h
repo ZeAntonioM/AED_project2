@@ -89,7 +89,7 @@ struct Node{
      */
     bool disabled = false;
 
-
+    void printInfo();
 };
 
 class Graph {

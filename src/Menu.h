@@ -11,21 +11,18 @@ class Menu {
          * Menu numbers
          */
         static const int MAIN_MENU;
-        static const int FLIGHT_TYPE_MENU;
         static const int COORD_TYPE_MENU;
         static const int AIRPORT_MENU;
         static const int COORDINATE_MENU;
         static const int CITY_MENU;
         static const int SEARCH_DEFINITIONS_MENU;
         static const int GENERAL_INFO_MENU;
-        static const int AIRLINE_SELECTOR_MENU;
         static const int AIRPORT_CODE_SEARCH;
-        static const int AIRPORT_CITY_SEARCH;
-        static const int AIRPORT_COUNTRY_SEARCH;
         static const int LIST_AIRPORTS;
         static const int DISABLE_AIRPORT_MENU;
         static const int DISABLE_AIRLINE_MENU;
         static const int LIST_AIRLINES;
+        static const int AIRLINE_CODE_SEARCH;
 
         /**
          * @var SkyLines - SkyLines object containing the graph
@@ -53,11 +50,6 @@ class Menu {
         void mainMenu();
 
         /**
-         * Menu that allows the user to find the best route given its criteria
-         */
-        void flightTypeMenu();
-
-        /**
          * Menu to display information about an airport
          */
         void GeneralInfoMenu();
@@ -73,14 +65,12 @@ class Menu {
         void coordInputMenu();
         void searchDefinitionsMenu();
         void countryInputMenu();
-        void airlineSelectorMenu();
         void listAirlines();
         void airportCodeSearch();
-        void airportCitySearch();
-        void airportCountrySearch();
         void listAirports();
         void disableAirportMenu();
         void disableAirlineMenu();
+        void airlineCodeSearch();
 
 
 public:

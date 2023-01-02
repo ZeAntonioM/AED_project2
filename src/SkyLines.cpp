@@ -187,3 +187,4 @@ void SkyLines::disableAirline(const string &code) {
     }
 
 }
+

@@ -160,3 +160,20 @@ vector<Node> Graph::generateFlightPath(int origin, int destination) {
 }
 
 
+void Node::printInfo() {
+    cout << "Code: " << code << endl;
+    cout << "Name: " << name << endl;
+    cout << "City: " << city << endl;
+    cout << "Country: " << country << endl;
+    cout << "Latitude: " << coordinate.latitude << endl;
+    cout << "Longitude: " << coordinate.longitude << endl;
+
+    int flightCount=0;
+    for(auto &edge : hashMapEdges){
+        for(auto &airline : edge.second.airlines){
+            flightCount++;
+        }
+    }
+    cout << "Number of flights departing: " << flightCount << endl;
+
+}
