@@ -25,6 +25,7 @@ class Menu {
         static const int LIST_AIRPORTS;
         static const int DISABLE_AIRPORT_MENU;
         static const int DISABLE_AIRLINE_MENU;
+        static const int LIST_AIRLINES;
 
         /**
          * @var SkyLines - SkyLines object containing the graph
@@ -73,6 +74,7 @@ class Menu {
         void searchDefinitionsMenu();
         void countryInputMenu();
         void airlineSelectorMenu();
+        void listAirlines();
         void airportCodeSearch();
         void airportCitySearch();
         void airportCountrySearch();
