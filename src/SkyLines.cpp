@@ -188,3 +188,49 @@ void SkyLines::disableAirline(const string &code) {
 
 }
 
+Node SkyLines::getAirport(const string &city, const string &country) {
+    vector<Node> possibleAirports ={};
+
+    vector<Node> nodes = graph.getNodes();
+
+    for(auto airport : airports){
+        Node current = nodes[airport.second];
+
+        string currentCity = current.city;
+        string currentCountry = current.country;
+
+        transform(currentCity.begin(), currentCity.end(), currentCity.begin(), ::toupper);
+        transform(currentCountry.begin(), currentCountry.end(), currentCountry.begin(), ::toupper);
+
+        if(currentCity== city && currentCountry == country){
+            possibleAirports.push_back(current);
+        }
+
+    }
+
+    if(possibleAirports.empty()){
+        cout << "Airport not found" << endl;
+        return Node();
+
+    }
+    else if(possibleAirports.size() == 1){
+        return possibleAirports[0];
+    }
+    else {
+        int option=1;
+        cout << "Choose an airport:" << endl;
+        for(auto airport : possibleAirports){
+            cout << option << " - " << airport.code << endl;
+            option++;
+        }
+        int choice;
+        cin >> choice;
+        return possibleAirports[choice-1];
+    }
+}
+
+void Airline::printInfo() {
+    cout << "Name: " << name << endl;
+    cout << "Call Sign: " << callsign << endl;
+    cout << "Country: " << country << endl;
+}

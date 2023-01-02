@@ -142,19 +142,42 @@ void Menu::airportInputMenu() {
 }
 
 void Menu::cityInputMenu() {
-    string departureCity, arrivalCity;
+    string departureCity, arrivalCity, departureCountry, arrivalCountry;
+    Node departureNode, arrivalNode;
+
+    //departure
     cout << "─────────────Find Flight────────────" << endl;
     cout << "────────────────────────────────────" << endl;
+    cout << "Departure Country: ";
+    cin >> departureCountry;
     cout << "Departure City: ";
-    cin >> departureCity;
+
+    cin.ignore();
+    getline(cin, departureCity);
+
+    transform(departureCity.begin(), departureCity.end(), departureCity.begin(), ::toupper);
+    transform(departureCountry.begin(), departureCountry.end(), departureCountry.begin(), ::toupper);
+
+    departureNode = skyLines.getAirport(departureCity, departureCountry);
+
+    //arrival
+    cout << "Arrival Country: ";
+    cin >> arrivalCountry;
     cout << "Arrival City: ";
     cin >> arrivalCity;
+
+    transform(arrivalCity.begin(), arrivalCity.end(), arrivalCity.begin(), ::toupper);
+    transform(arrivalCountry.begin(), arrivalCountry.end(), arrivalCountry.begin(), ::toupper);
+
+    arrivalNode = skyLines.getAirport( arrivalCity, arrivalCountry);
     cout << "────────────────────────────────────" << endl;
 
-    countryInputMenu();
+
     //TODO
     //call the find route function
+    skyLines.findRoute(departureNode.code, arrivalNode.code);
 
+    menuState.pop();
     getMenu();
 }
 
@@ -265,7 +288,6 @@ void Menu::airportCodeSearch() {
     cin >> airportCode;
     cout << "────────────────────────────────────" << endl;
 
-    transform(airportCode.begin(), airportCode.end(), airportCode.begin(), ::toupper);
 
     while (skyLines.getAirport(airportCode).code == "") {
         cout << "Invalid Airport Code!" << endl;
@@ -277,12 +299,40 @@ void Menu::airportCodeSearch() {
         cin.ignore(INT16_MAX, '\n');
     }
 
+    transform(airportCode.begin(), airportCode.end(), airportCode.begin(), ::toupper);
+
     skyLines.getAirport(airportCode).printInfo();
+
     menuState.pop();
     getMenu();
 }
 
+void Menu::airlineCodeSearch() {
+    string airlineCode;
+    cout << "──────────Airline Information───────" << endl;
+    cout << "────────────────────────────────────" << endl;
+    cout << "Airline Code: ";
+    cin >> airlineCode;
+    cout << "────────────────────────────────────" << endl;
 
+    while (skyLines.getAirline(airlineCode).name == "") {
+        cout << "Invalid Airline Code!" << endl;
+        cout << "Airline Code: ";
+        cin >> airlineCode;
+        cout << "────────────────────────────────────" << endl;
+
+        cin.clear();
+        cin.ignore(INT16_MAX, '\n');
+    }
+
+    transform(airlineCode.begin(), airlineCode.end(), airlineCode.begin(), ::toupper);
+
+    cout << "Code : " << airlineCode << endl;
+    skyLines.getAirline(airlineCode).printInfo();
+
+    menuState.pop();
+    getMenu();
+}
 
 void Menu::listAirports() {
 
@@ -330,9 +380,6 @@ void Menu::disableAirportMenu() {
     cin >> airportCode;
     cout << "────────────────────────────────────" << endl;
 
-    //transform to uppercase
-    transform(airportCode.begin(), airportCode.end(), airportCode.begin(), ::toupper);
-
     while (skyLines.getAirport(airportCode).code == "") {
         cout << "Invalid Airport Code!" << endl;
         cout << "Airport Code: ";
@@ -342,6 +389,9 @@ void Menu::disableAirportMenu() {
         cin.clear();
         cin.ignore(INT16_MAX, '\n');
     }
+
+    //transform to uppercase
+    transform(airportCode.begin(), airportCode.end(), airportCode.begin(), ::toupper);
 
     skyLines.disableAirport(airportCode);
 
@@ -361,8 +411,6 @@ void Menu::disableAirlineMenu() {
     cin >> airlineCode;
     cout << "────────────────────────────────────" << endl;
 
-    //transform code to uppercase
-    transform(airlineCode.begin(), airlineCode.end(), airlineCode.begin(), ::toupper);
 
     while (skyLines.getAirline(airlineCode).name == "") {
         cout << "Invalid Airline Code!" << endl;
@@ -373,6 +421,9 @@ void Menu::disableAirlineMenu() {
         cin.clear();
         cin.ignore(INT16_MAX, '\n');
     }
+
+    //transform code to uppercase
+    transform(airlineCode.begin(), airlineCode.end(), airlineCode.begin(), ::toupper);
 
     skyLines.disableAirline(airlineCode);
 

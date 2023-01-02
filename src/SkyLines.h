@@ -19,6 +19,8 @@ struct Airline {
      * @var country - country of the airline
      */
     string country;
+
+    void printInfo();
 };
 
 
@@ -107,6 +109,8 @@ public:
     void disableAirline(const string &code);
 
     Node getAirport(const string &code);
+
+    Node getAirport(const string &city, const string &country);
 
     vector<Node> getAirports();
 
