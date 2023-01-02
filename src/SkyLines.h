@@ -106,20 +106,23 @@ public:
 
     void disableAirline(const string &code);
 
-    unordered_map<string, Airline> getCompanies() const;
-
     Node getAirport(const string &code);
 
-    Airline getAirline(const string &code);
-
     vector<Node> getAirports();
+
+    unordered_map<string, Airline> getCompanies() const;
+
+    Airline getAirline(const string &code);
 
     /**
      * Function that resets the graph to the original state
      */
     void reset();
 
+
 };
+
+
 
 
 #endif //AED_PROJECT2_SKYLINES_H

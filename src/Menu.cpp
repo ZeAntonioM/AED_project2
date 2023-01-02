@@ -10,7 +10,7 @@ const int Menu::AIRPORT_MENU = 3;
 const int Menu::CITY_MENU = 4;
 const int Menu::COORDINATE_MENU = 5;
 const int Menu::SEARCH_DEFINITIONS_MENU = 6;
-const int Menu::AIRPORT_INFO_MENU = 7;
+const int Menu::GENERAL_INFO_MENU = 7;
 const int Menu::AIRLINE_SELECTOR_MENU = 8;
 const int Menu::AIRPORT_CODE_SEARCH = 9;
 const int Menu::AIRPORT_CITY_SEARCH = 10;
@@ -36,7 +36,7 @@ void Menu::getMenu() {
             case 4: cityInputMenu(); break;
             case 5: coordInputMenu(); break;
             case 6: searchDefinitionsMenu(); break;
-            case 7: airportInfoMenu(); break;
+            case 7: GeneralInfoMenu(); break;
             case 8: airlineSelectorMenu(); break;
             case 9: airportCodeSearch(); break;
             case 10: airportCountrySearch(); break;
@@ -60,7 +60,7 @@ void Menu::mainMenu() {
     cout << "────────────────────────────────────" << endl;
     cout << "1 - Find Flight" << endl;
     cout << "2 - Search Settings" << endl;
-    cout << "3 - Airport Information" << endl;
+    cout << "3 - General Information" << endl;
     cout << "4 - Exit" << endl;
     cout << "Choose an option: ";
     cin >> option;
@@ -81,7 +81,7 @@ void Menu::mainMenu() {
     switch(option){
         case 1: menuState.push(COORD_TYPE_MENU); break;
         case 2: menuState.push(SEARCH_DEFINITIONS_MENU); break;
-        case 3: menuState.push(AIRPORT_INFO_MENU); break;
+        case 3: menuState.push(GENERAL_INFO_MENU); break;
         case 4: default: menuState.pop(); break;
     }
 
@@ -264,13 +264,13 @@ void Menu::searchDefinitionsMenu() {
 }
 
 
-void Menu::airportInfoMenu() {
+void Menu::GeneralInfoMenu() {
     int option;
-    cout << "───────────Airports Search───────────" << endl;
+    cout << "─────────General Information─────────" << endl;
     cout << "─────────────────────────────────────" << endl;
     cout << "1 - Search by Airport Code" << endl;
-    cout << "2 - Search by City" << endl;
-    cout << "3 - Search by Country" << endl;
+    cout << "2 - " << endl;
+    cout << "3 - " << endl;
     cout << "4 - List all Airports" << endl;
     cout << "5 - Go Back" << endl;
     cout << "─────────────────────────────────────" << endl;
@@ -281,9 +281,9 @@ void Menu::airportInfoMenu() {
 
     switch(option){
         case 1: menuState.push(AIRPORT_CODE_SEARCH); break;
-        case 2: menuState.push(AIRPORT_CITY_SEARCH); break;
-        case 3: menuState.push(AIRPORT_COUNTRY_SEARCH); break;
-        case 4: menuState.push(LIST_AIRPORTS); break;
+
+        case 5: default: menuState.push(LIST_AIRPORTS); break;
+
     }
 
     getMenu();
@@ -355,8 +355,9 @@ void Menu::airportCodeSearch() {
         cin.clear();
         cin.ignore(INT16_MAX, '\n');
     }
-    //TODO
-    //call the airport info function
+
+
+
 
     getMenu();
 }
@@ -424,7 +425,6 @@ void Menu::listAirports() {
     }
 
     menuState.pop();
-
     getMenu();
 }
 

@@ -17,7 +17,7 @@ class Menu {
         static const int COORDINATE_MENU;
         static const int CITY_MENU;
         static const int SEARCH_DEFINITIONS_MENU;
-        static const int AIRPORT_INFO_MENU;
+        static const int GENERAL_INFO_MENU;
         static const int AIRLINE_SELECTOR_MENU;
         static const int AIRPORT_CODE_SEARCH;
         static const int AIRPORT_CITY_SEARCH;
@@ -59,7 +59,7 @@ class Menu {
         /**
          * Menu to display information about an airport
          */
-        void airportInfoMenu();
+        void GeneralInfoMenu();
 
         /**
          * Menu that allows the user how to choose the airport (airport, city or coordinate)
