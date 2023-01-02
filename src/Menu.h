@@ -59,18 +59,55 @@ class Menu {
          */
         void coordTypeMenu();
 
-        //TODO fazer documentacao
+        /**
+         * Menu that finds the closest flight route from a provided departure and an arrival airport
+         */
         void airportInputMenu();
+
+        /**
+         * Menu that shows all the airports of the departure and arrival cities and finds the closest flight route between them
+         */
         void cityInputMenu();
+
+        /**
+         * Menu that finds the closest airports to each of the coordinates provided, and then finds the closest flight route between them
+         */
         void coordInputMenu();
+        /**
+         * Menu used to define various search parameters for finding flights
+         */
         void searchDefinitionsMenu();
-        void countryInputMenu();
-        void listAirlines();
-        void airportCodeSearch();
+
+        /**
+         * Menu that lists all of the airports in a book-like fashion, with each page containing 20 entries
+         */
         void listAirports();
-        void disableAirportMenu();
-        void disableAirlineMenu();
+
+        /**
+         * Menu that lists all of the airlines in a book-like fashion, with each page containing 20 entries
+         */
+        void listAirlines();
+
+        /**
+         * Menu used for obtaining information about a specified airport
+         */
+        void airportCodeSearch();
+
+        /**
+         * Menu used for obtaining information about a specified airline
+         */
         void airlineCodeSearch();
+
+        /**
+         * Menu used for disabling certain airports from being used in the calculation of flight routes
+         */
+        void disableAirportMenu();
+
+        /**
+         * Menu used for disabling certain airlines from being used in the calculation of flight routes
+         */
+        void disableAirlineMenu();
+
 
 
 public:

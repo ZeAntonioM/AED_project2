@@ -172,17 +172,12 @@ void Menu::cityInputMenu() {
     arrivalNode = skyLines.getAirport( arrivalCity, arrivalCountry);
     cout << "────────────────────────────────────" << endl;
 
-
     //TODO
     //call the find route function
     skyLines.findRoute(departureNode.code, arrivalNode.code);
 
     menuState.pop();
     getMenu();
-}
-
-void Menu::countryInputMenu() {
-
 }
 
 void Menu::coordInputMenu() {
