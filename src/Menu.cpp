@@ -151,15 +151,10 @@ void Menu::cityInputMenu() {
     cin >> arrivalCity;
     cout << "────────────────────────────────────" << endl;
 
-    countryInputMenu();
     //TODO
     //call the find route function
 
     getMenu();
-}
-
-void Menu::countryInputMenu() {
-
 }
 
 void Menu::coordInputMenu() {
