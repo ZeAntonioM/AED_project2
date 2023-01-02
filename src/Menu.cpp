@@ -18,6 +18,7 @@ const int Menu::AIRPORT_COUNTRY_SEARCH = 11;
 const int Menu::LIST_AIRPORTS= 12;
 const int Menu::DISABLE_AIRPORT_MENU = 13;
 const int Menu::DISABLE_AIRLINE_MENU = 14;
+const int Menu::LIST_AIRLINES = 15;
 
 Menu::Menu() {
     this->menuState.push(MAIN_MENU);
@@ -44,6 +45,7 @@ void Menu::getMenu() {
             case 12: listAirports(); break;
             case 13: disableAirportMenu(); break;
             case 14: disableAirlineMenu(); break;
+            case 15: listAirlines(); break;
         }
     }
     else{
@@ -272,7 +274,8 @@ void Menu::airportInfoMenu() {
     cout << "2 - Search by City" << endl;
     cout << "3 - Search by Country" << endl;
     cout << "4 - List all Airports" << endl;
-    cout << "5 - Go Back" << endl;
+    cout << "5 - List all Airlines" << endl;
+    cout << "6 - Go Back" << endl;
     cout << "─────────────────────────────────────" << endl;
     cin >> option;
 
@@ -284,55 +287,10 @@ void Menu::airportInfoMenu() {
         case 2: menuState.push(AIRPORT_CITY_SEARCH); break;
         case 3: menuState.push(AIRPORT_COUNTRY_SEARCH); break;
         case 4: menuState.push(LIST_AIRPORTS); break;
+        case 5: menuState.push(LIST_AIRLINES); break;
+        default: menuState.pop(); break;
     }
-
     getMenu();
-}
-
-void Menu::airlineSelectorMenu(){
-    struct al_select{
-        string name;
-        bool selected;
-    };
-
-    vector<al_select> selections;
-    auto comp = skyLines.getCompanies();
-
-    for (auto it = comp.begin(); it != comp.end(); it++){
-        selections.push_back({(*it).second.name, true});
-    }
-
-    int count;
-
-    do{
-        cout << "──────────Airline Selector──────────" << endl;
-        count = 1;
-        for (auto& e :selections){
-            cout << count++ << ": [";
-            if (e.selected) cout << "X";
-            else cout << " ";
-            cout << "] - " << e.name << endl;
-        }
-        cout << count << ": Go Back" << endl;
-        cout << "Choose an option" << endl;
-        cin >> option;
-        cout << "────────────────────────────────────" << endl;
-
-        if (option < 1 || option > count){
-            cout << "Invalid Option" << endl;
-        }
-
-        else if (option != count){
-            selections[option -1].selected = !selections[option-1].selected;
-        }
-
-    } while((option < 1 || option > count) || option != count);
-
-    if (option == count) {
-        menuState.pop();
-        getMenu();
-    }
-
 }
 
 
@@ -487,5 +445,50 @@ void Menu::disableAirlineMenu() {
     //Go back to main menu
     menuState.pop();
     menuState.pop();
+    getMenu();
+}
+
+void Menu::listAirlines(){
+    int page = 1;
+    int numpages = 0;
+    auto companies = skyLines.getCompanies();
+    numpages = companies.size() % 20 == 0 ? companies.size() / 20 : (companies.size() / 20 + 1);
+
+    struct help{
+        string code;
+        Airline airline;
+    };
+
+    vector<help> airlines;
+
+    for (const auto& e: companies){
+        airlines.push_back({e.first, e.second});
+    }
+
+    while (page != numpages+1 && page != 0) {
+        cout << "─────────────List Airlines───────────" << endl;
+        cout << "─────────────────────────────────────" << endl;
+        cout << "page: " << page << " of " << numpages << endl;
+        cout << "─────────────────────────────────────" << endl;
+        cout << "Code - Name - Callsign - Country" << endl;
+        cout << "─────────────────────────────────────" << endl;
+
+        for (int i = (page - 1) * 20; i < page * 20; i++){
+            cout << airlines[i].code << " - " << airlines[i].airline.name << " - " << airlines[i].airline.callsign
+                 << " - " << airlines[i].airline.country << endl;
+        }
+
+        cout << "─────────────────────────────────────" << endl;
+        cout << "Insert the number of the page or " << numpages+1 << " to go back: " << endl;
+        cin >> page;
+
+        cin.clear();
+        cin.ignore(INT16_MAX, '\n');
+
+        system("clear");
+    }
+
+    menuState.pop();
+
     getMenu();
 }
