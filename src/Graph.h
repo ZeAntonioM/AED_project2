@@ -169,6 +169,9 @@ public:
      */
     void disableAirport(int index);
 
+
+    void disableAirline(const string &airline);
+
     /**
      * Function that creates the shortest path between two available airports
      * @param origin - an int representing the index of the origin airport

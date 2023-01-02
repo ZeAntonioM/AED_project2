@@ -23,6 +23,8 @@ class Menu {
         static const int AIRPORT_CITY_SEARCH;
         static const int AIRPORT_COUNTRY_SEARCH;
         static const int LIST_AIRPORTS;
+        static const int DISABLE_AIRPORT_MENU;
+        static const int DISABLE_AIRLINE_MENU;
 
         /**
          * @var SkyLines - SkyLines object containing the graph
@@ -64,25 +66,19 @@ class Menu {
          */
         void coordTypeMenu();
 
+        //TODO fazer documentacao
         void airportInputMenu();
-
         void cityInputMenu();
-
         void coordInputMenu();
-
         void searchDefinitionsMenu();
-
         void countryInputMenu();
-
         void airlineSelectorMenu();
-
         void airportCodeSearch();
-
         void airportCitySearch();
-
         void airportCountrySearch();
-
         void listAirports();
+        void disableAirportMenu();
+        void disableAirlineMenu();
 
 
 public:
@@ -90,6 +86,7 @@ public:
      * Menu constructor
      */
     Menu();
+
 
 };
 

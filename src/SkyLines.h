@@ -82,8 +82,6 @@ private:
      */
     void createFlights();
 
-
-
 public:
     /**
      * Default constructor
@@ -98,9 +96,7 @@ public:
     //TODO define the functions that will be used in the menu
 
     void findRoute(const string &originAirport, const string &destinationAirport);
-
     void findRoute(const Coordinate &origin, const Coordinate &destination);
-
 
     /**
      * Function that disables an airport requested by the user
@@ -108,11 +104,20 @@ public:
      */
     void disableAirport(const string &code);
 
+    void disableAirline(const string &code);
+
     unordered_map<string, Airline> getCompanies() const;
 
     Node getAirport(const string &code);
 
+    Airline getAirline(const string &code);
+
     vector<Node> getAirports();
+
+    /**
+     * Function that resets the graph to the original state
+     */
+    void reset();
 
 };
 

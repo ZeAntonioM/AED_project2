@@ -125,11 +125,24 @@ void Graph::disableAirport(int index) {
     this->nodes[index].disabled = true;
 }
 
+void Graph::disableAirline(const string &airline) {
+    for(auto &node : this->nodes){
+        for(auto &edge : node.hashMapEdges){
+            edge.second.airlines.erase(airline);
+        }
+    }
+}
+
 vector<Node> Graph::generateFlightPath(int origin, int destination) {
     vector<Node> path = {};
 
     if(nodes[origin].disabled || nodes[destination].disabled){
-        cout << "Origin/Destinatio airport is disabled" << endl;
+        cout << "Origin/Destination airport is disabled" << endl;
+        return path;
+    }
+
+    if(nodes[origin].hashMapEdges.find(destination)->second.airlines.empty()){
+        cout << "No airlines available for this flight" << endl;
         return path;
     }
 
