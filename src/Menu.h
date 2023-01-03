@@ -23,6 +23,7 @@ class Menu {
         static const int DISABLE_AIRLINE_MENU;
         static const int LIST_AIRLINES;
         static const int AIRLINE_CODE_SEARCH;
+        static const int AIRPORT_CITY_SEARCH;
 
         /**
          * @var SkyLines - SkyLines object containing the graph
@@ -107,6 +108,11 @@ class Menu {
          * Menu used for disabling certain airlines from being used in the calculation of flight routes
          */
         void disableAirlineMenu();
+
+        /**
+         * Menu used to find the Airports on the same city as the one provided
+         */
+        void airportCitySearch();
 
 
 
