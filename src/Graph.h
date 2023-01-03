@@ -153,9 +153,6 @@ public:
      */
     void BFS(int origin);
 
-
-    int shortestPath(int origin, int destination);
-
     /**
      * Function to clear all nodes from the graph
      * Time Complexity: O(V), where V is the number of nodes in the graph

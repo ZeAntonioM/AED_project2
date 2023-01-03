@@ -154,9 +154,9 @@ void Menu::cityInputMenu() {
     cout << "|            Find Flight            |" << endl;
     cout << "─────────────────────────────────────" << endl;
     cout << "Departure Country: ";
-    cin >> departureCountry;
+    cin.ignore();
+    getline(cin, departureCountry);
     cout << "Departure City: ";
-
     cin.ignore();
     getline(cin, departureCity);
 
@@ -165,11 +165,19 @@ void Menu::cityInputMenu() {
 
     departureNode = skyLines.getAirport(departureCity, departureCountry);
 
+    if(departureNode.name == ""){
+        menuState.pop();
+        menuState.pop();
+        getMenu();
+    }
+
     //arrival
     cout << "Arrival Country: ";
-    cin >> arrivalCountry;
+    cin.ignore();
+    getline(cin, arrivalCountry);
     cout << "Arrival City: ";
-    cin >> arrivalCity;
+    cin.ignore();
+    getline(cin, arrivalCity);
 
     transform(arrivalCity.begin(), arrivalCity.end(), arrivalCity.begin(), ::toupper);
     transform(arrivalCountry.begin(), arrivalCountry.end(), arrivalCountry.begin(), ::toupper);
@@ -177,8 +185,6 @@ void Menu::cityInputMenu() {
     arrivalNode = skyLines.getAirport( arrivalCity, arrivalCountry);
     cout << "─────────────────────────────────────" << endl;
 
-    //TODO
-    //call the find route function
     skyLines.findRoute(departureNode.code, arrivalNode.code);
 
     menuState.pop();
@@ -347,9 +353,11 @@ void Menu::airportCitySearch() {
         cout << "|        Airport Information        |" << endl;
         cout << "─────────────────────────────────────" << endl;
         cout << "Country: ";
-        cin >> country;
+        cin.ignore();
+        getline(cin, country);
         cout << "City: ";
-        cin >> city;
+        cin.ignore();
+        getline(cin, city);
         cout << "─────────────────────────────────────" << endl;
 
         transform(city.begin(), city.end(), city.begin(), ::toupper);

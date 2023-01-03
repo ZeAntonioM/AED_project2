@@ -76,39 +76,9 @@ void Graph::BFS(int origin) {
                 nodes[n].distance = nodes[current].distance + 1;
                 nodes[n].parent = current;
             }
+
         }
-
-/*
-        int size = nodes[current].hashMapEdges.size();
-
-
-        // "iterating" through the hashMapEdges
-        for (int i = 0 ; i < size; i++)
-        {
-            Edge e = nodes[current].hashMapEdges[i];
-
-            int n = e.destination;
-
-            if (!nodes[n].visited)
-            {
-                q.push(n);
-                nodes[n].visited = true;
-                nodes[n].distance = nodes[current].distance + 1;
-                nodes[n].parent = current;
-            }
-            cout << "i " << i << endl;
-            cout << "current " << current << endl;
-
-        }*/
-
     }
-}
-
-int Graph::shortestPath(int origin, int destination) {
-
-    BFS(origin);
-
-    return (nodes[destination].distance);
 }
 
 void Graph::clear() {
@@ -138,12 +108,7 @@ vector<Node> Graph::generateFlightPath(int origin, int destination) {
 
     if(nodes[origin].disabled || nodes[destination].disabled){
         cout << "Origin/Destination airport is disabled" << endl;
-        return path;
-    }
-
-    if(nodes[origin].hashMapEdges.find(destination)->second.airlines.empty()){
-        cout << "No airlines available for this flight" << endl;
-        return path;
+        return {};
     }
 
     BFS(origin);
@@ -151,6 +116,12 @@ vector<Node> Graph::generateFlightPath(int origin, int destination) {
     //building the path
     path.push_back(nodes[destination]);
     while(destination != origin){
+
+        if(nodes[nodes[destination].parent].hashMapEdges.find(destination)->second.airlines.empty() ){
+            cout << "No airlines available for this flight" << endl;
+            return {};
+        }
+
         destination = nodes[destination].parent;
         path.push_back(nodes[destination]);
     }
