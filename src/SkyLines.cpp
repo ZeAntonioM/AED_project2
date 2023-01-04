@@ -199,15 +199,17 @@ vector<Node> SkyLines::getAirports(){
 }
 
 void SkyLines::reset() {
-    graph.clear();
-    airports.clear();
-    companies.clear();
+    vector<Node> nodes = graph.getNodes();
+    for(int i = 0; i < nodes.size(); i++){
+        nodes[i].disabled = false;
+    }
 
-    createAirports();
-    createCompanies();
-    createFlights();
+    for(auto it = companies.begin(); it != companies.end(); it++){
+        it->second.disabled = false;
+    }
 
     maxAirports = NUMBER_AIRPORTS;
+
 }
 
 Airline SkyLines::getAirline(const string &code) {

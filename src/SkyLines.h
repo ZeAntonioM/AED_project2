@@ -20,6 +20,11 @@ struct Airline {
      */
     string country;
 
+    /**
+     *
+     */
+    bool disabled = false;
+
     void printInfo() const;
 };
 
