@@ -20,7 +20,7 @@ struct Airline {
      */
     string country;
 
-    void printInfo();
+    void printInfo() const;
 };
 
 
@@ -50,6 +50,11 @@ private:
      * @var companies - unordered map that stores the airline's code and their respective information
      */
     unordered_map<string, Airline> companies;
+
+    /**
+     * @var max - Maximum number of airports that can be in a flight path
+     */
+    int maxAirports;
 
     /**
      * Function that adds a node to the graph
@@ -163,6 +168,12 @@ public:
      * Function that resets the graph back to its original state
      */
     void reset();
+
+    /**
+     * Function that sets the maximum number of airports that can be in a flight path
+     */
+    void setMaxAirports(int maxAirports);
+
 
 };
 

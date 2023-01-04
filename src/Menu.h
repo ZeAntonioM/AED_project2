@@ -21,6 +21,7 @@ class Menu {
         static const int LIST_AIRPORTS;
         static const int DISABLE_AIRPORT_MENU;
         static const int DISABLE_AIRLINE_MENU;
+        static const int CHANGE_MAX_AIRPORTS;
         static const int LIST_AIRLINES;
         static const int AIRLINE_CODE_SEARCH;
         static const int AIRPORT_CITY_SEARCH;
@@ -114,7 +115,10 @@ class Menu {
          */
         void airportCitySearch();
 
-
+        /**
+         * Menu used to limit the number of flights that can be used in the calculation of the flight route
+         */
+        void changeMaxStops();
 
 public:
     /**

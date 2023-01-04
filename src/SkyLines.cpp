@@ -129,7 +129,7 @@ void SkyLines::findRoute(const string &originAirport, const string &destinationA
 
     vector<Node> path = graph.generateFlightPath(airports[originAirport], airports[destinationAirport]);
 
-    if(path.empty()){
+    if(path.empty() || path.size() > maxAirports){
         cout << "No route found!" << endl;
         return;
     }
@@ -171,6 +171,7 @@ void SkyLines::reset() {
     createCompanies();
     createFlights();
 
+    maxAirports = NUMBER_AIRPORTS;
 }
 
 Airline SkyLines::getAirline(const string &code) {
@@ -227,8 +228,12 @@ Node SkyLines::getAirport(const string &city, const string &country) {
     }
 }
 
-void Airline::printInfo() {
+void Airline::printInfo() const {
     cout << "Name: " << name << endl;
     cout << "Call Sign: " << callsign << endl;
     cout << "Country: " << country << endl;
+}
+
+void SkyLines::setMaxAirports(int maxAirports) {
+    this->maxAirports = maxAirports;
 }
