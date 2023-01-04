@@ -5,10 +5,11 @@ const string SkyLines::AIRLINES = "../data/airlines.csv";
 const string SkyLines::AIRPORTS = "../data/airports.csv";
 const string SkyLines::FLIGHTS = "../data/flights.csv";
 
-SkyLines::SkyLines() : graph(NUMBER_AIRPORTS) {
+SkyLines::SkyLines() : graph(NUMBER_AIRPORTS), maxAirports(NUMBER_AIRPORTS) {
     createAirports();
     createCompanies();
     createFlights();
+
 }
 
 SkyLines::~SkyLines() {
@@ -117,7 +118,42 @@ void SkyLines::createFlights() {
 }
 
 void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination) {
-    findRoute(graph.getNode(origin).code, graph.getNode(destination).code);
+    vector<Node> departureAirports = graph.getNode(origin, maxDistance);
+    vector<Node> arrivalAirports = graph.getNode(destination, maxDistance);
+
+    if(departureAirports.empty() || arrivalAirports.empty()){
+        cout << "No airports found in the given radius" << endl;
+        return;
+    }
+    if(departureAirports.size() > 1){
+        cout << "Choose the departure airport:" << endl;
+        for(int i = 1; i <= departureAirports.size(); i++){
+            cout << i << " - " << departureAirports[i-1].code << endl;
+        }
+        int option;
+        cin >> option;
+        while(option < 1 || option > departureAirports.size()){
+            cout << "Invalid option" << endl;
+            cin >> option;
+        }
+        departureAirports = {departureAirports[option-1]};
+
+    }
+    if(arrivalAirports.size() > 1){
+        cout << "Choose the arrival airport:" << endl;
+        for(int i = 1; i <= arrivalAirports.size(); i++){
+            cout << i << " - " << arrivalAirports[i-1].code << endl;
+        }
+        int option;
+        cin >> option;
+        while(option < 1 || option > arrivalAirports.size()){
+            cout << "Invalid option" << endl;
+            cin >> option;
+        }
+        arrivalAirports = {arrivalAirports[option-1]};
+    }
+
+    findRoute(departureAirports[0].code, arrivalAirports[0].code);
 }
 
 void SkyLines::findRoute(const string &originAirport, const string &destinationAirport) {
@@ -236,4 +272,8 @@ void Airline::printInfo() const {
 
 void SkyLines::setMaxAirports(int maxAirports) {
     this->maxAirports = maxAirports;
+}
+
+void SkyLines::setMaxDistance(int maxDistance) {
+    this->maxDistance = maxDistance;
 }

@@ -55,6 +55,7 @@ private:
      * @var max - Maximum number of airports that can be in a flight path
      */
     int maxAirports;
+    int maxDistance;
 
     /**
      * Function that adds a node to the graph
@@ -174,6 +175,7 @@ public:
      */
     void setMaxAirports(int maxAirports);
 
+    void setMaxDistance(int maxDistance);
 
 };
 

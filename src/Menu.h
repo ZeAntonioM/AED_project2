@@ -120,6 +120,8 @@ class Menu {
          */
         void changeMaxStops();
 
+        int distanceInputMenu();
+
 public:
     /**
      * Menu constructor

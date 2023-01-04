@@ -19,16 +19,17 @@ void Graph::addNode(const Node &node, int index) {
     this->nodes[index] = node;
 }
 
-Node Graph::getNode(const Coordinate &coordinate) {
+vector<Node> Graph::getNode(const Coordinate &coordinate, int maxDistance) {
 
-    Node closestNode;
-    auto minDistance = DBL_MAX;
+    vector<Node> closestNode;
+    int count=0;
+
     for (auto &node : this->nodes) {
         double distance = calculateDistance(node.coordinate.latitude, node.coordinate.longitude, coordinate.latitude,
                                           coordinate.longitude);
-        if (distance < minDistance and !node.disabled) {
-            minDistance = distance;
-            closestNode = node;
+        if (distance < maxDistance and !node.disabled) {
+            count++;
+            closestNode.push_back(node);
         }
     }
     return closestNode;

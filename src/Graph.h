@@ -131,7 +131,7 @@ public:
      * @param coordinate - a Coordinate struct representing the coordinate of the Airport to be found
      * @return - a Node struct representing the closest Airport to the given coordinate
      */
-    Node getNode(const Coordinate &coordinate);
+    vector<Node> getNode(const Coordinate &coordinate, int distance);
 
     vector<Node> getNodes();
 

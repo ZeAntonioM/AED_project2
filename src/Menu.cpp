@@ -213,13 +213,23 @@ void Menu::coordInputMenu() {
     Coordinate arrivalCoord = {arrivalLatitude, arrivalLongitude};
 
     //find route by coordenates
+    skyLines.setMaxDistance(distanceInputMenu());
     skyLines.findRoute(departureCoord, arrivalCoord);
 
     //return to the main menu
-    system("clear");
     menuState.pop();
     menuState.pop();
     getMenu();
+}
+
+int Menu::distanceInputMenu() {
+    int maxDistance;
+    cout << " ─────────────────────────────────────" << endl;
+    cout << "Maximum Distance (Km):  ";
+    cin >> maxDistance;
+    cout << " ─────────────────────────────────────" << endl;
+
+    return maxDistance;
 }
 
 void Menu::searchDefinitionsMenu() {
