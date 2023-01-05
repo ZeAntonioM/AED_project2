@@ -100,6 +100,7 @@ void Graph::disableAirline(const string &airline) {
     for(auto &node : this->nodes){
         for(auto &edge : node.hashMapEdges){
             edge.second.airlines.erase(airline);
+
         }
     }
 }
