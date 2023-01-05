@@ -126,30 +126,46 @@ void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination
         return;
     }
     if(departureAirports.size() > 1){
-        cout << "Choose the departure airport:" << endl;
-        for(int i = 1; i <= departureAirports.size(); i++){
-            cout << i << " - " << departureAirports[i-1].code << endl;
-        }
         int option;
-        cin >> option;
-        while(option < 1 || option > departureAirports.size()){
-            cout << "Invalid option" << endl;
+        do {
+            cout << " ─────────────────────────────────────" << endl;
+            for (int i = 1; i <= departureAirports.size(); i++) {
+                cout << i << " - " << departureAirports[i - 1].code << endl;
+            }
+            cout << " ─────────────────────────────────────" << endl;
+            cout << "Choose the departure airport: ";
             cin >> option;
-        }
+
+            if(option < 1 || option > departureAirports.size()){
+                cout << "Invalid option" << endl;
+            }
+
+            cin.ignore(INT16_MAX, '\n');
+
+        }while(option < 1 || option > departureAirports.size());
+
         departureAirports = {departureAirports[option-1]};
 
     }
     if(arrivalAirports.size() > 1){
-        cout << "Choose the arrival airport:" << endl;
-        for(int i = 1; i <= arrivalAirports.size(); i++){
-            cout << i << " - " << arrivalAirports[i-1].code << endl;
-        }
         int option;
-        cin >> option;
-        while(option < 1 || option > arrivalAirports.size()){
-            cout << "Invalid option" << endl;
+        do {
+            cout << " ─────────────────────────────────────" << endl;
+            for (int i = 1; i <= arrivalAirports.size(); i++) {
+                cout << i << " - " << arrivalAirports[i - 1].code << endl;
+            }
+            cout << " ─────────────────────────────────────" << endl;
+            cout << "Choose the arrival airport: ";
             cin >> option;
-        }
+
+            if(option < 1 || option > arrivalAirports.size()){
+                cout << "Invalid option" << endl;
+            }
+
+            cin.ignore(INT16_MAX, '\n');
+
+        }while(option < 1 || option > arrivalAirports.size());
+
         arrivalAirports = {arrivalAirports[option-1]};
     }
 
@@ -239,7 +255,7 @@ Node SkyLines::getAirport(const string &city, const string &country) {
         transform(currentCity.begin(), currentCity.end(), currentCity.begin(), ::toupper);
         transform(currentCountry.begin(), currentCountry.end(), currentCountry.begin(), ::toupper);
 
-        if(currentCity== city && currentCountry == country){
+        if(currentCity == city && currentCountry == country){
             possibleAirports.push_back(current);
         }
 
@@ -254,15 +270,25 @@ Node SkyLines::getAirport(const string &city, const string &country) {
         return possibleAirports[0];
     }
     else {
-        int option=1;
-        cout << "Choose an airport:" << endl;
-        for(auto airport : possibleAirports){
-            cout << option << " - " << airport.code << endl;
-            option++;
+        int option;
+        do {
+            cout << " ─────────────────────────────────────" << endl;
+            for (int i = 1; i <= possibleAirports.size(); i++) {
+                cout << i << " - " << possibleAirports[i - 1].code << endl;
+            }
+            cout << " ─────────────────────────────────────" << endl;
+            cout << "Choose the airport: ";
+            cin >> option;
+
+            if (option < 1 || option > possibleAirports.size()) {
+                cout << "Invalid option" << endl;
+            }
+
+            cin.ignore(INT16_MAX, '\n');
         }
-        int choice;
-        cin >> choice;
-        return possibleAirports[choice-1];
+        while (option < 1 || option > possibleAirports.size());
+
+        return possibleAirports[option-1];
     }
 }
 
