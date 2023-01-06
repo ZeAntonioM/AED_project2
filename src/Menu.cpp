@@ -62,7 +62,7 @@ void Menu::mainMenu() {
     cout << "│  2 - Search Settings               │" << endl;
     cout << "│  3 - General Information           │" << endl;
     cout << "│  4 - Exit                          │" << endl;
-    cout << "├────────────────────────────────────┘" << endl;
+    cout << "└────────────────────────────────────┘" << endl;
 
     do {
         cout << "│  Option > ";
@@ -76,7 +76,6 @@ void Menu::mainMenu() {
 
     } while(option < 1 || option > 4);
 
-    cout << "└────────────────────────────────────┘" << endl;
 
     //clear the console
     system("clear");
@@ -103,7 +102,7 @@ void Menu::coordTypeMenu() {
         cout << "│  2 - By City                       │" << endl;
         cout << "│  3 - By Coordinates                │" << endl;
         cout << "│  4 - Go Back                       │" << endl;
-        cout << "├────────────────────────────────────┘" << endl;
+        cout << "└────────────────────────────────────┘" << endl;
 
         do {
             cout << "│  Option > ";
@@ -117,8 +116,6 @@ void Menu::coordTypeMenu() {
 
         } while(option < 1 || option > 4);
 
-    cout << "└────────────────────────────────────┘" << endl;
-
     //clear the console
     system("clear");
 
@@ -130,8 +127,6 @@ void Menu::coordTypeMenu() {
         case 4: default: menuState.pop(); break;
     }
 
-
-    system("clear");
     getMenu();
 }
 
@@ -149,12 +144,13 @@ void Menu::airportInputMenu() {
     transform(arrivalAirport.begin(), arrivalAirport.end(), arrivalAirport.begin(), ::toupper);
 
     skyLines.findRoute(departureAirport, arrivalAirport);
-
-
     cout << "└────────────────────────────────────┘" << endl;
 
+    cin.get();
 
     cin.ignore(INT16_MAX, '\n');
+
+    system("clear");
 
     menuState.pop();
     menuState.pop();
@@ -523,16 +519,18 @@ void Menu::airportCitySearch() {
         cout << "│         Airport Information        │" << endl;
         cout << "├────────────────────────────────────┘" << endl;
         cout << "│  Country  > ";
-        cin >> country;
+        getline(cin, country);
         cout << "│  City  > ";
-        cin >> city;
-        cout << "├────────────────────────────────────┤" << endl;
+        getline(cin, city);
+
 
         transform(city.begin(), city.end(), city.begin(), ::toupper);
         transform(country.begin(), country.end(), country.begin(), ::toupper);
 
         Node airport = skyLines.getAirport(city, country);
         if (airport.code == "") {
+            cout << "├────────────────────────────────────┤" << endl;
+
             cout << "│  No airports found!" << left << setw(37) << "│" << endl;
             cout << "│  Try again? (Y/N)  > ";
             cin >> option;
@@ -558,7 +556,7 @@ void Menu::listAirports() {
     vector<Node> nodes = skyLines.getAirports();
     int numPages = nodes.size() / 20 + (nodes.size() % 20 != 0);
 
-    while (page != numPages + 1 && page != 0) {
+    while (page < numPages + 1 && page > 0) {
         cout << "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐" << endl;
         cout << "│                                                     List Airports                                                   │" << endl;
         cout << "├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤" << endl;
@@ -607,23 +605,25 @@ void Menu::listAirlines(){
         airlines.push_back({e.first, e.second});
     }
 
-    while (page != numpages+1 && page != 0) {
-        cout << " ─────────────────────────────────────" << endl;
-        cout << "|            List Airlines            |" << endl;
-        cout << " ─────────────────────────────────────" << endl;
-        cout << "page: " << page << " of " << numpages << endl;
-        cout << " ─────────────────────────────────────" << endl;
-        cout << "Code - Name - Callsign - Country" << endl;
-        cout << " ─────────────────────────────────────" << endl;
+    while (page < numpages + 1 && page > 0) {
+        cout << "┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐" << endl;
+        cout << "│                                                       List Airlines                                                     │" << endl;
+        cout << "├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤" << endl;
+        cout << "│ page: " << setfill('0') << setw(3) << page << setfill(' ') <<  " of " << numpages << right << setw(108) << "│" << endl;
+        cout << "├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤" << endl;
+        cout << "│  Code   Name                                              Callsign                       Country                        │" << endl;
+        cout << "│  ----   ----                                              --------                       -------                        │" << endl;
 
         for (int i = (page - 1) * 20; i < page * 20; i++){
-            cout << airlines[i].code << " - " << airlines[i].airline.name << " - " << airlines[i].airline.callsign
-                 << " - " << airlines[i].airline.country << endl;
+            cout << "│  " << left << setw(5) << airlines[i].code << "  " << left << setw(48) << airlines[i].airline.name << "  " << left << setw(29) << airlines[i].airline.callsign << "  " << left << setw(29) << airlines[i].airline.country << "  │" << endl;
         }
 
-        cout << " ─────────────────────────────────────" << endl;
-        cout << "Insert the number of the page or " << numpages+1 << " to go back: " << endl;
+        cout << "│  ----   ----                                              --------                       -------                        │" << endl;
+        cout << "├─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘" << endl;
+        cout << "│  Insert the number of the page or " << numpages + 1 << " to go back  > ";
         cin >> page;
+        cout << "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘" << endl;
+
 
         cin.clear();
         cin.ignore(INT16_MAX, '\n');
