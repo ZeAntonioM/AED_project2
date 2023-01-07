@@ -34,6 +34,9 @@ struct Edge{
      */
     unordered_set<string> airlines;
 
+    /**
+     * @var disabledAirlines - Disabled airlines for the flight
+     */
     unordered_set<string> disabledAirlines;
 
 
@@ -93,6 +96,10 @@ struct Node{
      */
     bool disabled = false;
 
+    /**
+     * Function that prints all the info of the node
+     * Time complexity: O(1)
+     */
     void printInfo();
 };
 
@@ -137,18 +144,19 @@ public:
      */
     vector<Node> getNode(const Coordinate &coordinate, int distance);
 
+    /**
+     * Getter for the vector of nodes
+     * Time complexity: O(1)
+     * @return - a vector containing all the graph's nodes
+     */
     vector<Node> getNodes();
 
-    void setNodes(vector<Node> newNodes);
-
     /**
-     * Function that adds an edge to the graph
-     * Time Complexity: O(1)
-     * @param origin - an int representing the index of the origin node
-     * @param destination - an int representing the index of the destination node
-     * @param airlines - an unordered set of strings representing the airlines that operates the flights
+     * Setter for the vector of nodes
+     * Time complexity: O(1)
+     * @param newNodes - vector to set as the graph's node vector
      */
-    void addEdge(int origin, int destination, unordered_set<string> &airlines);
+    void setNodes(vector<Node> newNodes);
 
     /**
      * Function that applies breadth-first search on the graph, changing the distance of each node based on the origin node
@@ -170,10 +178,25 @@ public:
      */
     void disableAirport(int index);
 
+    /**
+     * Function that enables an airport given an index
+     * Time Complexity: O(1)
+     * @param index - an int representing the index of the airport to be enabled
+     */
     void enableAirport(int index);
 
+    /**
+     * Function that disables an airline given its code
+     * Time complexity: 0(V+E), V being the number of nodes, E being the number of edges
+     * @param airline - string representing the code of the airline to be disabled
+     */
     void disableAirline(const string &airline);
 
+    /**
+     * Function that disables an airline given its code
+     * Time complexity: 0(V+E), V being the number of nodes, E being the number of edges
+     * @param airline - string representing the code of the airline to be disabled
+     */
     void enableAirline(const string &airline);
 
     /**

@@ -212,7 +212,6 @@ void SkyLines::reset() {
     createAirports();
     createCompanies();
     createFlights();
-
     maxAirports = NUMBER_AIRPORTS;
     system("clear");
 
