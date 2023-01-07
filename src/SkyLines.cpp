@@ -6,10 +6,13 @@ const string SkyLines::AIRPORTS = "../data/airports.csv";
 const string SkyLines::FLIGHTS = "../data/flights.csv";
 
 SkyLines::SkyLines() : graph(NUMBER_AIRPORTS), maxAirports(NUMBER_AIRPORTS) {
+    cout << "Loading airports..." << endl;
+
     createAirports();
     createCompanies();
     createFlights();
 
+    system("clear");
 }
 
 SkyLines::~SkyLines() {
@@ -202,16 +205,16 @@ vector<Node> SkyLines::getAirports(){
 }
 
 void SkyLines::reset() {
-    vector<Node> nodes = graph.getNodes();
-    for(int i = 0; i < nodes.size(); i++){
-        nodes[i].disabled = false;
-    }
 
-    for(auto it = companies.begin(); it != companies.end(); it++){
-        it->second.disabled = false;
-    }
+    cout << "   Resetting..." << endl;
+    graph.clear();
+    airports.clear();
+    createAirports();
+    createCompanies();
+    createFlights();
 
     maxAirports = NUMBER_AIRPORTS;
+    system("clear");
 
 }
 
@@ -305,7 +308,7 @@ Node SkyLines::getAirport(const string &city, const string &country) {
     else {
         int option;
         do {
-            cout << "   " << endl;
+
             for (int i = 1; i <= possibleAirports.size(); i++) {
                 cout << "   [" << i << "] -> " << possibleAirports[i - 1].code << endl;
             }
@@ -317,6 +320,7 @@ Node SkyLines::getAirport(const string &city, const string &country) {
                 cout << "   Invalid option" << endl;
             }
 
+            cin.clear();
             cin.ignore(INT16_MAX, '\n');
         }
         while (option < 1 || option > possibleAirports.size());
@@ -326,9 +330,11 @@ Node SkyLines::getAirport(const string &city, const string &country) {
 }
 
 void Airline::printInfo() const {
-    cout << "   Name: " << name << endl;
-    cout << "   Call Sign: " << callsign << endl;
-    cout << "   Country: " << country << endl;
+    cout << "│  Name: "  << left << setw(43) << name << "│" << endl;
+    cout << "│  Call Sign: " << left << setw(38) << callsign << "│" << endl;
+    cout << "│  Country: " << left << setw(40) << country << "│" << endl;
+    cout << "└───────────────────────────────────────────────────┘" << endl;
+
 }
 
 void SkyLines::setMaxAirports(int maxAirports) {
