@@ -162,14 +162,17 @@ void Node::printInfo() {
     cout << "│  Disabled: " << left << setw(48) << disabled << "│" << endl;
 
 
-
     int flightCount=0;
+    int destinationCount=0;
     for(auto &edge : hashMapEdges){
         for(auto &airline : edge.second.airlines){
             flightCount++;
         }
+        destinationCount++;
     }
     cout << "│  Flights: " << left << setw(49) << flightCount << "│" << endl;
+    cout << "│  Destinations: " << left << setw(44) << destinationCount << "│" << endl;
     cout << "└────────────────────────────────────────────────────────────┘" << endl;
+    cout << "  PRESS ENTER TO CONTINUE";
 
 }
