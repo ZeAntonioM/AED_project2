@@ -71,15 +71,6 @@ private:
     void addAirport(const Node &node, int index);
 
     /**
-     * Function that adds an edge to the graph
-     * Time Complexity: O(1)
-     * @param origin - origin node of the edge
-     * @param destination - destination node of the edge
-     * @param airlines - vector of strings with the airlines that operate the flight
-     */
-    void addFlight(int origin, int destination, unordered_set<string> &airlines);
-
-    /**
      * Function that creates the airports and adds them to an unordered map and the graph.
      * Time complexity: O(n), n being the number of lines in the file
      */

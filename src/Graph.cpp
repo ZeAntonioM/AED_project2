@@ -34,14 +34,6 @@ vector<Node> Graph::getNode(const Coordinate &coordinate, int maxDistance) {
     }
     return closestNode;
 }
-
-void Graph::addEdge(int origin, int destination, unordered_set<string> &airlines) {
-    //check if node can be added to graph
-    if (origin < 0 || destination > (int) nodes.size() || origin > (int) nodes.size() || destination < 0) return;
-
-    this->nodes[origin].hashMapEdges[destination] = {destination, airlines};
-}
-
 void Graph::BFS(int origin) {
     for (int i = 0; i < (int) nodes.size(); i++){
         nodes[i].visited = false;
@@ -90,6 +82,10 @@ void Graph::clear() {
 
 vector<Node> Graph::getNodes() {
     return nodes;
+}
+
+void Graph::setNodes(vector<Node> newNodes){
+    this->nodes = newNodes;
 }
 
 void Graph::disableAirport(int index) {

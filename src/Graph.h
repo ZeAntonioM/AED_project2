@@ -139,7 +139,7 @@ public:
 
     vector<Node> getNodes();
 
-
+    void setNodes(vector<Node> newNodes);
 
     /**
      * Function that adds an edge to the graph
