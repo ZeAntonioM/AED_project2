@@ -95,7 +95,6 @@ void SkyLines::createFlights() {
         getline(ss, Airline);
 
         airport = nodes[airports[Source]];
-
         edges = airport.hashMapEdges;
 
 
@@ -124,7 +123,6 @@ void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination
         int option;
         do {
             cout << endl;
-            cout << "   ";
             for (int i = 1; i <= departureAirports.size(); i++) {
                 cout << "   [" << i << "] -> " << departureAirports[i - 1].code << endl;
             }

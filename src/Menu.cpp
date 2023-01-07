@@ -154,12 +154,10 @@ void Menu::airportInputMenu() {
     skyLines.findRoute(departureAirport, arrivalAirport);
     cout << endl;
 
+    cin.ignore(INT16_MAX, '\n');
     cin.get();
 
-    cin.ignore(INT16_MAX, '\n');
-
     system("clear");
-
     menuState.pop();
     menuState.pop();
     getMenu();
@@ -179,7 +177,6 @@ void Menu::cityInputMenu() {
     cout << "   Departure City  > ";
     getline(cin, departureCity);
 
-
     transform(departureCity.begin(), departureCity.end(), departureCity.begin(), ::toupper);
     transform(departureCountry.begin(), departureCountry.end(), departureCountry.begin(), ::toupper);
 
@@ -187,13 +184,11 @@ void Menu::cityInputMenu() {
 
     cout << endl;
 
-
     if(departureNode.name == ""){
         menuState.pop();
         menuState.pop();
         getMenu();
     }
-
 
     //arrival
     cout << "   Arrival Country  > ";
@@ -211,9 +206,9 @@ void Menu::cityInputMenu() {
     skyLines.findRoute(departureNode.code, arrivalNode.code);
 
     cout << endl;
+    getchar();
 
     system("clear");
-    cin.ignore(INT16_MAX, '\n');
     menuState.pop();
     getMenu();
 }
@@ -240,7 +235,6 @@ void Menu::coordInputMenu() {
 
     //find route by coordenates
     skyLines.setMaxDistance(distanceInputMenu());
-
 
     skyLines.findRoute(departureCoord, arrivalCoord);
 
@@ -276,7 +270,7 @@ void Menu::searchDefinitionsMenu() {
     cout << "├────────────────────────────────────┤" << endl;
     cout << "│  1 - Disable Airports or Airlines  │" << endl;
     cout << "│  2 - Enable Airports or Airlines   │" << endl;
-    cout << "│  3 - Change Max Stops              │" << endl;
+    cout << "│  3 - Change Max Airports           │" << endl;
     cout << "│  4 - Reset Search Settings         │" << endl;
     cout << "│  5 - Go Back                       │" << endl;
     cout << "└────────────────────────────────────┘" << endl;
@@ -528,7 +522,7 @@ void Menu::changeMaxStops() {
     cout << "┌────────────────────────────────────┐" << endl;
     cout << "│         Change Max Airports        │" << endl;
     cout << "└────────────────────────────────────┘" << endl;
-    cout << "   Max number of airports" << endl << "that you want to stop at  > ";
+    cout << "   Max number of airports" << endl << "   that you want to stop at  > ";
     cin >> max;
     while (max <= 1) {
         cout << "   Min number of airports that can be in a flight path is 2!" << endl;
@@ -539,10 +533,10 @@ void Menu::changeMaxStops() {
     skyLines.setMaxAirports(max);
     cout << endl;
 
+
+    cout << "   Max number of airports changed to " << max << "!" << endl;
     cin.get();
     cin.ignore(INT16_MAX, '\n');
-
-    cout << "  Max number of airports changed to " << max << "!" << endl;
 
     //Go back to main menu
     system("clear");
@@ -611,19 +605,18 @@ void Menu::airportCodeSearch() {
         cout << "   Airport Code: ";
         cin >> airportCode;
 
+        transform(airportCode.begin(), airportCode.end(), airportCode.begin(), ::toupper);
+
         cin.clear();
         cin.ignore(INT16_MAX, '\n');
     }
     cout << endl;
 
-
-    transform(airportCode.begin(), airportCode.end(), airportCode.begin(), ::toupper);
-
-    cin.ignore(INT16_MAX, '\n');
-
     skyLines.getAirport(airportCode).printInfo();
 
+    cin.get();
 
+    system("clear");
     menuState.pop();
     getMenu();
 }
@@ -644,17 +637,20 @@ void Menu::airlineCodeSearch() {
         cout << "   Airline Code  > ";
         cin >> airlineCode;
 
+        transform(airlineCode.begin(), airlineCode.end(), airlineCode.begin(), ::toupper);
+
         cin.clear();
         cin.ignore(INT16_MAX, '\n');
     }
     cout << endl;
 
-
-    transform(airlineCode.begin(), airlineCode.end(), airlineCode.begin(), ::toupper);
     cin.ignore(INT16_MAX, '\n');
     cout << "   Code : " << airlineCode << endl;
     skyLines.getAirline(airlineCode).printInfo();
 
+    cin.get();
+
+    system("clear");
     menuState.pop();
     getMenu();
 }
@@ -692,9 +688,8 @@ void Menu::airportCitySearch() {
         }
     }
 
-    cin.ignore(INT16_MAX, '\n');
-    system("clear");
 
+    system("clear");
     menuState.pop();
     getMenu();
 
