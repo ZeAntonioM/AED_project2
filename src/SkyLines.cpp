@@ -124,7 +124,6 @@ void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination
         int option;
         do {
             cout << endl;
-            cout << "   ";
             for (int i = 1; i <= departureAirports.size(); i++) {
                 cout << "   [" << i << "] -> " << departureAirports[i - 1].code << endl;
             }
@@ -204,14 +203,12 @@ vector<Node> SkyLines::getAirports(){
 }
 
 void SkyLines::reset() {
-    vector<Node> nodes = graph.getNodes();
-    for(int i = 0; i < nodes.size(); i++){
-        nodes[i].disabled = false;
-    }
 
-    for(auto it = companies.begin(); it != companies.end(); it++){
-        it->second.disabled = false;
-    }
+    graph.clear();
+    airports.clear();
+    createAirports();
+    createCompanies();
+    createFlights();
 
     maxAirports = NUMBER_AIRPORTS;
 
@@ -328,9 +325,11 @@ Node SkyLines::getAirport(const string &city, const string &country) {
 }
 
 void Airline::printInfo() const {
-    cout << "   Name: " << name << endl;
-    cout << "   Call Sign: " << callsign << endl;
-    cout << "   Country: " << country << endl;
+    cout << "│  Name: "  << left << setw(43) << name << "│" << endl;
+    cout << "│  Call Sign: " << left << setw(38) << callsign << "│" << endl;
+    cout << "│  Country: " << left << setw(40) << country << "│" << endl;
+    cout << "└───────────────────────────────────────────────────┘" << endl;
+
 }
 
 void SkyLines::setMaxAirports(int maxAirports) {

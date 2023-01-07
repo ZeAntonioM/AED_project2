@@ -11,24 +11,25 @@ class Menu {
          * Menu numbers
          */
         static const int MAIN_MENU;
-        static const int COORD_TYPE_MENU;
-        static const int AIRPORT_MENU;
-        static const int COORDINATE_MENU;
-        static const int CITY_MENU;
+            static const int COORD_TYPE_MENU;
+                static const int AIRPORT_MENU;
+                static const int CITY_MENU;
+                static const int COORDINATE_MENU;
         static const int SEARCH_DEFINITIONS_MENU;
+            static const int DISABLE_MENU;
+                static const int DISABLE_AIRPORT_MENU;
+                static const int DISABLE_AIRLINE_MENU;
+            static const int ENABLE_MENU;
+                static const int ENABLE_AIRLINE_MENU;
+                static const int ENABLE_AIRPORT_MENU;
+            static const int CHANGE_MAX_AIRPORTS;
         static const int GENERAL_INFO_MENU;
-        static const int AIRPORT_CODE_SEARCH;
-        static const int LIST_AIRPORTS;
-        static const int DISABLE_MENU;
-        static const int DISABLE_AIRPORT_MENU;
-        static const int DISABLE_AIRLINE_MENU;
-        static const int ENABLE_MENU;
-        static const int ENABLE_AIRPORT_MENU;
-        static const int ENABLE_AIRLINE_MENU;
-        static const int CHANGE_MAX_AIRPORTS;
-        static const int LIST_AIRLINES;
-        static const int AIRLINE_CODE_SEARCH;
-        static const int AIRPORT_CITY_SEARCH;
+            static const int AIRPORT_CODE_SEARCH;
+            static const int AIRLINE_CODE_SEARCH;
+            static const int AIRPORT_CITY_SEARCH;
+            static const int LIST_AIRPORTS;
+            static const int LIST_AIRLINES;
+
 
         /**
          * @var SkyLines - SkyLines object containing the graph
@@ -79,6 +80,7 @@ class Menu {
          * Menu that finds the closest airports to each of the coordinates provided, and then finds the closest flight route between them
          */
         void coordInputMenu();
+
         /**
          * Menu used to define various search parameters for finding flights
          */
@@ -104,6 +106,9 @@ class Menu {
          */
         void airlineCodeSearch();
 
+        /**
+         * Menu used for choosing an airport/airline to disable
+         */
         void disableMenu();
 
         /**
@@ -116,10 +121,19 @@ class Menu {
          */
         void disableAirlineMenu();
 
+        /**
+         * Menu used for choosing an airport/airline to enable
+         */
         void enableMenu();
 
+        /**
+         * Menu where the user inputs the airline code to enable
+         */
         void enableAirlineMenu();
 
+        /**
+         * Menu where the user inputs the airport code to enable
+         */
         void enableAirportMenu();
 
         /**
@@ -132,6 +146,9 @@ class Menu {
          */
         void changeMaxStops();
 
+        /**
+         * Menu where the user inputs the radius of the circle to search for airports.
+         */
         int distanceInputMenu();
 
 public:
