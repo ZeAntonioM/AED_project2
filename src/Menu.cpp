@@ -143,8 +143,8 @@ void Menu::airportInputMenu() {
     transform(departureAirport.begin(), departureAirport.end(), departureAirport.begin(), ::toupper);
     transform(arrivalAirport.begin(), arrivalAirport.end(), arrivalAirport.begin(), ::toupper);
 
-    skyLines.findRoute(departureAirport, arrivalAirport);
     cout << endl;
+    skyLines.findRoute(departureAirport, arrivalAirport);
 
     cin.clear();
     cin.ignore(INT16_MAX, '\n');
@@ -669,14 +669,12 @@ void Menu::airportCitySearch() {
         cout << "   City > ";
         getline(cin, city);
 
-        cout << endl;
-
         transform(city.begin(), city.end(), city.begin(), ::toupper);
         transform(country.begin(), country.end(), country.begin(), ::toupper);
 
         Node airport = skyLines.getAirport(city, country);
         if (airport.code == "") {
-
+            cout << endl;
             cout << "   Try again? (Y/N) > ";
             cin >> option;
 

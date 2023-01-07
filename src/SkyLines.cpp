@@ -147,7 +147,7 @@ void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination
     if(arrivalAirports.size() > 1){
         int option;
         do {
-            cout << "   " << endl;
+            cout << endl;
             for (int i = 1; i <= arrivalAirports.size(); i++) {
                 cout << "   [" << i << "] -> " << arrivalAirports[i - 1].code << endl;
             }
@@ -182,6 +182,7 @@ void SkyLines::findRoute(const string &originAirport, const string &destinationA
         cout << "   No route found!" << endl;
         return;
     }
+
 
     cout << "   Route: ";
     for(int i = 0; i < path.size()-1; i++){
@@ -307,7 +308,7 @@ Node SkyLines::getAirport(const string &city, const string &country) {
     else {
         int option;
         do {
-
+            cout << endl;
             for (int i = 1; i <= possibleAirports.size(); i++) {
                 cout << "   [" << i << "] -> " << possibleAirports[i - 1].code << endl;
             }

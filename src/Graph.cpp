@@ -162,7 +162,6 @@ void Node::printInfo() {
     cout << "│  Disabled: " << left << setw(48) << disabled << "│" << endl;
 
 
-
     int flightCount=0;
     for(auto &edge : hashMapEdges){
         for(auto &airline : edge.second.airlines){
