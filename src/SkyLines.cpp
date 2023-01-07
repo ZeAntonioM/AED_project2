@@ -334,6 +334,7 @@ void Airline::printInfo() const {
     cout << "│  Call Sign: " << left << setw(38) << callsign << "│" << endl;
     cout << "│  Country: " << left << setw(40) << country << "│" << endl;
     cout << "└───────────────────────────────────────────────────┘" << endl;
+    cout << "  PRESS ENTER TO CONTINUE";
 
 }
 

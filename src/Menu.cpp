@@ -148,6 +148,7 @@ void Menu::airportInputMenu() {
 
     cin.clear();
     cin.ignore(INT16_MAX, '\n');
+    cout << "PRESS ENTER TO CONTINUE";
     cin.get();
 
     system("clear");
@@ -356,6 +357,7 @@ void Menu::disableAirportMenu() {
 
     cout << "   Airport " << airportCode << " disabled!" << endl;
 
+    cout << "PRESS ENTER TO CONTINUE" << endl;
     cin.get();
     cin.ignore(INT16_MAX, '\n');
 
@@ -393,6 +395,7 @@ void Menu::disableAirlineMenu() {
 
     cout << "   Airline " << airlineCode << " disabled!" << endl;
 
+    cout << "PRESS ENTER TO CONTINUE" << endl;
     cin.get();
     cin.ignore(INT16_MAX, '\n');
 
@@ -465,6 +468,7 @@ void Menu::enableAirlineMenu() {
 
     cout << "   Airline " << airlineCode << " enabled!" << endl;
 
+    cout << "PRESS ENTER TO CONTINUE" << endl;
     cin.get();
     cin.ignore(INT16_MAX, '\n');
 
@@ -501,6 +505,7 @@ void Menu::enableAirportMenu() {
 
     cout << "   Airport " << airportCode << " enabled!" << endl;
 
+    cout << "PRESS ENTER TO CONTINUE" << endl;
     cin.get();
     cin.ignore(INT16_MAX, '\n');
 
@@ -527,8 +532,9 @@ void Menu::changeMaxStops() {
     skyLines.setMaxAirports(max);
     cout << endl;
 
-
     cout << "   Max number of airports changed to " << max << "!" << endl;
+
+    cout << "PRESS ENTER TO CONTINUE" << endl;
     cin.get();
     cin.ignore(INT16_MAX, '\n');
 
@@ -608,6 +614,8 @@ void Menu::airportCodeSearch() {
     skyLines.getAirport(airportCode).printInfo();
 
     cin.ignore(INT16_MAX, '\n');
+
+    cout << "PRESS ENTER TO CONTINUE" << endl;
     cin.get();
 
     system("clear");
@@ -646,8 +654,9 @@ void Menu::airlineCodeSearch() {
     cout << "│  Code : " << left << setw(42) << airlineCode << "│" << endl;
     skyLines.getAirline(airlineCode).printInfo();
 
-
     cin.ignore(INT16_MAX, '\n');
+
+    cout << "PRESS ENTER TO CONTINUE" << endl;
     cin.get();
 
     system("clear");
@@ -689,6 +698,7 @@ void Menu::airportCitySearch() {
         cin.ignore(INT16_MAX, '\n');
     }
 
+    cout << "PRESS ENTER TO CONTINUE" << endl;
     cin.get();
 
     system("clear");
