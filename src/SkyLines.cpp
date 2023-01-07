@@ -6,10 +6,13 @@ const string SkyLines::AIRPORTS = "../data/airports.csv";
 const string SkyLines::FLIGHTS = "../data/flights.csv";
 
 SkyLines::SkyLines() : graph(NUMBER_AIRPORTS), maxAirports(NUMBER_AIRPORTS) {
+    cout << "Loading airports..." << endl;
+
     createAirports();
     createCompanies();
     createFlights();
 
+    system("clear");
 }
 
 SkyLines::~SkyLines() {
@@ -95,7 +98,6 @@ void SkyLines::createFlights() {
         getline(ss, Airline);
 
         airport = nodes[airports[Source]];
-
         edges = airport.hashMapEdges;
 
 
@@ -204,13 +206,14 @@ vector<Node> SkyLines::getAirports(){
 
 void SkyLines::reset() {
 
+    cout << "   Resetting..." << endl;
     graph.clear();
     airports.clear();
     createAirports();
     createCompanies();
     createFlights();
-
     maxAirports = NUMBER_AIRPORTS;
+    system("clear");
 
 }
 
@@ -304,7 +307,7 @@ Node SkyLines::getAirport(const string &city, const string &country) {
     else {
         int option;
         do {
-            cout << "   " << endl;
+
             for (int i = 1; i <= possibleAirports.size(); i++) {
                 cout << "   [" << i << "] -> " << possibleAirports[i - 1].code << endl;
             }
@@ -316,6 +319,7 @@ Node SkyLines::getAirport(const string &city, const string &country) {
                 cout << "   Invalid option" << endl;
             }
 
+            cin.clear();
             cin.ignore(INT16_MAX, '\n');
         }
         while (option < 1 || option > possibleAirports.size());

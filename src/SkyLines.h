@@ -21,10 +21,9 @@ struct Airline {
     string country;
 
     /**
-     *
+     * Function that prints all the information about the airline
+     * Time complexity: O(1)
      */
-    bool disabled = false;
-
     void printInfo() const;
 };
 
@@ -36,10 +35,21 @@ private:
      * Definition of number of airports and some file paths and useful for the class
      */
     static const int NUMBER_AIRPORTS;
-    static const string AIRLINES;
-    static const string AIRPORTS;
-    static const string FLIGHTS;
 
+    /**
+     * Filepath to the airlines.csv folder to be read
+     */
+    static const string AIRLINES;
+
+    /**
+     * Filepath to the airports.csv folder to be read
+     */
+    static const string AIRPORTS;
+
+    /**
+     * Filepath to the flights.csv folder to be read
+     */
+    static const string FLIGHTS;
 
     /**
      * @var graph - graph that contains all the airports and flights
@@ -57,9 +67,13 @@ private:
     unordered_map<string, Airline> companies;
 
     /**
-     * @var max - Maximum number of airports that can be in a flight path
+     * @var maxAirports - Maximum number of airports that can be in a flight path
      */
     int maxAirports;
+
+    /**
+     * @var maxDistance - Maximum radius used to search for airports
+     */
     int maxDistance;
 
     /**
@@ -116,23 +130,34 @@ public:
     void findRoute(const Coordinate &origin, const Coordinate &destination);
 
     /**
-     * Function that disables an airport requested by the user
-     * Time Complexity: O(1)
-     * @param code - code of the airport to be disabled
+     * Function that changes the state of a given airport
+     * Time Complexity: O(V), V being the number of nodes
+     * @param code - code of the airport
+     * @param enable - boolean used to determine to which state to change
      */
-
     void changeAirportState(const string &code, const bool &enable);
 
+    /**
+     * Function that changes the state of all airports
+     * Time Complexity: O(V), V being the number of nodes
+     * @param enable - boolean used to determine to which state to change
+     */
     void changeAllAirportState(const bool &enable);
 
-    void changeAllAirlineState(const bool &enable);
-
     /**
-     * Function that disables an airline requested by the user
-     * Time Complexity: O(1)
-     * @param code - code of the airline to disabled
+     * Function that changes the state of a given airline
+     * Time Complexity: O(V+E+A), V being the number of nodes, E being the number of edges, A being the number of airlines in each edge
+     * @param code - code of the airline
+     * @param enable - boolean used to determine to which state to change
      */
     void changeAirlineState(const string &code, const bool &enable);
+
+    /**
+     * Function that changes the state of all airlines
+     * Time Complexity: O(V+E+A), V being the number of nodes, E being the number of edges, A being the number of airlines in each edge
+     * @param enable - boolean used to determine to which state to change
+     */
+    void changeAllAirlineState(const bool &enable);
 
     /**
      * Function that returns a copy of the node corresponding to the airport that matches the code provided, or in case of not finding one, returns an empty node object
@@ -142,6 +167,13 @@ public:
      */
     Node getAirport(const string &code);
 
+    /**
+     * Function that searches for all available airports in a given city in a given country, and allows the user to choose one to return
+     * Time Complexity: O(V), V being the number of nodes
+     * @param city - string representing the city in which to search for
+     * @param country - string representing the country in which to search for
+     * @return Copy of the node corresponding to the user-chosen airport
+     */
     Node getAirport(const string &city, const string &country);
 
     /**
@@ -168,14 +200,21 @@ public:
 
     /**
      * Function that resets the graph back to its original state
+     * Time complexity: O(n1+n2+n3), n1 being the number of lines in the airports file, n2 being the number of lines in the airlines file, n3 being the number of lines in the flights file
      */
     void reset();
 
     /**
-     * Function that sets the maximum number of airports that can be in a flight path
+     * Setter for the maximum number of airports that can be in a flight path
+     * Time complexity: O(1)
+     * @param maxAirports - number to be set
      */
     void setMaxAirports(int maxAirports);
 
+    /**
+     * Setter for the maximum radius to search for airports in
+     * @param maxDistance - number to be set
+     */
     void setMaxDistance(int maxDistance);
 
 };
