@@ -195,14 +195,6 @@ void SkyLines::findRoute(const string &originAirport, const string &destinationA
 
 }
 
-void SkyLines::disableAirport(const string &code) {
-    if(airports.find(code) != airports.end()){
-        graph.disableAirport(airports[code]);
-    } else {
-        cout << "   Airport not found" << endl;
-    }
-
-}
 
 unordered_map<string, Airline> SkyLines::getCompanies() const{
     return this->companies;
@@ -234,6 +226,19 @@ Airline SkyLines::getAirline(const string &code) {
     return companies.find(code) != companies.end() ? companies[code] : Airline();
 }
 
+void SkyLines::changeAirportState(const std::string &code, const bool &enable) {
+    if(airports.find(code) != airports.end()){
+        if (enable){
+            graph.enableAirport(airports[code]);
+        }
+        else{
+            graph.disableAirport(airports[code]);
+        }
+    } else {
+        cout << "   Airport not found" << endl;
+    }
+}
+
 void SkyLines::changeAirlineState(const string &code, const bool &enable) {
     if(companies.find(code) != companies.end()){
         if (enable)
@@ -242,6 +247,36 @@ void SkyLines::changeAirlineState(const string &code, const bool &enable) {
             graph.disableAirline(code);
     } else {
         cout << "   Airline not found" << endl;
+    }
+}
+
+void SkyLines::changeAllAirportState(const bool &enable) {
+    if (enable) {
+        for (auto n: airports) {
+            graph.enableAirport(n.second);
+        }
+        cout << "   Enabled all airports!" << endl;
+    }
+    else{
+        for (auto n: airports) {
+            graph.disableAirport(n.second);
+        }
+        cout << "   Disabled all airports!" << endl;
+    }
+}
+
+void SkyLines::changeAllAirlineState(const bool &enable) {
+    if (enable) {
+        for (auto n: companies) {
+            graph.enableAirline(n.first);
+        }
+        cout << "   Enabled all airlines!" << endl;
+    }
+    else{
+        for (auto n: companies) {
+            graph.disableAirline(n.first);
+        }
+        cout << "   Disabled all airlines!" << endl;
     }
 }
 

@@ -129,7 +129,12 @@ public:
      * Time Complexity: O(1)
      * @param code - code of the airport to be disabled
      */
-    void disableAirport(const string &code);
+
+    void changeAirportState(const string &code, const bool &enable);
+
+    void changeAllAirportState(const bool &enable);
+
+    void changeAllAirlineState(const bool &enable);
 
     /**
      * Function that disables an airline requested by the user

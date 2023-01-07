@@ -170,6 +170,7 @@ public:
      */
     void disableAirport(int index);
 
+    void enableAirport(int index);
 
     void disableAirline(const string &airline);
 

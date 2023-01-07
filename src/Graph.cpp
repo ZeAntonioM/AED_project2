@@ -106,6 +106,10 @@ void Graph::disableAirline(const string &airline) {
     }
 }
 
+void Graph::enableAirport(int index) {
+    this->nodes[index].disabled = false;
+}
+
 void Graph::enableAirline(const string &airline) {
     for(auto &node : this->nodes){
         for(auto &edge : node.hashMapEdges){
