@@ -150,16 +150,16 @@ vector<Node> Graph::generateFlightPath(int origin, int destination) {
 
 
 void Node::printInfo() {
-    cout << "┌────────────────────────────────────┐" << endl;
-    cout << "│              Airport               │" << endl;
-    cout << "├────────────────────────────────────┤" << endl;
-    cout << "│  Code: " << code << "                               │" << endl;
-    cout << "│  Name: " << name << "                              │" << endl;
-    cout << "│  City: " << city << "                              │" << endl;
-    cout << "│  Country: " << country << "                         │" << endl;
-    cout << "│  Latitude: " << coordinate.latitude << "             │" << endl;
-    cout << "│  Longitude: " << coordinate.longitude << "           │" << endl;
-    cout << "│  Disabled: " << disabled << "                         │" << endl;
+    cout << "┌────────────────────────────────────────────────────────────┐" << endl;
+    cout << "│                           Airport                          │" << endl;
+    cout << "├────────────────────────────────────────────────────────────┤" << endl;
+    cout << "│  Code: " << left << setw(52) << code << "│" << endl;
+    cout << "│  Name: " << left << setw(52) << name << "│" << endl;
+    cout << "│  City: " << left << setw(52) << city << "│" << endl;
+    cout << "│  Country: " << left << setw(49) << country << "│" << endl;
+    cout << "│  Latitude: " << left << setw(48) << coordinate.latitude << "│" << endl;
+    cout << "│  Longitude: " << left << setw(47) << coordinate.longitude << "│" << endl;
+    cout << "│  Disabled: " << left << setw(48) << disabled << "│" << endl;
 
 
 
@@ -169,7 +169,7 @@ void Node::printInfo() {
             flightCount++;
         }
     }
-    cout << "│  Flights: " << flightCount << "                          │" << endl;
-    cout << "└────────────────────────────────────┘" << endl;
+    cout << "│  Flights: " << left << setw(49) << flightCount << "│" << endl;
+    cout << "└────────────────────────────────────────────────────────────┘" << endl;
 
 }
