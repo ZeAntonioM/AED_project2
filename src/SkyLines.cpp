@@ -209,10 +209,6 @@ void SkyLines::reset() {
         nodes[i].disabled = false;
     }
 
-    for(auto it = companies.begin(); it != companies.end(); it++){
-        it->second.disabled = false;
-    }
-
     maxAirports = NUMBER_AIRPORTS;
 
 }
