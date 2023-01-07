@@ -135,7 +135,6 @@ vector<Node> Graph::generateFlightPath(int origin, int destination) {
         }
 
         if(nodes[nodes[destination].parent].hashMapEdges.find(destination)->second.airlines.empty() ){
-            cout << "No airlines available for this flight" << endl;
             return {};
         }
 
