@@ -122,23 +122,23 @@ void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination
     vector<Node> arrivalAirports = graph.getNode(destination, maxDistance);
 
     if(departureAirports.empty() || arrivalAirports.empty()){
-        cout << "│  No airports found in the given radius" << endl;
+        cout << "   No airports found in the given radius" << endl;
         return;
     }
     if(departureAirports.size() > 1){
         int option;
         do {
-            cout << "┌────────────────────────────────────┐" << endl;
-            cout << "│  ";
+            cout << endl;
+            cout << "   ";
             for (int i = 1; i <= departureAirports.size(); i++) {
                 cout << i << " - " << departureAirports[i - 1].code << left <<setw(38) << "  │" << endl;
             }
-            cout << "└────────────────────────────────────┘" << endl;
-            cout << "│  Choose the departure airport: ";
+            cout << endl;
+            cout << "   Choose the departure airport: ";
             cin >> option;
 
             if(option < 1 || option > departureAirports.size()){
-                cout << "│  Invalid option" << endl;
+                cout << "   Invalid option" << endl;
             }
 
             cin.ignore(INT16_MAX, '\n');
@@ -151,16 +151,16 @@ void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination
     if(arrivalAirports.size() > 1){
         int option;
         do {
-            cout << " ─────────────────────────────────────" << endl;
+            cout << "   " << endl;
             for (int i = 1; i <= arrivalAirports.size(); i++) {
-                cout << i << " - " << arrivalAirports[i - 1].code << endl;
+                cout << "[" << i << "] -> " << arrivalAirports[i - 1].code << endl;
             }
-            cout << "└────────────────────────────────────┘" << endl;
-            cout << "│  Choose the arrival airport: ";
+            cout << endl;
+            cout << "   Choose the arrival airport: ";
             cin >> option;
 
             if(option < 1 || option > arrivalAirports.size()){
-                cout << "│  Invalid option" << endl;
+                cout << "   Invalid option" << endl;
             }
 
             cin.ignore(INT16_MAX, '\n');
@@ -176,20 +176,18 @@ void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination
 void SkyLines::findRoute(const string &originAirport, const string &destinationAirport) {
 
     if(airports.find(originAirport) == airports.end() || airports.find(destinationAirport) == airports.end()){
-        cout << "│  Invalid airport code!" << endl;
+        cout << "   Invalid airport code!" << endl;
         return;
     }
 
     vector<Node> path = graph.generateFlightPath(airports[originAirport], airports[destinationAirport]);
 
     if(path.empty() || path.size() > maxAirports){
-        cout << "│  No route found!" << endl;
+        cout << "   No route found!" << endl;
         return;
     }
 
-    cout << "├────────────────────────────────────┤" << endl;
-
-    cout << "│  Route: ";
+    cout << "   Route: ";
     for(int i = 0; i < path.size()-1; i++){
         cout << path[i].code << " -> ";
     }
@@ -201,7 +199,7 @@ void SkyLines::disableAirport(const string &code) {
     if(airports.find(code) != airports.end()){
         graph.disableAirport(airports[code]);
     } else {
-        cout << "│  Airport not found" << endl;
+        cout << "   Airport not found" << endl;
     }
 
 }
@@ -240,7 +238,7 @@ void SkyLines::disableAirline(const string &code) {
     if(companies.find(code) != companies.end()){
         graph.disableAirline(code);
     } else {
-        cout << "│  Airline not found" << endl;
+        cout << "   Airline not found" << endl;
     }
 
 }
@@ -266,7 +264,7 @@ Node SkyLines::getAirport(const string &city, const string &country) {
     }
 
     if(possibleAirports.empty()){
-        cout << "│  Airport not found" << left << setw(38)<< endl;
+        cout << "   Airport not found" << left << setw(38)<< endl;
         return Node();
 
     }
@@ -276,16 +274,16 @@ Node SkyLines::getAirport(const string &city, const string &country) {
     else {
         int option;
         do {
-            cout << "┌────────────────────────────────────┐" << endl;
+            cout << "   " << endl;
             for (int i = 1; i <= possibleAirports.size(); i++) {
-                cout << i << " - " << possibleAirports[i - 1].code << left << setw(38) << "  │" << endl;
+                cout << "[" << i << "] -> " << possibleAirports[i - 1].code << endl;
             }
-            cout << "└────────────────────────────────────┘" << endl;
-            cout << "│  Choose the airport: ";
+            cout << endl;
+            cout << "   Choose the airport: ";
             cin >> option;
 
             if (option < 1 || option > possibleAirports.size()) {
-                cout << "│  Invalid option" << endl;
+                cout << "   Invalid option" << endl;
             }
 
             cin.ignore(INT16_MAX, '\n');
@@ -297,9 +295,9 @@ Node SkyLines::getAirport(const string &city, const string &country) {
 }
 
 void Airline::printInfo() const {
-    cout << "│  Name: " << name << endl;
-    cout << "│  Call Sign: " << callsign << endl;
-    cout << "│  Country: " << country << endl;
+    cout << "   Name: " << name << endl;
+    cout << "   Call Sign: " << callsign << endl;
+    cout << "   Country: " << country << endl;
 }
 
 void SkyLines::setMaxAirports(int maxAirports) {
