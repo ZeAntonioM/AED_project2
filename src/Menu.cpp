@@ -11,8 +11,9 @@
         const int Menu::SEARCH_DEFINITIONS_MENU = 5;
             const int Menu::DISABLE_AIRPORT_MENU = 6;
             const int Menu::DISABLE_AIRLINE_MENU = 7;
+            const int Menu::ENABLE_AIRLINE_MENU = 15;
             const int Menu::CHANGE_MAX_AIRPORTS = 8;
-            const int Menu::GENERAL_INFO_MENU = 9;
+        const int Menu::GENERAL_INFO_MENU = 9;
             const int Menu::AIRPORT_CODE_SEARCH = 10;
             const int Menu::AIRLINE_CODE_SEARCH = 11;
             const int Menu::AIRPORT_CITY_SEARCH = 12;
@@ -38,6 +39,7 @@ void Menu::getMenu() {
                 case 5: searchDefinitionsMenu(); break;
                     case 6: disableAirportMenu(); break;
                     case 7: disableAirlineMenu(); break;
+                    case 15: enableAirlineMenu(); break;
                     case 8: changeMaxStops(); break;
                 case 9: GeneralInfoMenu(); break;
                     case 10: airportCodeSearch(); break;
@@ -258,7 +260,7 @@ int Menu::distanceInputMenu() {
     int maxDistance;
     cout << "├────────────────────────────────────┤" << endl;
     cout << "│  Search airports within a radius." << endl;
-    cout << "│  Maximun Radius (Km)  > ";
+    cout << "│  Maximum Radius (Km)  > ";
 
     cin >> maxDistance;
     cout << "├────────────────────────────────────┤" << endl;
@@ -273,25 +275,22 @@ void Menu::searchDefinitionsMenu() {
     cout << "├────────────────────────────────────┤" << endl;
     cout << "│  1 - Disable Airport               │" << endl;
     cout << "│  2 - Disable Airline               │" << endl;
-    cout << "│  3 - Change Max Stops              │" << endl;
-    cout << "│  4 - Reset Search Settings         │" << endl;
-    cout << "│  5 - Go Back                       │" << endl;
+    cout << "│  3 - Enable Airline                │" << endl;
+    cout << "│  4 - Change Max Stops              │" << endl;
+    cout << "│  5 - Reset Search Settings         │" << endl;
+    cout << "│  6 - Go Back                       │" << endl;
     cout << "├────────────────────────────────────┘" << endl;
 
     do {
         cout << "│  Option  > ";
         cin >> option;
-        if(option < 1 || option > 5){
+        if(option < 1 || option > 6){
             cout << "│  Invalid option! Please try again  > ";
         }
 
-        cin.clear();
         cin.ignore(INT16_MAX, '\n');
 
-    } while(option < 1 || option > 5);
-
-    cin.clear();
-    cin.ignore(INT16_MAX, '\n');
+    } while(option < 1 || option > 6);
 
     cout << "└────────────────────────────────────┘" << endl;
     //clear the console
@@ -300,9 +299,10 @@ void Menu::searchDefinitionsMenu() {
     switch(option){
         case 1: menuState.push(DISABLE_AIRPORT_MENU); break;
         case 2: menuState.push(DISABLE_AIRLINE_MENU); break;
-        case 3: menuState.push(CHANGE_MAX_AIRPORTS); break;
-        case 4: menuState.pop(); skyLines.reset(); break;
-        case 5: default: menuState.pop(); break;
+        case 3: menuState.push(ENABLE_AIRLINE_MENU); break;
+        case 4: menuState.push(CHANGE_MAX_AIRPORTS); break;
+        case 5: menuState.pop(); skyLines.reset(); break;
+        case 6: default: menuState.pop(); break;
     }
 
     getMenu();
@@ -370,9 +370,46 @@ void Menu::disableAirlineMenu() {
     transform(airlineCode.begin(), airlineCode.end(), airlineCode.begin(), ::toupper);
 
     cin.ignore(INT16_MAX, '\n');
-    skyLines.disableAirline(airlineCode);
+    skyLines.changeAirlineState(airlineCode, false);
 
-    cout << "Airline disabled!" << endl;
+    cout << "│  Airline " << airlineCode << " disabled!" << endl;
+
+    cout << "└────────────────────────────────────┘" << endl;
+
+    //Go back to main menu
+    menuState.pop();
+    menuState.pop();
+    getMenu();
+}
+
+void Menu::enableAirlineMenu() {
+    string airlineCode;
+    cout << "┌────────────────────────────────────┐" << endl;
+    cout << "│           Enable Airline           │" << endl;
+    cout << "├────────────────────────────────────┘" << endl;
+    cout << "│  Airline Code  > ";
+    cin >> airlineCode;
+    cout << "├────────────────────────────────────┤" << endl;
+
+    transform(airlineCode.begin(), airlineCode.end(), airlineCode.begin(), ::toupper);
+
+    while (skyLines.getAirline(airlineCode).name == "") {
+        cout << "│  Invalid Airline Code!" << left << setw(37) << "│" << endl;
+        cout << "│  Airline Code  > ";
+        cin >> airlineCode;
+        cout << "├────────────────────────────────────┤" << endl;
+
+        cin.clear();
+        cin.ignore(INT16_MAX, '\n');
+    }
+
+    //transform code to uppercase
+    transform(airlineCode.begin(), airlineCode.end(), airlineCode.begin(), ::toupper);
+
+    cin.ignore(INT16_MAX, '\n');
+    skyLines.changeAirlineState(airlineCode, true);
+
+    cout << "│  Airline " << airlineCode << " enabled!" << endl;
 
     cout << "└────────────────────────────────────┘" << endl;
 
@@ -385,7 +422,7 @@ void Menu::disableAirlineMenu() {
 void Menu::changeMaxStops() {
     int max;
     cout << "┌────────────────────────────────────┐" << endl;
-    cout << "│           Disable Airline          │" << endl;
+    cout << "│         Change Max Airports        │" << endl;
     cout << "├────────────────────────────────────┘" << endl;
     cout << "│  Max number of airports" << endl << "that you want to stop at  > ";
     cin >> max;
@@ -424,7 +461,7 @@ void Menu::GeneralInfoMenu() {
         cout << "│  Option > ";
         cin >> option;
         if(option < 1 || option > 6){
-            cout << "│  Invalid option! Please try again  > ";
+            cout << "│  Invalid option! Please try again  │" << endl;
         }
 
         cin.clear();

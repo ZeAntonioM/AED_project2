@@ -136,7 +136,7 @@ public:
      * Time Complexity: O(1)
      * @param code - code of the airline to disabled
      */
-    void disableAirline(const string &code);
+    void changeAirlineState(const string &code, const bool &enable);
 
     /**
      * Function that returns a copy of the node corresponding to the airport that matches the code provided, or in case of not finding one, returns an empty node object

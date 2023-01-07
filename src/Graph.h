@@ -34,6 +34,8 @@ struct Edge{
      */
     unordered_set<string> airlines;
 
+    unordered_set<string> disabledAirlines;
+
 
 };
 
@@ -170,6 +172,8 @@ public:
 
 
     void disableAirline(const string &airline);
+
+    void enableAirline(const string &airline);
 
     /**
      * Function that creates the shortest path between two available airports

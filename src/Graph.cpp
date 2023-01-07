@@ -99,8 +99,19 @@ void Graph::disableAirport(int index) {
 void Graph::disableAirline(const string &airline) {
     for(auto &node : this->nodes){
         for(auto &edge : node.hashMapEdges){
-            edge.second.airlines.erase(airline);
+            if(edge.second.airlines.erase(airline) > 0){
+                edge.second.disabledAirlines.insert(airline);
+            }
+        }
+    }
+}
 
+void Graph::enableAirline(const string &airline) {
+    for(auto &node : this->nodes){
+        for(auto &edge : node.hashMapEdges){
+            if(edge.second.disabledAirlines.erase(airline) > 0){
+                edge.second.airlines.insert(airline);
+            }
         }
     }
 }

@@ -21,6 +21,7 @@ class Menu {
         static const int LIST_AIRPORTS;
         static const int DISABLE_AIRPORT_MENU;
         static const int DISABLE_AIRLINE_MENU;
+        static const int ENABLE_AIRLINE_MENU;
         static const int CHANGE_MAX_AIRPORTS;
         static const int LIST_AIRLINES;
         static const int AIRLINE_CODE_SEARCH;
@@ -109,6 +110,8 @@ class Menu {
          * Menu used for disabling certain airlines from being used in the calculation of flight routes
          */
         void disableAirlineMenu();
+
+        void enableAirlineMenu();
 
         /**
          * Menu used to find the Airports on the same city as the one provided

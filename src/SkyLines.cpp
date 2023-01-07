@@ -232,14 +232,17 @@ Airline SkyLines::getAirline(const string &code) {
     return companies.find(code) != companies.end() ? companies[code] : Airline();
 }
 
-void SkyLines::disableAirline(const string &code) {
+void SkyLines::changeAirlineState(const string &code, const bool &enable) {
     if(companies.find(code) != companies.end()){
-        graph.disableAirline(code);
+        if (enable)
+            graph.enableAirline(code);
+        else
+            graph.disableAirline(code);
     } else {
         cout << "Airline not found" << endl;
     }
-
 }
+
 
 Node SkyLines::getAirport(const string &city, const string &country) {
     vector<Node> possibleAirports ={};
