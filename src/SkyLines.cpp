@@ -89,17 +89,16 @@ void SkyLines::createFlights() {
     vector<Node> nodes = graph.getNodes(); //graph's node vector
     unordered_map<int, Edge> edges;
 
+    string Source, Target, Airline;
+
     while (getline(file,line)){
         istringstream ss(line);
-
-        string Source, Target, Airline;
         getline(ss, Source, ',');
         getline(ss, Target, ',');
         getline(ss, Airline);
 
         airport = nodes[airports[Source]];
         edges = airport.hashMapEdges;
-
 
         if (edges.find(airports[Target]) != edges.end()){
             nodes[airports[Source]].hashMapEdges[airports[Target]].airlines.insert(Airline);
@@ -147,7 +146,7 @@ void SkyLines::findRoute(const Coordinate &origin, const Coordinate &destination
     if(arrivalAirports.size() > 1){
         int option;
         do {
-            cout << "   " << endl;
+            cout << endl;
             for (int i = 1; i <= arrivalAirports.size(); i++) {
                 cout << "   [" << i << "] -> " << arrivalAirports[i - 1].code << endl;
             }
@@ -182,6 +181,7 @@ void SkyLines::findRoute(const string &originAirport, const string &destinationA
         cout << "   No route found!" << endl;
         return;
     }
+
 
     cout << "   Route: ";
     for(int i = 0; i < path.size()-1; i++){
@@ -297,7 +297,7 @@ Node SkyLines::getAirport(const string &city, const string &country) {
     }
 
     if(possibleAirports.empty()){
-        cout << "   Airport not found" << left << setw(38)<< endl;
+        cout << "   Airport not found" << endl;
         return Node();
 
     }
@@ -307,7 +307,7 @@ Node SkyLines::getAirport(const string &city, const string &country) {
     else {
         int option;
         do {
-
+            cout << endl;
             for (int i = 1; i <= possibleAirports.size(); i++) {
                 cout << "   [" << i << "] -> " << possibleAirports[i - 1].code << endl;
             }
@@ -333,8 +333,6 @@ void Airline::printInfo() const {
     cout << "│  Call Sign: " << left << setw(38) << callsign << "│" << endl;
     cout << "│  Country: " << left << setw(40) << country << "│" << endl;
     cout << "└───────────────────────────────────────────────────┘" << endl;
-    cout << "  PRESS ENTER TO CONTINUE";
-
 }
 
 void SkyLines::setMaxAirports(int maxAirports) {

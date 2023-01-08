@@ -78,7 +78,7 @@ void Menu::mainMenu() {
             cout << "   Invalid option! Please try again! " << endl;
         }
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
     } while(option < 1 || option > 4);
 
 
@@ -114,7 +114,7 @@ void Menu::coordTypeMenu() {
                 cout << "   Invalid option! Please try again! " << endl;
             }
             cin.clear();
-            cin.ignore(INT16_MAX, '\n');
+            cin.ignore(INT64_MAX, '\n');
         } while(option < 1 || option > 4);
 
     //clear the console
@@ -143,12 +143,12 @@ void Menu::airportInputMenu() {
     transform(departureAirport.begin(), departureAirport.end(), departureAirport.begin(), ::toupper);
     transform(arrivalAirport.begin(), arrivalAirport.end(), arrivalAirport.begin(), ::toupper);
 
-    skyLines.findRoute(departureAirport, arrivalAirport);
     cout << endl;
+    skyLines.findRoute(departureAirport, arrivalAirport);
 
     cin.clear();
-    cin.ignore(INT16_MAX, '\n');
-    cout << "PRESS ENTER TO CONTINUE";
+    cin.ignore(INT64_MAX, '\n');
+    cout << "\n   PRESS ENTER TO CONTINUE";
     cin.get();
 
     system("clear");
@@ -200,7 +200,8 @@ void Menu::cityInputMenu() {
     skyLines.findRoute(departureNode.code, arrivalNode.code);
 
     cout << endl;
-    getchar();
+    cout << "   PRESS ENTER TO CONTINUE" << endl;
+    cin.get();
 
     system("clear");
     menuState.pop();
@@ -233,6 +234,8 @@ void Menu::coordInputMenu() {
     skyLines.findRoute(departureCoord, arrivalCoord);
 
     cout << endl;
+    cout << "   PRESS ENTER TO CONTINUE" << endl;
+    cin.get();
 
     //return to the main menu
     system("clear");
@@ -250,7 +253,6 @@ int Menu::distanceInputMenu() {
     cout << "   Maximum Radius (Km) > ";
 
     cin >> maxDistance;
-    cout << endl;
 
     return maxDistance;
 }
@@ -275,7 +277,7 @@ void Menu::searchDefinitionsMenu() {
         }
 
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
 
     } while(option < 1 || option > 5);
 
@@ -312,7 +314,7 @@ void Menu::disableMenu() {
             cout << "   Invalid option! Please try again!" << endl;
         }
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
 
     } while(option < 1 || option > 5);
 
@@ -348,7 +350,7 @@ void Menu::disableAirportMenu() {
         cin >> airportCode;
 
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
     }
 
     transform(airportCode.begin(), airportCode.end(), airportCode.begin(), ::toupper);
@@ -357,9 +359,9 @@ void Menu::disableAirportMenu() {
 
     cout << "   Airport " << airportCode << " disabled!" << endl;
 
-    cout << "PRESS ENTER TO CONTINUE" << endl;
+    cout << "\n   PRESS ENTER TO CONTINUE" << endl;
     cin.get();
-    cin.ignore(INT16_MAX, '\n');
+    cin.ignore(INT64_MAX, '\n');
 
     //Go back to main menu
     system("clear");
@@ -385,7 +387,7 @@ void Menu::disableAirlineMenu() {
         cin >> airlineCode;
 
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
     }
 
     //transform code to uppercase
@@ -395,9 +397,9 @@ void Menu::disableAirlineMenu() {
 
     cout << "   Airline " << airlineCode << " disabled!" << endl;
 
-    cout << "PRESS ENTER TO CONTINUE" << endl;
+    cout << "\n   PRESS ENTER TO CONTINUE" << endl;
     cin.get();
-    cin.ignore(INT16_MAX, '\n');
+    cin.ignore(INT64_MAX, '\n');
 
     //Go back to main menu
     system("clear");
@@ -424,7 +426,7 @@ void Menu::enableMenu() {
             cout << "   Invalid option! Please try again!" << endl;
         }
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
 
     } while(option < 1 || option > 5);
 
@@ -458,7 +460,7 @@ void Menu::enableAirlineMenu() {
         cin >> airlineCode;
 
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
     }
 
     //transform code to uppercase
@@ -468,11 +470,10 @@ void Menu::enableAirlineMenu() {
 
     cout << "   Airline " << airlineCode << " enabled!" << endl;
 
-    cout << "PRESS ENTER TO CONTINUE" << endl;
+    cout << "\n   PRESS ENTER TO CONTINUE" << endl;
     cin.get();
-    cin.ignore(INT16_MAX, '\n');
+    cin.ignore(INT64_MAX, '\n');
 
-    //Go back to main menu
     system("clear");
     menuState.pop();
     menuState.pop();
@@ -496,7 +497,7 @@ void Menu::enableAirportMenu() {
         cin >> airportCode;
 
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
     }
 
     transform(airportCode.begin(), airportCode.end(), airportCode.begin(), ::toupper);
@@ -505,9 +506,9 @@ void Menu::enableAirportMenu() {
 
     cout << "   Airport " << airportCode << " enabled!" << endl;
 
-    cout << "PRESS ENTER TO CONTINUE" << endl;
+    cout << "\n   PRESS ENTER TO CONTINUE" << endl;
     cin.get();
-    cin.ignore(INT16_MAX, '\n');
+    cin.ignore(INT64_MAX, '\n');
 
     //Go back to main menu
     system("clear");
@@ -524,6 +525,8 @@ void Menu::changeMaxStops() {
     cout << "   Max number of airports" << endl << "   that you want to stop at > ";
     cin >> max;
     while (max <= 1) {
+        cin.clear();
+        cin.ignore(INT64_MAX, '\n');
         cout << "   Min number of airports that can be in a flight path is 2!" << endl;
         cout << "   Max number of airports that you want to stop at > ";
         cin >> max;
@@ -534,9 +537,9 @@ void Menu::changeMaxStops() {
 
     cout << "   Max number of airports changed to " << max << "!" << endl;
 
-    cout << "PRESS ENTER TO CONTINUE" << endl;
+    cout << "\n   PRESS ENTER TO CONTINUE" << endl;
     cin.get();
-    cin.ignore(INT16_MAX, '\n');
+    cin.ignore(INT64_MAX, '\n');
 
     //Go back to main menu
     system("clear");
@@ -566,7 +569,7 @@ void Menu::GeneralInfoMenu() {
             cout << "   Invalid option! Please try again!" << endl;
         }
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
     } while(option < 1 || option > 6);
 
     cout << endl;
@@ -599,7 +602,7 @@ void Menu::airportCodeSearch() {
 
     while (skyLines.getAirport(airportCode).code == "") {
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
         cout << endl;
         cout << "   Invalid Airport Code!" << endl;
         cout << "   Airport Code > ";
@@ -613,9 +616,9 @@ void Menu::airportCodeSearch() {
 
     skyLines.getAirport(airportCode).printInfo();
 
-    cin.ignore(INT16_MAX, '\n');
+    cin.ignore(INT64_MAX, '\n');
 
-    cout << "PRESS ENTER TO CONTINUE" << endl;
+    cout << "\n   PRESS ENTER TO CONTINUE" << endl;
     cin.get();
 
     system("clear");
@@ -635,7 +638,7 @@ void Menu::airlineCodeSearch() {
 
     while (skyLines.getAirline(airlineCode).name == "") {
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
         cout << endl;
         cout << "   Invalid Airline Code!" << endl;
         cout << "   Airline Code > ";
@@ -654,9 +657,9 @@ void Menu::airlineCodeSearch() {
     cout << "│  Code : " << left << setw(42) << airlineCode << "│" << endl;
     skyLines.getAirline(airlineCode).printInfo();
 
-    cin.ignore(INT16_MAX, '\n');
+    cin.ignore(INT64_MAX, '\n');
 
-    cout << "PRESS ENTER TO CONTINUE" << endl;
+    cout << "\n   PRESS ENTER TO CONTINUE" << endl;
     cin.get();
 
     system("clear");
@@ -678,14 +681,12 @@ void Menu::airportCitySearch() {
         cout << "   City > ";
         getline(cin, city);
 
-        cout << endl;
-
         transform(city.begin(), city.end(), city.begin(), ::toupper);
         transform(country.begin(), country.end(), country.begin(), ::toupper);
 
         Node airport = skyLines.getAirport(city, country);
         if (airport.code == "") {
-
+            cout << endl;
             cout << "   Try again? (Y/N) > ";
             cin >> option;
 
@@ -693,15 +694,14 @@ void Menu::airportCitySearch() {
         } else {
             system("clear");
             airport.printInfo();
+            cout << "\n   PRESS ENTER TO CONTINUE" << endl;
+            cin.get();
             break;
         }
 
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
     }
-
-    cout << "PRESS ENTER TO CONTINUE" << endl;
-    cin.get();
 
     system("clear");
     menuState.pop();
@@ -734,7 +734,7 @@ void Menu::listAirports() {
         cout << endl;
 
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
 
         system("clear");
     }
@@ -772,19 +772,19 @@ void Menu::listAirlines(){
         cout << "│  Code   Name                                         Callsign                    Country                                │" << endl;
         cout << "│  ----   ----                                         --------                    -------                                │" << endl;
 
-        for (int i = (page - 1) * 20; i < page * 20; i++){
-            cout << "│  " << left << setw(5) << airlines[i].code << "  " << left << setw(43) << airlines[i].airline.name << "  " << left << setw(26) << airlines[i].airline.callsign << "  " << left << setw(37) << airlines[i].airline.country << "  │" << endl;
+        for (auto idx = airlines.begin() + ((page - 1) * 20); idx != (airlines.begin() + (page * 20)) && idx != airlines.end(); idx++) {
+            cout << "│  " << left << setw(5) << idx->code << "  " << left << setw(43) << idx->airline.name << "  " << left << setw(26) << idx->airline.callsign << "  " << left << setw(37) << idx->airline.country << "  │" << endl;
         }
 
         cout << "│  ----   ----                                         --------                    -------                                │" << endl;
-        cout << "└────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘" << endl;
+        cout << "└─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘" << endl;
         cout << "   Insert the number of the page or " << numpages + 1 << " to go back > ";
         page = 0;
         cin >> page;
         cout << endl;
 
         cin.clear();
-        cin.ignore(INT16_MAX, '\n');
+        cin.ignore(INT64_MAX, '\n');
 
         system("clear");
     }
