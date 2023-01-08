@@ -160,7 +160,7 @@ public:
 
     /**
      * Function that applies breadth-first search on the graph, changing the distance of each node based on the origin node
-     * Time Complexity: O(n+e), n being the total number of nodes, e being the total number of edges
+     * Time Complexity: O(V+E), V being the total number of nodes, E being the total number of edges
      * @param origin - an int representing the index of the origin node
      */
     void BFS(int origin);
@@ -201,6 +201,7 @@ public:
 
     /**
      * Function that creates the shortest path between two available airports
+     * Time complexity: O(V+E), V being the number of nodes, E being the number of edges
      * @param origin - an int representing the index of the origin airport
      * @param destination - an int representing the index of the destination airport
      * @return - a vector of Nodes representing the airports in the path

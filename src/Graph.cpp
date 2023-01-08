@@ -154,14 +154,12 @@ void Node::printInfo() {
     int flightCount=0;
     int destinationCount=0;
     set<string> diff_airlines;
-    set<int> diff_countries;
     for(auto &edge : hashMapEdges){
         for(auto &airline : edge.second.airlines){
             flightCount++;
             diff_airlines.insert(airline);
         }
         destinationCount++;
-        diff_countries.insert(edge.second.destination);
     }
 
     cout << "┌────────────────────────────────────────────────────────────┐" << endl;
@@ -176,7 +174,6 @@ void Node::printInfo() {
     cout << "│  Disabled: " << left << setw(48) << disabled << "│" << endl;
     cout << "│  Flights: " << left << setw(49) << flightCount << "│" << endl;
     cout << "│  Airlines: " << left << setw(48) << diff_airlines.size() << "│" << endl;
-    cout << "│  Different Countries: " << left << setw(37) << diff_airlines.size() << "│" << endl;
     cout << "│  Destinations: " << left << setw(44) << destinationCount << "│" << endl;
     cout << "└────────────────────────────────────────────────────────────┘" << endl;
 }

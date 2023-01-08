@@ -213,10 +213,19 @@ public:
 
     /**
      * Setter for the maximum radius to search for airports in
+     * Time complexity: O(1)
      * @param maxDistance - number to be set
      */
     void setMaxDistance(int maxDistance);
 
+    /**
+     * Function that returns the number of different reachable airports, cities and countries from a give airport with a specified number of max flights
+     * Time Complexity: O(V), V being the number of nodes
+     * @param maxDistance - max number of flights to use for reaching
+     * @param code - code for the airport
+     * @return tuple containing the three different counters;
+     */
+    tuple<int, int, int> getInfoFromAirport(int maxDistance, const string& code);
 };
 
 #endif //AED_PROJECT2_SKYLINES_H
