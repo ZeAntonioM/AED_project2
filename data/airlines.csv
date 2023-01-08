@@ -51,7 +51,7 @@ ARF,Aero Flight,Aero Fox,Germany
 APW,Arrow Air,BIG A,United States
 ARD,Aerocondor,AEROCONDOR,Portugal
 ARG,Aerolineas Argentinas,ARGENTINA,Argentina
-ASA,Alaska Airlines, Inc.,ALASKA
+ASA,Alaska Airlines,Inc.,ALASKA
 ASD,Air Sinai,AIR SINAI,Egypt
 ASZ,Astrakhan Airlines,AIR ASTRAKHAN,Russia
 VBW,Air Burkina,BURKINA,Burkina Faso
@@ -61,7 +61,7 @@ AUA,Austrian Airlines,AUSTRIAN,Austria
 AUH,Abu Dhabi Amiri Flight,SULTAN,United Arab Emirates
 AUL,Aeroflot-Nord,DVINA,Russia
 AUR,Aurigny Air Services,AYLINE,United Kingdom
-AVA,Avianca - Aerovias Nacionales de Colombia, S.A.,AVIANCA
+AVA,Avianca - Aerovias Nacionales de Colombia,S.A.,AVIANCA
 AVN,Air Vanuatu,AIR VAN,Vanuatu
 BGD,Air Bangladesh,AIR BANGLA,Bangladesh
 AWU,Aeroline GmbH,SYLT-AIR,Germany
@@ -154,7 +154,7 @@ CSA,Czech Airlines,CSA-LINES,Czech Republic
 DTR,DAT Danish Air Transport,DANISH,Denmark
 DAO,Daallo Airlines,DALO AIRLINES,Djibouti
 DAL,Delta Air Lines,DELTA,United States
-HDA,Dragonair, Hong Kong Dragon Airlines,DRAGON
+HDA,Dragonair,Hong Kong Dragon Airlines,DRAGON
 DRK,Druk Air,ROYAL BHUTAN,Bhutan
 EVA,EVA Air,EVA,Taiwan
 UGX,East African,CRANE,Uganda
@@ -419,13 +419,13 @@ LOO,LSM Airlines,slowbird,Russia
 FDB,Fly Dubai,_,United Arab Emirates
 AXZ,Aereonautica militare,_,Italy
 1QA,Marysya Airlines,MARSHAK AIR,Russia
-ZTT,ZABAIKAL AIRLINES,BAIKAL ,Russia
+ZTT,ZABAIKAL AIRLINES,BAIKAL,Russia
 TYS,TransHolding System,_,Brazil
 3FF,Fly Colombia ( Interliging Flights ),_,Colombia
-BUU,Baikotovitchestrian Airlines ,_,American Samoa
-ZTF,Mongolian International Air Lines ,Mongol_AIr ,Mongolia
+BUU,Baikotovitchestrian Airlines,_,American Samoa
+ZTF,Mongolian International Air Lines,Mongol_AIr,Mongolia
 TWB,Tway Airlines,TWAY AIR,South Korea
-WER,AeroWorld ,sovet,Russia
+WER,AeroWorld,sovet,Russia
 HNX,Hankook Airline,HNX,South Korea
 MRS,Marusya Airways,snowball,Russia
 ERR,Era Alaska,ERAH,United States
