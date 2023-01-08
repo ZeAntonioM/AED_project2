@@ -250,13 +250,13 @@ void SkyLines::changeAllAirportState(const bool &enable) {
         for (auto n: airports) {
             graph.enableAirport(n.second);
         }
-        cout << "   Enabled all airports!" << endl;
+        cout << "\n   Enabled all airports!" << endl;
     }
     else{
         for (auto n: airports) {
             graph.disableAirport(n.second);
         }
-        cout << "   Disabled all airports!" << endl;
+        cout << "\n   Disabled all airports!" << endl;
     }
 }
 
@@ -265,13 +265,13 @@ void SkyLines::changeAllAirlineState(const bool &enable) {
         for (auto n: companies) {
             graph.enableAirline(n.first);
         }
-        cout << "   Enabled all airlines!" << endl;
+        cout << "\n   Enabled all airlines!" << endl;
     }
     else{
         for (auto n: companies) {
             graph.disableAirline(n.first);
         }
-        cout << "   Disabled all airlines!" << endl;
+        cout << "\n   Disabled all airlines!" << endl;
     }
 }
 
