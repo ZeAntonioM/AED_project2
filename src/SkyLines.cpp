@@ -353,7 +353,7 @@ tuple<int, int, int> SkyLines::getInfoFromAirport(int maxDistance, const std::st
     set<string> countries;
 
     for(auto &n: nodes){
-        if (n.distance <= maxDistance){
+        if (n.distance <= maxDistance && n.distance != 0){
             Rairports.insert(n.code);
             countries.insert(n.country);
             cities.insert(n.city);
