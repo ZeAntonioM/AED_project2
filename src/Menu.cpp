@@ -81,7 +81,6 @@ void Menu::mainMenu() {
         cin.ignore(INT64_MAX, '\n');
     } while(option < 1 || option > 4);
 
-
     //clear the console
     system("clear");
 
