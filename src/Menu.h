@@ -27,6 +27,7 @@ class Menu {
             static const int AIRPORT_CODE_SEARCH;
             static const int AIRLINE_CODE_SEARCH;
             static const int AIRPORT_CITY_SEARCH;
+            static const int INFO_FROM_AIRPORT;
             static const int LIST_AIRPORTS;
             static const int LIST_AIRLINES;
 
@@ -48,6 +49,7 @@ class Menu {
 
         /**
          * Function that calls the top of the menuState stack
+         * Time complexity: O(1)
          */
         void getMenu();
 
@@ -88,11 +90,13 @@ class Menu {
 
         /**
          * Menu that lists all of the airports in a book-like fashion, with each page containing 20 entries
+         * Time complexity: O(V), V being the number of nodes
          */
         void listAirports();
 
         /**
          * Menu that lists all of the airlines in a book-like fashion, with each page containing 20 entries
+         * Time complexity: O(A), A being the number of airlines
          */
         void listAirlines();
 
@@ -151,6 +155,10 @@ class Menu {
          */
         int distanceInputMenu();
 
+        /**
+         * Menu where the user inputs the code of an airport and a desired amount of max flights, and shows how many different reachable airports, cities and countries there are
+         */
+        void infoFromAirport();
 public:
     /**
      * Menu constructor

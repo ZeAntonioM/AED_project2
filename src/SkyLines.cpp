@@ -342,3 +342,23 @@ void SkyLines::setMaxAirports(int maxAirports) {
 void SkyLines::setMaxDistance(int maxDistance) {
     this->maxDistance = maxDistance;
 }
+
+tuple<int, int, int> SkyLines::getInfoFromAirport(int maxDistance, const std::string &code) {
+    Node a = getAirport(code);
+    graph.BFS(airports[code]);
+    auto nodes = graph.getNodes();
+
+    set<string> Rairports;
+    set<string> cities;
+    set<string> countries;
+
+    for(auto &n: nodes){
+        if (n.distance <= maxDistance){
+            Rairports.insert(n.code);
+            countries.insert(n.country);
+            cities.insert(n.city);
+        }
+    }
+
+    return {Rairports.size(), cities.size(), countries.size()};
+}

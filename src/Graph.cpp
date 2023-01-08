@@ -150,6 +150,18 @@ vector<Node> Graph::generateFlightPath(int origin, int destination) {
 
 
 void Node::printInfo() {
+
+    int flightCount=0;
+    int destinationCount=0;
+    set<string> diff_airlines;
+    for(auto &edge : hashMapEdges){
+        for(auto &airline : edge.second.airlines){
+            flightCount++;
+            diff_airlines.insert(airline);
+        }
+        destinationCount++;
+    }
+
     cout << "┌────────────────────────────────────────────────────────────┐" << endl;
     cout << "│                           Airport                          │" << endl;
     cout << "├────────────────────────────────────────────────────────────┤" << endl;
@@ -160,17 +172,8 @@ void Node::printInfo() {
     cout << "│  Latitude: " << left << setw(48) << coordinate.latitude << "│" << endl;
     cout << "│  Longitude: " << left << setw(47) << coordinate.longitude << "│" << endl;
     cout << "│  Disabled: " << left << setw(48) << disabled << "│" << endl;
-
-
-    int flightCount=0;
-    int destinationCount=0;
-    for(auto &edge : hashMapEdges){
-        for(auto &airline : edge.second.airlines){
-            flightCount++;
-        }
-        destinationCount++;
-    }
     cout << "│  Flights: " << left << setw(49) << flightCount << "│" << endl;
+    cout << "│  Airlines: " << left << setw(48) << diff_airlines.size() << "│" << endl;
     cout << "│  Destinations: " << left << setw(44) << destinationCount << "│" << endl;
     cout << "└────────────────────────────────────────────────────────────┘" << endl;
 }
