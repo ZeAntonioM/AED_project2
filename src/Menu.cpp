@@ -83,7 +83,6 @@ void Menu::mainMenu() {
         cin.ignore(INT64_MAX, '\n');
     } while(option < 1 || option > 4);
 
-
     //clear the console
     system("clear");
 
@@ -233,13 +232,10 @@ void Menu::coordInputMenu() {
     //find route by coordenates
     skyLines.setMaxDistance(distanceInputMenu());
 
-    cout << endl;
-
     skyLines.findRoute(departureCoord, arrivalCoord);
 
     cout << endl;
     cout << "   PRESS ENTER TO CONTINUE" << endl;
-    cin.ignore(INT64_MAX, '\n');
     cin.get();
 
     //return to the main menu
@@ -323,17 +319,28 @@ void Menu::disableMenu() {
 
     } while(option < 1 || option > 5);
 
-    cout << endl;
-    //clear the console
-    system("clear");
 
     switch(option){
         case 1: menuState.push(DISABLE_AIRPORT_MENU); break;
         case 2: menuState.push(DISABLE_AIRLINE_MENU); break;
-        case 3: skyLines.changeAllAirportState(false); break;
-        case 4: skyLines.changeAllAirlineState(false); break;
+        case 3: skyLines.changeAllAirportState(false);
+
+                cout << "   PRESS ENTER TO CONTINUE" << endl;
+                cin.get();
+                break;
+        case 4: skyLines.changeAllAirlineState(false);
+
+                cout << "   PRESS ENTER TO CONTINUE" << endl;
+                cin.get();
+                break;
         case 5: default: menuState.pop(); break;
     }
+
+    cout << endl;
+
+    //clear the console
+    system("clear");
+
     getMenu();
 }
 
@@ -435,17 +442,24 @@ void Menu::enableMenu() {
 
     } while(option < 1 || option > 5);
 
-    cout << endl;
-    //clear the console
-    system("clear");
 
     switch(option){
         case 1: menuState.push(ENABLE_AIRPORT_MENU); break;
         case 2: menuState.push(ENABLE_AIRLINE_MENU); break;
-        case 3: skyLines.changeAllAirportState(true); break;
-        case 4: skyLines.changeAllAirlineState(true); break;
+        case 3: skyLines.changeAllAirportState(true);
+                cout << "   PRESS ENTER TO CONTINUE" << endl;
+                cin.get();
+                break;
+        case 4: skyLines.changeAllAirlineState(true);
+                cout << "   PRESS ENTER TO CONTINUE" << endl;
+                cin.get();
+                break;
         case 5: default: menuState.pop(); break;
     }
+
+    cout << endl;
+    //clear the console
+    system("clear");
     getMenu();
 }
 
