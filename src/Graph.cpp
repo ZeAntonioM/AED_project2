@@ -1,6 +1,6 @@
 #include "Graph.h"
 
-Graph::Graph(int nodes) : nodes(nodes+1){}
+Graph::Graph(int nodes) : nodes(nodes){}
 
 double Graph::calculateDistance(double lat1, double lon1, double lat2, double lon2) {
 
@@ -173,6 +173,4 @@ void Node::printInfo() {
     cout << "│  Flights: " << left << setw(49) << flightCount << "│" << endl;
     cout << "│  Destinations: " << left << setw(44) << destinationCount << "│" << endl;
     cout << "└────────────────────────────────────────────────────────────┘" << endl;
-    cout << "  PRESS ENTER TO CONTINUE";
-
 }
