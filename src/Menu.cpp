@@ -233,10 +233,13 @@ void Menu::coordInputMenu() {
     //find route by coordenates
     skyLines.setMaxDistance(distanceInputMenu());
 
+    cout << endl;
+
     skyLines.findRoute(departureCoord, arrivalCoord);
 
     cout << endl;
     cout << "   PRESS ENTER TO CONTINUE" << endl;
+    cin.ignore(INT64_MAX, '\n');
     cin.get();
 
     //return to the main menu
