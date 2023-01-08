@@ -150,17 +150,6 @@ vector<Node> Graph::generateFlightPath(int origin, int destination) {
 
 
 void Node::printInfo() {
-    cout << "┌────────────────────────────────────────────────────────────┐" << endl;
-    cout << "│                           Airport                          │" << endl;
-    cout << "├────────────────────────────────────────────────────────────┤" << endl;
-    cout << "│  Code: " << left << setw(52) << code << "│" << endl;
-    cout << "│  Name: " << left << setw(52) << name << "│" << endl;
-    cout << "│  City: " << left << setw(52) << city << "│" << endl;
-    cout << "│  Country: " << left << setw(49) << country << "│" << endl;
-    cout << "│  Latitude: " << left << setw(48) << coordinate.latitude << "│" << endl;
-    cout << "│  Longitude: " << left << setw(47) << coordinate.longitude << "│" << endl;
-    cout << "│  Disabled: " << left << setw(48) << disabled << "│" << endl;
-
 
     int flightCount=0;
     int destinationCount=0;
@@ -174,6 +163,17 @@ void Node::printInfo() {
         destinationCount++;
         diff_countries.insert(edge.second.destination);
     }
+
+    cout << "┌────────────────────────────────────────────────────────────┐" << endl;
+    cout << "│                           Airport                          │" << endl;
+    cout << "├────────────────────────────────────────────────────────────┤" << endl;
+    cout << "│  Code: " << left << setw(52) << code << "│" << endl;
+    cout << "│  Name: " << left << setw(52) << name << "│" << endl;
+    cout << "│  City: " << left << setw(52) << city << "│" << endl;
+    cout << "│  Country: " << left << setw(49) << country << "│" << endl;
+    cout << "│  Latitude: " << left << setw(48) << coordinate.latitude << "│" << endl;
+    cout << "│  Longitude: " << left << setw(47) << coordinate.longitude << "│" << endl;
+    cout << "│  Disabled: " << left << setw(48) << disabled << "│" << endl;
     cout << "│  Flights: " << left << setw(49) << flightCount << "│" << endl;
     cout << "│  Airlines: " << left << setw(48) << diff_airlines.size() << "│" << endl;
     cout << "│  Different Countries: " << left << setw(37) << diff_airlines.size() << "│" << endl;
